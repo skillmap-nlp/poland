@@ -25,12 +25,12 @@ including automated text processing, classification, and LLM-assisted
 skill extraction, to transform unstructured job postings and training
 descriptions into comparable measures of skill demand and skill supply.
 
-Using ESCO-based mappings, the report compares the composition of
-requested and supplied skills across occupations, with particular
-attention to digital competencies and emerging skill needs. It also
-introduces indicators of relative labour demand, derived from job
-posting intensity, and contrasts them with the structure of available
-training.
+Using mappings to two skill taxonomies, ESCO and Lightcast, the report
+compares the composition of requested and supplied skills across
+occupations, with particular attention to digital competencies and
+emerging skill needs. It also introduces indicators of relative labour
+demand, derived from job posting intensity, and contrasts them with the
+structure of available training.
 
 The Polish labour market is undergoing rapid transformation, with
 increasing digitalization shaping both hiring practices and skill
@@ -122,10 +122,10 @@ Raw job postings and training descriptions contain noisy, unstructured
 information. We transform them into a standardized analytic dataset in
 six steps: we first identify the source language, translate non-Polish
 text into Polish, isolate skill-relevant sentences, map extracted skills
-to ESCO, standardize job titles to ESCO occupations using both titles
-and skill context for disambiguation, and then enrich each record with
-regional information and labour-force denominators for voivodeship-level
-comparison.
+to the ESCO and Lightcast skill taxonomies, standardize job titles to
+ESCO occupations using both titles and skill context for
+disambiguation, and then enrich each record with regional information
+and labour-force denominators for voivodeship-level comparison.
 
 ```{=html}
 <div class="pipeline-diagram">
@@ -166,8 +166,8 @@ comparison.
         <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/></svg>
       </div>
     </div>
-    <div class="pipeline-label">ESCO<br>Mapping</div>
-    <div class="pipeline-detail">Extracted skills are mapped to the ESCO taxonomy to make demand and supply directly comparable</div>
+    <div class="pipeline-label">Skill<br>Taxonomy Mapping</div>
+    <div class="pipeline-detail">Extracted skills are mapped to the ESCO and Lightcast taxonomies to make demand and supply directly comparable while retaining granular AI signals</div>
   </div>
   <div class="pipeline-step">
     <div class="pipeline-step-top">
@@ -211,138 +211,137 @@ technologies and tools emerging rapidly while others become obsolete.
 This makes it difficult to track AI skill demand using static
 taxonomies alone.
 
-Standard classifications such as ESCO are not updated frequently enough
-to capture highly granular and technology-specific skills, such as
-individual AI tools, models, copilots, or chatbot platforms. At the
-same time, ESCO provides a robust and interpretable structure through
-broader concepts such as machine learning, natural language processing,
-computer vision, and digital content creation.
+Lightcast captures highly granular and technology-specific signals, such
+as individual AI tools, models, copilots, libraries, and chatbot
+platforms. This makes it well suited to detecting early changes in
+employer demand. The policy challenge is that these highly specific
+skill labels do not automatically roll up into a small set of broader
+categories that are easy to interpret and communicate.
 
-To address this trade-off, we adopt a hybrid approach inspired by
+To address this, we build on
 <a class="paper-link" href="https://documents1.worldbank.org/curated/en/099451102172652767/pdf/IDU-e779b9af-e9b1-43ae-a2c5-9679dbf2d829.pdf" target="_blank" rel="noopener noreferrer">Martins-Neto et al. (2026)</a>,
-who use Lightcast AI skills to track digital-skill demand. In their
-application, the AI skill list contains 257 items. Because the AI skill
-space evolves quickly, we extend this approach with a newer and broader
-Lightcast AI list containing 361 skills, allowing us to capture more
-recent references to specific tools, platforms, and frameworks.
+who organize Lightcast AI skills into a policy-friendly clustering
+framework. Their approach groups the benchmark AI skill list into ten
+clusters:
 
-Lightcast's taxonomy is substantially more granular than ESCO and is
-therefore well suited to detecting early signals of technological
-change. However, relying only on highly specific Lightcast labels would
-lead to fragmented and less interpretable analysis, limiting
-comparability across time, occupations, and regions.
-
-We therefore use a two-step strategy:
-
-1. Lightcast AI skills are used to identify and track emerging AI
-signals in job postings.
-2. These signals are mapped to broader ESCO categories to enable
-consistent aggregation and comparison.
-
-The resulting bridge between Lightcast and ESCO is constructed using
-semantic similarity methods based on embeddings of both skill labels and
-descriptions from the two taxonomies. In practice, we embed Lightcast
-AI skills and a targeted ESCO subset combining the full `S5 working with
-computers` branch with ICT- and digital-related ESCO knowledge concepts.
-We then identify the closest conceptual matches between the detailed
-Lightcast skill entries and broader ESCO categories. This allows us to
-combine the granularity of real-time skill signals with the stability
-and interpretability of a standardized taxonomy, enabling robust
-analysis of AI skill demand in a rapidly evolving technological
-landscape.
-
-The figure below summarizes the conservative bridge used in the final
-AI-demand counts. The 361 Lightcast AI skills are mapped to a restricted
-set of 22 AI-specific ESCO concepts: 18 knowledge concepts and 4 skills
-concepts. This more selective bridge avoids broad non-AI categories and
-is used to identify job postings that contain at least one detailed AI
-skill signal.
+This clustering gives us a transparent and policy-relevant benchmark for
+tracking AI demand. At the same time, the AI space is evolving quickly.
+In the current Lightcast retrieval, we identify 114 additional AI
+skills beyond the Martins-Neto benchmark, bringing the current total to
+464 skills.
 
 ```{=html}
-<div class="ai-flowchart-shell">
-  <div class="ai-flowchart-top">
-    <div class="ai-flow-node ai-flow-node-source">
-      <div class="ai-flow-kicker">Input taxonomy</div>
-      <div class="ai-flow-title">361 Lightcast AI skills</div>
-      <div class="ai-flow-text">Granular tools, models, platforms, frameworks, and AI methods</div>
-    </div>
-
-    <div class="ai-flow-arrow" aria-hidden="true">→</div>
-
-    <div class="ai-flow-node ai-flow-node-bridge">
-      <div class="ai-flow-kicker">Semantic bridge</div>
-      <div class="ai-flow-title">Embedding-based matching</div>
-      <div class="ai-flow-text">Labels + descriptions embedded with <code>voyage-4-large</code></div>
-    </div>
-
-    <div class="ai-flow-arrow" aria-hidden="true">→</div>
-
-    <div class="ai-flow-node ai-flow-node-mid">
-      <div class="ai-flow-kicker">Filtered ESCO layer</div>
-      <div class="ai-flow-title">22 AI-specific ESCO concepts</div>
-      <div class="ai-flow-text">Only AI-relevant ESCO concepts are retained as valid bridge targets</div>
-    </div>
-
-    <div class="ai-flow-arrow" aria-hidden="true">→</div>
-
-    <div class="ai-flow-node ai-flow-node-final">
-      <div class="ai-flow-kicker">Offer-level metric</div>
-      <div class="ai-flow-title">AI-skill flag per posting</div>
-      <div class="ai-flow-text">A posting is AI-related if it contains at least one skill matched to the final AI bridge</div>
-    </div>
-  </div>
-
-  <div class="ai-flowchart-branches">
-    <div class="ai-flow-branch ai-flow-branch-all">
-      <div class="ai-flow-branch-head">
-        <span class="ai-flow-branch-title">Final ESCO concepts</span>
-        <span class="ai-flow-branch-meta ai-flow-branch-meta-summary">
-          <span class="ai-flow-summary-total">361 Lightcast skills aggregated into 22 ESCO concepts</span>
-          <span class="ai-flow-summary-breakdown">(<span class="ai-flow-summary-pill ai-flow-summary-pill-k">18 Knowledge</span> + <span class="ai-flow-summary-pill ai-flow-summary-pill-s">4 Skills</span>)</span>
-        </span>
-      </div>
-      <div class="ai-flow-tags">
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0619.12.1</strong> Machine learning</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0231.4</strong> Natural language processing</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0619.12.2</strong> Deep learning</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0619.12</strong> Principles of artificial intelligence</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0688.4</strong> Cognitive computing</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0619.5</strong> Image recognition</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0688.2</strong> Data science</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0232.24</strong> Speech recognition</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>T6.6.2.0.3</strong> Data ethics</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0619.14</strong> Computer vision</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0611.46</strong> Decision support systems</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0619.12.3</strong> Artificial neural networks</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0612.94</strong> Information extraction</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0232.6.1</strong> Computational linguistics</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0613.12</strong> Machine translation</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0613.102</strong> Image recognition</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0714.62</strong> Robotics</span>
-        <span class="ai-flow-tag ai-flow-tag-k"><span class="ai-flow-pill ai-flow-pill-k">K</span><strong>0612.47.0</strong> Data mining methods</span>
-        <span class="ai-flow-tag ai-flow-tag-s"><span class="ai-flow-pill ai-flow-pill-s">S</span><strong>S5.1.0.29</strong> Utilise machine learning</span>
-        <span class="ai-flow-tag ai-flow-tag-s"><span class="ai-flow-pill ai-flow-pill-s">S</span><strong>S5.1.0.33</strong> Build recommender systems</span>
-        <span class="ai-flow-tag ai-flow-tag-s"><span class="ai-flow-pill ai-flow-pill-s">S</span><strong>S5.5.2.5.1</strong> Analyse big data</span>
-        <span class="ai-flow-tag ai-flow-tag-s"><span class="ai-flow-pill ai-flow-pill-s">S</span><strong>S5.1.0.9</strong> Perform dimensionality reduction</span>
-      </div>
-    </div>
-  </div>
+<div class="ai-cluster-grid">
+  <button class="ai-cluster-card" type="button" data-ai-cluster="AI Agent">
+    <span class="ai-cluster-index">Cluster 1</span>
+    <span class="ai-cluster-name">AI Agent</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="AI Agent">29</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="AI Agent">0</span>)</span>
+    </span>
+  </button>
+  <button class="ai-cluster-card" type="button" data-ai-cluster="AI Ethics, Governance and Regulations">
+    <span class="ai-cluster-index">Cluster 2</span>
+    <span class="ai-cluster-name">AI Ethics, Governance and Regulations</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="AI Ethics, Governance and Regulations">8</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="AI Ethics, Governance and Regulations">0</span>)</span>
+    </span>
+  </button>
+  <button class="ai-cluster-card" type="button" data-ai-cluster="Artificial Intelligence">
+    <span class="ai-cluster-index">Cluster 3</span>
+    <span class="ai-cluster-name">Artificial Intelligence</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Artificial Intelligence">43</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Artificial Intelligence">0</span>)</span>
+    </span>
+  </button>
+  <button class="ai-cluster-card" type="button" data-ai-cluster="Autonomous Driving">
+    <span class="ai-cluster-index">Cluster 4</span>
+    <span class="ai-cluster-name">Autonomous Driving</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Autonomous Driving">14</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Autonomous Driving">0</span>)</span>
+    </span>
+  </button>
+  <button class="ai-cluster-card" type="button" data-ai-cluster="Generative AI">
+    <span class="ai-cluster-index">Cluster 5</span>
+    <span class="ai-cluster-name">Generative AI</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Generative AI">20</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Generative AI">0</span>)</span>
+    </span>
+  </button>
+  <button class="ai-cluster-card" type="button" data-ai-cluster="Machine Learning">
+    <span class="ai-cluster-index">Cluster 6</span>
+    <span class="ai-cluster-name">Machine Learning</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Machine Learning">105</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Machine Learning">0</span>)</span>
+    </span>
+  </button>
+  <button class="ai-cluster-card" type="button" data-ai-cluster="Natural Language Processing">
+    <span class="ai-cluster-index">Cluster 7</span>
+    <span class="ai-cluster-name">Natural Language Processing</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Natural Language Processing">59</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Natural Language Processing">0</span>)</span>
+    </span>
+  </button>
+  <button class="ai-cluster-card" type="button" data-ai-cluster="Neural Networks">
+    <span class="ai-cluster-index">Cluster 8</span>
+    <span class="ai-cluster-name">Neural Networks</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Neural Networks">29</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Neural Networks">0</span>)</span>
+    </span>
+  </button>
+  <button class="ai-cluster-card" type="button" data-ai-cluster="Robotics">
+    <span class="ai-cluster-index">Cluster 9</span>
+    <span class="ai-cluster-name">Robotics</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Robotics">15</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Robotics">0</span>)</span>
+    </span>
+  </button>
+  <button class="ai-cluster-card" type="button" data-ai-cluster="Visual Image Recognition">
+    <span class="ai-cluster-index">Cluster 10</span>
+    <span class="ai-cluster-name">Visual Image Recognition</span>
+    <span class="ai-cluster-count-group">
+      <span class="ai-cluster-count-label">Skills n:</span>
+      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Visual Image Recognition">28</span>
+      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Visual Image Recognition">0</span>)</span>
+    </span>
+  </button>
 </div>
+<div class="ai-cluster-legend">Values in parentheses indicate new additions to the Lightcast AI taxonomy.</div>
 ```
 
-A few examples from our Lightcast-to-ESCO bridge illustrate the logic
-of the mapping:
+To make the expanded list more interpretable, we assign these 114 newer
+Lightcast AI skills to the ten Martins-Neto clusters using an
+embedding-based classification approach. This provides a practical way
+to extend the benchmark taxonomy to newer tools and concepts, but these
+additional assignments should still be treated as provisional and
+subject to expert verification.
 
-| Lightcast AI skill | ESCO match | Interpretation |
-|---|---|---|
-| `3D Reconstruction` | `image recognition` | A highly specific computer-vision signal is mapped to a clearly AI-specific ESCO concept rather than to a broader imaging task. |
-| `AdaBoost (Adaptive Boosting)` | `machine learning` | A named algorithm is aggregated into a broader and interpretable AI method category. |
-| `Aforge` | `computer vision` | Tool- or library-specific terminology is mapped to the wider technical domain it represents. |
-| `AI Assisted Content Generation` | `utilise machine learning` | Generative-AI terminology is retained within the final bridge only when it resolves to an explicitly AI-related ESCO concept. |
-| `AI Agents` | `principles of artificial intelligence` | New agentic-AI vocabulary is grouped under a broader conceptual AI category in ESCO. |
+For that reason, we report two versions of AI demand below. The first is
+a strict benchmark based on the 350 AI skills covered directly by the
+Martins-Neto framework. The second uses the full current Lightcast AI
+list of 464 skills, combining the original benchmark with 114 newly
+retrieved skills that we classify into the same ten clusters using
+embedding similarity.
 
 ```{=html}
-<p class="notes source-note">Source: Lightcast AI skills taxonomy; ESCO; authors' semantic bridge based on embedding similarity.</p>
+<p class="notes source-note">Source: Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' calculations.</p>
 ```
 ::::
 
@@ -405,44 +404,68 @@ classified digital demand.
 ```{=html}
 <div class="ai-stats-grid">
   <article class="ai-stat-card">
-    <p class="ai-stat-label">Share of all job postings with at least one AI skill</p>
-    <p class="ai-stat-value">1.08%</p>
-    <p class="ai-stat-subtext">8,116 of 749,569 postings under the conservative Lightcast-to-ESCO bridge.</p>
+    <p class="ai-stat-label">Strict Martins-Neto benchmark</p>
+    <p class="ai-stat-value">0.67%</p>
+    <p class="ai-stat-subtext">4,997 of 749,569 postings are identified as AI-related under a conservative specification based on the 350 benchmark skills.</p>
+  </article>
+  <article class="ai-stat-card">
+    <p class="ai-stat-label">Expanded current Lightcast list</p>
+    <p class="ai-stat-value">1.02%</p>
+    <p class="ai-stat-subtext">7,669 of 749,569 postings are identified as AI-related when the 114 additional Lightcast AI skills are also included.</p>
   </article>
 </div>
 ```
 
 ```{=html}
-<div class="figure-caption-title">Figure 4. Most demanded AI skills and knowledge in Poland</div>
-<div class="ai-bar-legend">
-  <span class="ai-bar-legend-item"><span class="ai-bar-type ai-bar-type-s">S</span> Skill</span>
-  <span class="ai-bar-legend-item"><span class="ai-bar-type ai-bar-type-k">K</span> Knowledge</span>
-</div>
-<div class="ai-bars-card ai-bars-card-wide" style="margin-top:1rem;">
-  <div class="ai-bars-list">
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-s">S</span> Analyse big data</div><div class="ai-bar-track"><div class="ai-bar-fill ai-bar-fill-alt" style="width:62.90%"></div></div><div class="ai-bar-value">62.90%</div></div>
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-k">K</span> Principles of artificial intelligence</div><div class="ai-bar-track"><div class="ai-bar-fill" style="width:25.67%"></div></div><div class="ai-bar-value">25.67%</div></div>
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-k">K</span> Natural language processing</div><div class="ai-bar-track"><div class="ai-bar-fill" style="width:5.84%"></div></div><div class="ai-bar-value">5.84%</div></div>
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-s">S</span> Utilise machine learning</div><div class="ai-bar-track"><div class="ai-bar-fill ai-bar-fill-alt" style="width:3.60%"></div></div><div class="ai-bar-value">3.60%</div></div>
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-k">K</span> Data mining methods</div><div class="ai-bar-track"><div class="ai-bar-fill" style="width:2.24%"></div></div><div class="ai-bar-value">2.24%</div></div>
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-k">K</span> Robotics</div><div class="ai-bar-track"><div class="ai-bar-fill" style="width:1.32%"></div></div><div class="ai-bar-value">1.32%</div></div>
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-k">K</span> Data ethics</div><div class="ai-bar-track"><div class="ai-bar-fill" style="width:1.15%"></div></div><div class="ai-bar-value">1.15%</div></div>
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-k">K</span> Image recognition</div><div class="ai-bar-track"><div class="ai-bar-fill" style="width:0.92%"></div></div><div class="ai-bar-value">0.92%</div></div>
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-k">K</span> Information extraction</div><div class="ai-bar-track"><div class="ai-bar-fill" style="width:0.80%"></div></div><div class="ai-bar-value">0.80%</div></div>
-    <div class="ai-bar-row"><div class="ai-bar-label"><span class="ai-bar-type ai-bar-type-k">K</span> Decision support systems</div><div class="ai-bar-track"><div class="ai-bar-fill" style="width:0.79%"></div></div><div class="ai-bar-value">0.79%</div></div>
-  </div>
-</div>
-<p class="notes source-note">Source: Pracuj.pl job postings; Lightcast AI skills taxonomy; ESCO; authors' semantic bridge based on embedding similarity. Values show the share of AI postings containing each skill or knowledge concept.</p>
+<div class="figure-caption-title">Figure 4. Most demanded Lightcast AI clusters and skills in Poland</div>
+<div id="ai-cluster-demand"></div>
+<p class="notes source-note">Source: Pracuj.pl job postings; Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' semantic matching and aggregation. Cluster demand is based on postings matched to the expanded Lightcast AI list under the conservative threshold used in this report.</p>
 ```
 :::
+
+:::: {.section-card}
+### Lightcast AI Skills Explorer
+
+The table below lists the retrieved Lightcast AI skills used in this
+report. It distinguishes between the Martins-Neto benchmark skills and
+newer Lightcast AI skills that have appeared beyond that benchmark. For
+the newer skills, the cluster shown here comes from our embedding-based
+classification and should therefore be treated as provisional pending
+expert verification. Use the search box or filters to narrow the list,
+or click a cluster card above to jump directly to that cluster. Within a
+cluster view, benchmark skills are shown first, followed by our newly
+classified skills in a different color. Click `View` to open the full
+Lightcast description in a modal window.
+
+```{=html}
+<div id="lightcast-ai-skills-table"></div>
+<div id="lightcast-ai-skill-modal" class="skill-modal hidden" aria-hidden="true">
+  <div class="skill-modal-backdrop" data-close-modal="true"></div>
+  <div class="skill-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="skill-modal-title">
+    <button class="skill-modal-close" type="button" aria-label="Close" data-close-modal="true">x</button>
+    <p class="skill-modal-kicker">Lightcast AI skill</p>
+    <h3 id="skill-modal-title"></h3>
+    <div class="skill-modal-meta" id="skill-modal-meta"></div>
+    <div class="skill-modal-body" id="skill-modal-body"></div>
+  </div>
+</div>
+```
+::::
 
 ::::: {.section-card .map-shell}
 ### Regional AI Demand
 
+```{=html}
+<div style="margin:0.15rem 0 0.85rem;">
+  <span class="skill-meta-chip">To be updated with the expanded Lightcast taxonomy</span>
+</div>
+```
+
 The map below shows AI demand intensity by voivodeship, measured as the
 number of postings containing at least one AI skill under the final
-Lightcast-to-ESCO bridge, normalized by the 2025 labour force. Click a
-voivodeship to inspect its three most characteristic AI skills. To
+AI skill definitions described above, normalized by the 2025 labour
+force. Click a voivodeship to inspect its three most characteristic AI
+skills. To
 identify AI skills and knowledge that are particularly characteristic of
 individual voivodeships, we apply the log-likelihood ratio (`G²`) test
 following Dunning (1993), comparing each region with the rest of the
@@ -475,6 +498,8 @@ country.
 <script src="assets/plotly.min.js"></script>
 <script src="assets/regional_map_data.js"></script>
 <script src="assets/ai_regional_map_data.js"></script>
+<script src="assets/lightcast_ai_skills_data.js"></script>
 <script src="assets/ai_report.js"></script>
+<script src="assets/lightcast_ai_table.js"></script>
 <script src="assets/report.js"></script>
 ```

@@ -33,7 +33,9 @@ resources:
   - data/regional_metrics_meta.json
   - data/pl_voivodeships.geojson
   - assets/ai_regional_map_data.js
+  - assets/lightcast_ai_skills_data.js
   - assets/ai_report.js
+  - assets/lightcast_ai_table.js
   - assets/plotly.min.js
   - assets/regional_map_data.js
   - assets/report.js
