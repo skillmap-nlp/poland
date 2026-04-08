@@ -87,7 +87,7 @@
         </div>
         <div class="ai-detail-panels">
           <div class="ai-detail-panel">
-            <div class="ai-detail-skills-head">Top 3 characteristic Lightcast AI skills by G²</div>
+            <div class="ai-detail-skills-head">Top 5 characteristic Lightcast AI skills by G²</div>
             <div class="ai-detail-skills">${chips}</div>
           </div>
           <div class="ai-detail-panel">

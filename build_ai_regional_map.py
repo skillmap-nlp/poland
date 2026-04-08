@@ -383,7 +383,7 @@ def compute_payload() -> dict:
             )
         scored = [item for item in scored if item["g2"] > 0]
         scored.sort(key=lambda item: (-item["g2"], -item["count"], item["label"]))
-        top_skills = scored[:3]
+        top_skills = scored[:5]
         top_skills_text = ", ".join(item["label"] for item in top_skills) if top_skills else "No AI skills detected"
         top_clusters = [
             {
