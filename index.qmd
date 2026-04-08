@@ -455,21 +455,14 @@ Lightcast description in a modal window.
 ::::: {.section-card .map-shell}
 ### Regional AI Demand
 
-```{=html}
-<div style="margin:0.15rem 0 0.85rem;">
-  <span class="skill-meta-chip">To be updated with the expanded Lightcast taxonomy</span>
-</div>
-```
-
 The map below shows AI demand intensity by voivodeship, measured as the
-number of postings containing at least one AI skill under the final
-AI skill definitions described above, normalized by the 2025 labour
-force. Click a voivodeship to inspect its three most characteristic AI
-skills. To
-identify AI skills and knowledge that are particularly characteristic of
-individual voivodeships, we apply the log-likelihood ratio (`G²`) test
-following Dunning (1993), comparing each region with the rest of the
-country.
+number of postings matched to at least one skill from the expanded
+Lightcast AI list at the conservative similarity threshold used in this
+report, normalized by the 2025 labour force. Click a voivodeship to
+inspect its three most characteristic Lightcast AI skills. To identify
+which skills are particularly characteristic of individual
+voivodeships, we apply the log-likelihood ratio (`G²`) test following
+Dunning (1993), comparing each region with the rest of the country.
 
 ```{=html}
 <div class="figure-caption-title" id="ai-map-figure-title"></div>

@@ -31,10 +31,7 @@
       .map((part) => part.charAt(0).toLocaleUpperCase("pl-PL") + part.slice(1))
       .join("-");
 
-  const displayAiLabel = (label) =>
-    String(label).toLowerCase() === "optical character recognition software"
-      ? "image recognition"
-      : label;
+  const displayAiLabel = (label) => String(label || "");
 
   function renderDetail(row) {
     const detailEl = document.getElementById("ai-regional-detail");
@@ -49,7 +46,21 @@
           <div class="ai-detail-skill-rank">${idx + 1}</div>
           <div>
             <div class="ai-detail-skill-label">${displayAiLabel(skill.label)}</div>
-            <div class="ai-detail-skill-meta">${skill.code}</div>
+            <div class="ai-detail-skill-meta">${skill.cluster || ""}</div>
+          </div>
+        </div>
+      `
+      )
+      .join("");
+
+    const clusters = (row.top_clusters || [])
+      .map(
+        (cluster, idx) => `
+        <div class="ai-detail-cluster">
+          <div class="ai-detail-cluster-rank">${idx + 1}</div>
+          <div class="ai-detail-cluster-copy">
+            <div class="ai-detail-cluster-label">${cluster.cluster}</div>
+            <div class="ai-detail-cluster-meta">${fmtPct(cluster.share_of_regional_ai_pct)}% of regional AI postings</div>
           </div>
         </div>
       `
@@ -74,8 +85,16 @@
             <span class="ai-detail-metric-value">${fmtPct(row.ai_offer_share_pct)}%</span>
           </div>
         </div>
-        <div class="ai-detail-skills-head">Top 3 characteristic AI skills by G²</div>
-        <div class="ai-detail-skills">${chips}</div>
+        <div class="ai-detail-panels">
+          <div class="ai-detail-panel">
+            <div class="ai-detail-skills-head">Top 3 characteristic Lightcast AI skills by G²</div>
+            <div class="ai-detail-skills">${chips}</div>
+          </div>
+          <div class="ai-detail-panel">
+            <div class="ai-detail-clusters-head">Top 5 Lightcast AI clusters in this voivodeship</div>
+            <div class="ai-detail-clusters">${clusters}</div>
+          </div>
+        </div>
       </div>
     `;
   }
@@ -150,9 +169,9 @@
     document.getElementById("ai-map-note").innerHTML = `
       <div class="figure-caption-source">
         Source: <a href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>;
-        ESCO; Lightcast AI skills taxonomy; authors' Lightcast-to-ESCO bridge; labour force denominator from
+        Lightcast AI skills taxonomy; authors' semantic matching; labour force denominator from
         <a href="https://api.stat.gov.pl/Home/BdlApi?gt=&lang=en" target="_blank" rel="noopener noreferrer">GUS BDL API</a>.
-        Regional assignment is available for ${fmtInt(meta.ai_offers_total_mapped)} of ${fmtInt(meta.ai_offers_total)} AI postings.
+        Regional assignment is available for ${fmtInt(meta.ai_offers_total_mapped)} of ${fmtInt(meta.ai_offers_total)} postings matched to Lightcast AI skills at a similarity threshold of ${meta.match_threshold}.
       </div>
     `;
   }

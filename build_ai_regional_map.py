@@ -9,15 +9,17 @@ import sqlite3
 from collections import Counter, defaultdict
 from pathlib import Path
 
+import numpy as np
+import pandas as pd
 
 BASE = Path(__file__).resolve().parent
-ROOT = BASE.parent
 REGIONAL_METRICS_CSV = BASE / "data" / "regional_metrics.csv"
-BRIDGE_CSV = ROOT / "lightcast_aiml" / "bridge_esco" / "lightcast_to_esco_bridge_top1.csv"
-ESCO_DB = ROOT / "comprehensive_esco.db"
-ESCO_DICT = ROOT / "esco_dictionary.json"
-JOBS_DB = ROOT / "jobs_database.db"
+LIGHTCAST_XLSX = BASE / "ai_skills_2026_lightcast_scraped.xlsx"
+MATCH_SCORES_NPZ = BASE / "lightcast_aiml" / "ai_skill_match_scores.npz"
+EMBEDDINGS_NPZ = BASE / "lightcast_aiml" / "lightcast_ai_skills_voyage4.npz"
+JOBS_DB = BASE / "jobs_database.db"
 OUTPUT_JS = BASE / "assets" / "ai_regional_map_data.js"
+MATCH_THRESHOLD = 0.55
 
 VOIV_ORDER = [
     "dolnośląskie",
@@ -190,41 +192,40 @@ def load_regional_base() -> dict[str, dict]:
     return out
 
 
-def load_bridge() -> tuple[set[str], dict[str, dict]]:
-    with BRIDGE_CSV.open(encoding="utf-8") as f:
-        rows = list(csv.DictReader(f))
-    ai_codes = {row["esco_code"] for row in rows}
-    code_meta = {
-        row["esco_code"]: {
-            "label": row["esco_label"],
-            "group": row["esco_group"],
+def load_lightcast_skill_meta() -> list[dict]:
+    workbook = pd.read_excel(LIGHTCAST_XLSX, sheet_name="all_skills")
+    workbook = workbook[workbook["retrieve_status"] == "ok"].copy()
+    workbook["skill_id"] = workbook["skill_id"].astype(str)
+
+    excel_meta = {
+        row["skill_id"]: {
+            "label": str(row.get("lightcast_name") or row.get("excel_skill_name") or row["skill_id"]).strip(),
+            "cluster": str(row.get("excel_ai_skill_cluster") or "").strip(),
+            "cluster_source": str(row.get("cluster_source") or "").strip(),
         }
-        for row in rows
-    }
-    return ai_codes, code_meta
-
-
-def load_label_to_code() -> dict[str, str]:
-    with ESCO_DICT.open(encoding="utf-8") as f:
-        esco_dict = json.load(f)
-    label_to_uri = {
-        str(label).strip().lower(): meta.get("uri")
-        for label, meta in esco_dict.items()
-        if meta.get("uri")
+        for _, row in workbook.iterrows()
     }
 
-    conn = sqlite3.connect(str(ESCO_DB))
-    cur = conn.cursor()
-    cur.execute("SELECT code, uri FROM esco_concepts WHERE uri IS NOT NULL")
-    uri_to_code = {uri: code for code, uri in cur.fetchall()}
-    conn.close()
+    embeddings = np.load(EMBEDDINGS_NPZ, allow_pickle=True)
+    skill_ids = [str(skill_id) for skill_id in embeddings["skill_ids"]]
+    skill_names = [str(name) for name in embeddings["names"]]
+    wb_flags = [int(flag) for flag in embeddings["worldbank_ai_skill"]]
 
-    out = {}
-    for label, uri in label_to_uri.items():
-        code = uri_to_code.get(uri)
-        if code:
-            out[label] = code
-    return out
+    ordered_meta = []
+    for skill_id, skill_name, wb_flag in zip(skill_ids, skill_names, wb_flags):
+        row = excel_meta.get(skill_id, {})
+        cluster_source = row.get("cluster_source") or (
+            "Lightcast" if wb_flag else "embedding classification"
+        )
+        ordered_meta.append(
+            {
+                "skill_id": skill_id,
+                "label": row.get("label") or skill_name,
+                "cluster": row.get("cluster") or "",
+                "cluster_source": cluster_source,
+            }
+        )
+    return ordered_meta
 
 
 def build_location_matchers():
@@ -305,61 +306,51 @@ def log_likelihood_g2(k11: int, k12: int, k21: int, k22: int) -> float:
 
 def compute_payload() -> dict:
     regional_base = load_regional_base()
-    ai_codes, code_meta = load_bridge()
-    label_to_code = load_label_to_code()
+    lightcast_meta = load_lightcast_skill_meta()
+    lightcast_meta_by_id = {
+        row["skill_id"]: row for row in lightcast_meta
+    }
     alias_patterns, city_patterns = build_location_matchers()
 
     ai_offer_counts = Counter()
-    concept_counts = defaultdict(Counter)
+    skill_counts = defaultdict(Counter)
+    cluster_counts = defaultdict(Counter)
     total_ai_offers = 0
     mapped_ai_offers = 0
     unmapped_ai_offers = 0
 
+    match_scores = np.load(MATCH_SCORES_NPZ, allow_pickle=True)
+    scores_all = match_scores["scores_all"]
+    indices_all = match_scores["indices_all"]
+    job_ids = match_scores["job_ids"]
+
     conn = sqlite3.connect(str(JOBS_DB))
     cur = conn.cursor()
-    cur.execute(
-        "SELECT id, location, skills_esco_contextual FROM job_ads "
-        "WHERE skills_esco_contextual IS NOT NULL AND trim(skills_esco_contextual) != ''"
-    )
-
-    while True:
-        batch = cur.fetchmany(5000)
-        if not batch:
-            break
-        for _, location, payload in batch:
-            try:
-                items = json.loads(payload)
-            except Exception:
-                continue
-
-            ai_codes_in_offer: set[str] = set()
-            for item in items:
-                label = str(item.get("esco") or item.get("label") or "").strip().lower()
-                if not label:
-                    continue
-                code = label_to_code.get(label)
-                if code in ai_codes:
-                    ai_codes_in_offer.add(code)
-
-            if not ai_codes_in_offer:
-                continue
-
-            total_ai_offers += 1
-            voiv = infer_voivodeship(location, alias_patterns, city_patterns)
-            if not voiv:
-                unmapped_ai_offers += 1
-                continue
-
-            mapped_ai_offers += 1
-            ai_offer_counts[voiv] += 1
-            for code in ai_codes_in_offer:
-                concept_counts[voiv][code] += 1
+    cur.execute("SELECT id, location FROM job_ads WHERE location IS NOT NULL")
+    location_map = {int(job_id): location for job_id, location in cur.fetchall()}
 
     conn.close()
 
-    global_concept_counts = Counter()
+    for job_id, score, skill_idx in zip(job_ids, scores_all, indices_all):
+        if float(score) < MATCH_THRESHOLD:
+            continue
+
+        total_ai_offers += 1
+        voiv = infer_voivodeship(location_map.get(int(job_id)), alias_patterns, city_patterns)
+        if not voiv:
+            unmapped_ai_offers += 1
+            continue
+
+        mapped_ai_offers += 1
+        ai_offer_counts[voiv] += 1
+        skill_meta = lightcast_meta[int(skill_idx)]
+        skill_counts[voiv][skill_meta["skill_id"]] += 1
+        if skill_meta["cluster"]:
+            cluster_counts[voiv][skill_meta["cluster"]] += 1
+
+    global_skill_counts = Counter()
     for voiv in VOIV_ORDER:
-        global_concept_counts.update(concept_counts[voiv])
+        global_skill_counts.update(skill_counts[voiv])
 
     mapped_total_ai_offers = sum(ai_offer_counts.values())
 
@@ -369,8 +360,8 @@ def compute_payload() -> dict:
         region_ai_offers = ai_offer_counts[voiv]
         outside_ai_offers = mapped_total_ai_offers - region_ai_offers
         scored = []
-        for code, count in concept_counts[voiv].items():
-            outside_count = global_concept_counts[code] - count
+        for skill_id, count in skill_counts[voiv].items():
+            outside_count = global_skill_counts[skill_id] - count
             absent_in_region = max(region_ai_offers - count, 0)
             absent_outside_region = max(outside_ai_offers - outside_count, 0)
             g2 = log_likelihood_g2(
@@ -379,11 +370,13 @@ def compute_payload() -> dict:
                 outside_count,
                 absent_outside_region,
             )
+            skill_meta = lightcast_meta_by_id[skill_id]
             scored.append(
                 {
-                    "code": code,
-                    "label": code_meta[code]["label"],
-                    "group": code_meta[code]["group"],
+                    "skill_id": skill_id,
+                    "label": skill_meta["label"],
+                    "cluster": skill_meta["cluster"],
+                    "cluster_source": skill_meta["cluster_source"],
                     "count": count,
                     "g2": round(g2, 6),
                 }
@@ -392,6 +385,19 @@ def compute_payload() -> dict:
         scored.sort(key=lambda item: (-item["g2"], -item["count"], item["label"]))
         top_skills = scored[:3]
         top_skills_text = ", ".join(item["label"] for item in top_skills) if top_skills else "No AI skills detected"
+        top_clusters = [
+            {
+                "cluster": cluster,
+                "count": count,
+                "share_of_regional_ai_pct": round(count * 100 / region_ai_offers, 1)
+                if region_ai_offers
+                else 0.0,
+            }
+            for cluster, count in sorted(
+                cluster_counts[voiv].items(),
+                key=lambda item: (-item[1], item[0]),
+            )[:5]
+        ]
 
         ai_offers = ai_offer_counts[voiv]
         rows.append(
@@ -403,6 +409,7 @@ def compute_payload() -> dict:
                 "ai_offers_per_100k_lf": round(ai_offers * 100000 / base["labour_force_2025_avg"], 2),
                 "ai_offer_share_pct": round(ai_offers * 100 / base["offers"], 2) if base["offers"] else 0.0,
                 "top_characteristic_skills": top_skills,
+                "top_clusters": top_clusters,
                 "top_characteristic_skills_text": top_skills_text,
             }
         )
@@ -416,6 +423,7 @@ def compute_payload() -> dict:
             "ai_offers_total": total_ai_offers,
             "ai_offers_total_mapped": mapped_ai_offers,
             "ai_offers_total_unmapped": unmapped_ai_offers,
+            "match_threshold": MATCH_THRESHOLD,
             "top_voivodeship": top_row["voivodeship"],
             "top_ai_offers_per_100k_lf": top_row["ai_offers_per_100k_lf"],
         },
