@@ -31,8 +31,6 @@
       .map((part) => part.charAt(0).toLocaleUpperCase("pl-PL") + part.slice(1))
       .join("-");
 
-  const displayAiLabel = (label) => String(label || "");
-
   function renderDetail(row) {
     const detailEl = document.getElementById("ai-regional-detail");
     if (!detailEl || !row) {
@@ -45,22 +43,22 @@
         <div class="ai-detail-skill">
           <div class="ai-detail-skill-rank">${idx + 1}</div>
           <div>
-            <div class="ai-detail-skill-label">${displayAiLabel(skill.label)}</div>
-            <div class="ai-detail-skill-meta">${skill.cluster || ""}</div>
+            <div class="ai-detail-skill-label">${String(skill.label || "")}</div>
+            <div class="ai-detail-skill-meta">${skill.primary_category || ""}</div>
           </div>
         </div>
       `
       )
       .join("");
 
-    const clusters = (row.top_clusters || [])
+    const categories = (row.top_categories || [])
       .map(
-        (cluster, idx) => `
+        (cat, idx) => `
         <div class="ai-detail-cluster">
           <div class="ai-detail-cluster-rank">${idx + 1}</div>
           <div class="ai-detail-cluster-copy">
-            <div class="ai-detail-cluster-label">${cluster.cluster}</div>
-            <div class="ai-detail-cluster-meta">${fmtPct(cluster.share_of_regional_ai_pct)}% of regional AI postings</div>
+            <div class="ai-detail-cluster-label">${cat.category}</div>
+            <div class="ai-detail-cluster-meta">${fmtPct(cat.share_of_regional_ai_pct)}% of regional AI postings</div>
           </div>
         </div>
       `
@@ -87,12 +85,12 @@
         </div>
         <div class="ai-detail-panels">
           <div class="ai-detail-panel">
-            <div class="ai-detail-skills-head">Top 5 characteristic Lightcast AI skills by G²</div>
+            <div class="ai-detail-skills-head">Top 5 characteristic AI skills by G²</div>
             <div class="ai-detail-skills">${chips}</div>
           </div>
           <div class="ai-detail-panel">
-            <div class="ai-detail-clusters-head">Top 5 Lightcast AI clusters in this voivodeship</div>
-            <div class="ai-detail-clusters">${clusters}</div>
+            <div class="ai-detail-clusters-head">AI demand by category</div>
+            <div class="ai-detail-clusters">${categories}</div>
           </div>
         </div>
       </div>

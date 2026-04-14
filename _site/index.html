@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-04-02">
+<meta name="dcterms.date" content="2026-04-14">
 
 <title>Skill Demand and Supply in Poland 2025</title>
 <style>
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 2, 2026</p>
+      <p class="date">April 14, 2026</p>
     </div>
   </div>
   
@@ -240,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Our pipeline outperforms the current state of the art by approximately 3 percentage points in RP@5 on the HOUSE and TECH benchmark datasets reported by <a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/11079977/" target="_blank" rel="noopener noreferrer">Decorte et al.&nbsp;(2025)</a>. These benchmarks consist of job postings annotated with ESCO gold-standard skill labels by human experts, against which model predictions are evaluated. The reported RP@5 scores are 0.822 and 0.838, respectively.</p>
+<p>Our pipeline outperforms the current state of the art by approximately 3 percentage points in RP@5 on the HOUSE and TECH benchmark datasets reported by <span class="paper-ref" data-tooltip="Decorte, J. J., Van Hautte, J., Develder, C., and Demeester, T. 2025. Efficient Text Encoders for Labor Market Analysis. IEEE Access."><a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/11079977/" target="_blank" rel="noopener noreferrer">Decorte et al.&nbsp;(2025)</a></span>. These benchmarks consist of job postings annotated with ESCO gold-standard skill labels by human experts, against which model predictions are evaluated. The reported RP@5 scores are 0.822 and 0.838, respectively.</p>
 </div>
 </div>
 </div>
@@ -248,112 +248,18 @@ ul.task-list li input[type="checkbox"] {
 <section id="ai-skills-demand" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="ai-skills-demand">AI Skills Demand</h3>
 <p>The demand for AI-related skills is highly dynamic, with new technologies and tools emerging rapidly while others become obsolete. This makes it difficult to track AI skill demand using static taxonomies alone.</p>
-<p>Lightcast captures highly granular and technology-specific signals, such as individual AI tools, models, copilots, libraries, and chatbot platforms. This makes it well suited to detecting early changes in employer demand. The policy challenge is that these highly specific skill labels do not automatically roll up into a small set of broader categories that are easy to interpret and communicate.</p>
-<p>To address this, we build on <a class="paper-link" href="https://documents1.worldbank.org/curated/en/099451102172652767/pdf/IDU-e779b9af-e9b1-43ae-a2c5-9679dbf2d829.pdf" target="_blank" rel="noopener noreferrer">Martins-Neto et al.&nbsp;(2026)</a>, who organize Lightcast AI skills into a policy-friendly clustering framework. Their approach groups the benchmark AI skill list into ten clusters:</p>
-<p>This clustering gives us a transparent and policy-relevant benchmark for tracking AI demand. At the same time, the AI space is evolving quickly. In the current Lightcast retrieval, we identify 114 additional AI skills beyond the Martins-Neto benchmark, bringing the current total to 464 skills.</p>
-<div class="ai-cluster-grid">
-  <button class="ai-cluster-card" type="button" data-ai-cluster="AI Agent">
-    <span class="ai-cluster-index">Cluster 1</span>
-    <span class="ai-cluster-name">AI Agent</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="AI Agent">29</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="AI Agent">0</span>)</span>
-    </span>
-  </button>
-  <button class="ai-cluster-card" type="button" data-ai-cluster="AI Ethics, Governance and Regulations">
-    <span class="ai-cluster-index">Cluster 2</span>
-    <span class="ai-cluster-name">AI Ethics, Governance and Regulations</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="AI Ethics, Governance and Regulations">8</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="AI Ethics, Governance and Regulations">0</span>)</span>
-    </span>
-  </button>
-  <button class="ai-cluster-card" type="button" data-ai-cluster="Artificial Intelligence">
-    <span class="ai-cluster-index">Cluster 3</span>
-    <span class="ai-cluster-name">Artificial Intelligence</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Artificial Intelligence">43</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Artificial Intelligence">0</span>)</span>
-    </span>
-  </button>
-  <button class="ai-cluster-card" type="button" data-ai-cluster="Autonomous Driving">
-    <span class="ai-cluster-index">Cluster 4</span>
-    <span class="ai-cluster-name">Autonomous Driving</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Autonomous Driving">14</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Autonomous Driving">0</span>)</span>
-    </span>
-  </button>
-  <button class="ai-cluster-card" type="button" data-ai-cluster="Generative AI">
-    <span class="ai-cluster-index">Cluster 5</span>
-    <span class="ai-cluster-name">Generative AI</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Generative AI">20</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Generative AI">0</span>)</span>
-    </span>
-  </button>
-  <button class="ai-cluster-card" type="button" data-ai-cluster="Machine Learning">
-    <span class="ai-cluster-index">Cluster 6</span>
-    <span class="ai-cluster-name">Machine Learning</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Machine Learning">105</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Machine Learning">0</span>)</span>
-    </span>
-  </button>
-  <button class="ai-cluster-card" type="button" data-ai-cluster="Natural Language Processing">
-    <span class="ai-cluster-index">Cluster 7</span>
-    <span class="ai-cluster-name">Natural Language Processing</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Natural Language Processing">59</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Natural Language Processing">0</span>)</span>
-    </span>
-  </button>
-  <button class="ai-cluster-card" type="button" data-ai-cluster="Neural Networks">
-    <span class="ai-cluster-index">Cluster 8</span>
-    <span class="ai-cluster-name">Neural Networks</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Neural Networks">29</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Neural Networks">0</span>)</span>
-    </span>
-  </button>
-  <button class="ai-cluster-card" type="button" data-ai-cluster="Robotics">
-    <span class="ai-cluster-index">Cluster 9</span>
-    <span class="ai-cluster-name">Robotics</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Robotics">15</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Robotics">0</span>)</span>
-    </span>
-  </button>
-  <button class="ai-cluster-card" type="button" data-ai-cluster="Visual Image Recognition">
-    <span class="ai-cluster-index">Cluster 10</span>
-    <span class="ai-cluster-name">Visual Image Recognition</span>
-    <span class="ai-cluster-count-group">
-      <span class="ai-cluster-count-label">Skills n:</span>
-      <span class="ai-cluster-count-total" data-ai-cluster-total-count="Visual Image Recognition">28</span>
-      <span class="ai-cluster-count-new">(+<span data-ai-cluster-new-count="Visual Image Recognition">0</span>)</span>
-    </span>
-  </button>
-</div>
-<div class="ai-cluster-legend">Values in parentheses indicate new additions to the Lightcast AI taxonomy.</div>
-<p>To make the expanded list more interpretable, we assign these 114 newer Lightcast AI skills to the ten Martins-Neto clusters using an embedding-based classification approach. This provides a practical way to extend the benchmark taxonomy to newer tools and concepts, but these additional assignments should still be treated as provisional and subject to expert verification.</p>
-<p>For that reason, we report two versions of AI demand below. The first is a strict benchmark based on the 350 AI skills covered directly by the Martins-Neto framework. The second uses the full current Lightcast AI list of 464 skills, combining the original benchmark with 114 newly retrieved skills that we classify into the same ten clusters using embedding similarity.</p>
-<p class="notes source-note">Source: Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' calculations.</p>
+<p>Lightcast captures highly granular and technology-specific signals, such as individual AI tools, models, copilots, libraries, and chatbot platforms. This makes it well suited to detecting early changes in employer demand. We start from the benchmark list of 350 AI skills identified by <span class="paper-ref" data-tooltip="Martins-Neto, A., Liu, Y., Khurana, S., and Porras Lopez, J. M. 2026. Click, Code, Earn: The Returns to Digital Skills. World Bank."><a class="paper-link" href="https://documents1.worldbank.org/curated/en/099451102172652767/pdf/IDU-e779b9af-e9b1-43ae-a2c5-9679dbf2d829.pdf" target="_blank" rel="noopener noreferrer">Martins-Neto et al.&nbsp;(2026)</a></span> and extend it with 114 additional skills that have since appeared in the Lightcast taxonomy, bringing the current total to 464 AI skills.</p>
+<p>To make the full list policy-readable, we organize these 464 skills into four primary categories and eight cross-cutting tags. The primary categories are mutually exclusive and capture the fundamental domain of each skill. The tags are non-exclusive and highlight secondary dimensions that cut across categories.</p>
+<div class="ai-category-grid" id="ai-category-cards"></div>
+<div id="ai-tag-chart"></div>
+<p class="notes source-note">Source: Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' categorization.</p>
 </section>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <section id="digital-skill-levels-in-poland" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="digital-skill-levels-in-poland">Digital Skill Levels in Poland</h3>
-<p>Using the classification proposed by <a class="paper-link" href="https://openknowledge.worldbank.org/entities/publication/b485a240-338e-4c86-8ade-3bf9c134ddce" target="_blank" rel="noopener noreferrer">Angel-Urdinola, Chinen, and Rodon Casarramona (2025)</a>, we group ESCO-linked digital skills into <code>basic</code>, <code>intermediate</code>, and <code>advanced</code> categories. Across Poland, 696,092 digital skill mentions from job postings can be classified in this way. The resulting profile shows that advanced digital skills account for the largest share of classified digital demand.</p>
+<p>Using the classification proposed by <span class="paper-ref" data-tooltip="Angel-Urdinola, D., Chinen, M. H., and Rodon Casarramona, G. 2025. Digital Skills Development: Competence Frameworks, Assessment Tools, and Pedagogical Approaches. Education Notes, 203091."><a class="paper-link" href="https://openknowledge.worldbank.org/entities/publication/b485a240-338e-4c86-8ade-3bf9c134ddce" target="_blank" rel="noopener noreferrer">Angel-Urdinola et al.&nbsp;(2025)</a></span>, we group ESCO-linked digital skills into <code>basic</code>, <code>intermediate</code>, and <code>advanced</code> categories. Across Poland, 696,092 digital skill mentions from job postings can be classified in this way. The resulting profile shows that advanced digital skills account for the largest share of classified digital demand.</p>
 <div class="figure-caption-title">Figure 5. Distribution of classified digital skill mentions in Poland</div>
 <div class="digital-stack-card">
   <div class="digital-stack-topline">
@@ -389,7 +295,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 </div>
-<p class="notes source-note">Source: Angel-Urdinola, D., Chinen, M. H., and Rodon Casarramona, G. 2025. <em>Digital Skills Development: Competence Frameworks, Assessment Tools, and Pedagogical Approaches</em>. Education Notes, 203091; Pracuj.pl job postings; authors' mapping of classified ESCO-linked digital skill mentions.</p>
+<p class="notes source-note">Source: Angel-Urdinola et al. (2025); Pracuj.pl job postings; authors' mapping of classified ESCO-linked digital skill mentions.</p>
 </section>
 <section id="ai-demand-snapshot" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="ai-demand-snapshot">AI Demand Snapshot</h3>
@@ -405,13 +311,13 @@ ul.task-list li input[type="checkbox"] {
     <p class="ai-stat-subtext">7,669 of 749,569 postings are identified as AI-related when the 114 additional Lightcast AI skills are also included.</p>
   </article>
 </div>
-<div class="figure-caption-title">Figure 4. Most demanded Lightcast AI clusters and skills in Poland</div>
-<div id="ai-cluster-demand"></div>
-<p class="notes source-note">Source: Pracuj.pl job postings; Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' semantic matching and aggregation. Cluster demand is based on postings matched to the expanded Lightcast AI list under the conservative threshold used in this report.</p>
+<div class="figure-caption-title">Figure 4. AI demand by category with top requested skills</div>
+<div id="ai-category-demand"></div>
+<p class="notes source-note">Source: Pracuj.pl job postings; Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' semantic matching and categorization. Category demand is based on postings matched to the expanded Lightcast AI list under the conservative threshold used in this report.</p>
 </section>
 <section id="lightcast-ai-skills-explorer" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="lightcast-ai-skills-explorer">Lightcast AI Skills Explorer</h3>
-<p>The table below lists the retrieved Lightcast AI skills used in this report. It distinguishes between the Martins-Neto benchmark skills and newer Lightcast AI skills that have appeared beyond that benchmark. For the newer skills, the cluster shown here comes from our embedding-based classification and should therefore be treated as provisional pending expert verification. Use the search box or filters to narrow the list, or click a cluster card above to jump directly to that cluster. Within a cluster view, benchmark skills are shown first, followed by our newly classified skills in a different color. Click <code>View</code> to open the full Lightcast description in a modal window.</p>
+<p>The table below lists the 464 Lightcast AI skills used in this report. Each skill has a primary category and one or more cross-cutting tags. Use the search box or filters to narrow the list, or click a category card above to filter by category. Click <code>Description</code> to open the full Lightcast description in a modal window.</p>
 <div id="lightcast-ai-skills-table"></div>
 <div id="lightcast-ai-skill-modal" class="skill-modal hidden" aria-hidden="true">
   <div class="skill-modal-backdrop" data-close-modal="true"></div>
@@ -426,10 +332,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="regional-ai-demand" class="level3 section-card map-shell">
 <h3 class="anchored" data-anchor-id="regional-ai-demand">Regional AI Demand</h3>
-<div style="margin:0.15rem 0 0.85rem;">
-  <span class="skill-meta-chip">To be updated with the expanded Lightcast taxonomy</span>
-</div>
-<p>The map below shows AI demand intensity by voivodeship, measured as the number of postings containing at least one AI skill under the final AI skill definitions described above, normalized by the 2025 labour force. Click a voivodeship to inspect its three most characteristic AI skills. To identify AI skills and knowledge that are particularly characteristic of individual voivodeships, we apply the log-likelihood ratio (<code>G²</code>) test following Dunning (1993), comparing each region with the rest of the country.</p>
+<p>The map below shows AI demand intensity by voivodeship, measured as the number of postings matched to at least one skill from the expanded Lightcast AI list at the conservative similarity threshold used in this report, normalized by the 2025 labour force. Click a voivodeship to inspect its top characteristic AI skills and the breakdown by primary category. Characteristic skills are identified using the log-likelihood ratio (<code>G²</code>) test following <span class="paper-ref" data-tooltip="Dunning, T. 1993. Accurate Methods for the Statistics of Surprise and Coincidence. Computational Linguistics 19(1): 61–74.">Dunning (1993)</span>, comparing each region with the rest of the country.</p>
 <div class="figure-caption-title" id="ai-map-figure-title"></div>
 <div class="ai-regional-layout">
   <div id="ai-regional-map"></div>

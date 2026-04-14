@@ -292,6 +292,59 @@ h3 {
   border-top: 1px solid var(--card-border);
 }
 
+/* ── Paper reference tooltips ── */
+
+.paper-ref {
+  position: relative;
+  display: inline;
+}
+
+.paper-ref[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 380px;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  background: var(--ink-strong);
+  color: #f1f5f9;
+  font-size: 0.82rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.55;
+  text-align: left;
+  white-space: normal;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  z-index: 100;
+}
+
+.paper-ref[data-tooltip]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 2px);
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--ink-strong);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  z-index: 100;
+}
+
+.paper-ref[data-tooltip]:hover::after,
+.paper-ref[data-tooltip]:hover::before,
+.paper-ref[data-tooltip]:focus-within::after,
+.paper-ref[data-tooltip]:focus-within::before {
+  opacity: 1;
+}
+
 .reference-list {
   display: grid;
   gap: 0.8rem;
@@ -1116,10 +1169,14 @@ h3 {
 
 .ai-regional-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.75fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
   align-items: start;
   margin-top: 1rem;
+}
+
+#ai-regional-map {
+  min-height: 520px;
 }
 
 .ai-detail-card {
@@ -1141,6 +1198,17 @@ h3 {
   display: grid;
   gap: 0.6rem;
   margin-bottom: 1rem;
+}
+
+.ai-detail-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.ai-detail-panel {
+  min-width: 0;
 }
 
 .ai-detail-metric {
@@ -1175,6 +1243,59 @@ h3 {
 .ai-detail-skills {
   display: grid;
   gap: 0.65rem;
+}
+
+.ai-detail-clusters-head {
+  color: var(--ink-strong);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 0.7rem;
+}
+
+.ai-detail-clusters {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.ai-detail-cluster {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: start;
+  padding: 0.7rem 0.8rem;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+}
+
+.ai-detail-cluster-rank {
+  width: 1.8rem;
+  height: 1.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #ffedd5;
+  color: #c2410c;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.ai-detail-cluster-copy {
+  min-width: 0;
+}
+
+.ai-detail-cluster-label {
+  color: var(--ink-strong);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ai-detail-cluster-meta {
+  margin-top: 0.2rem;
+  color: #64748b;
+  font-size: 0.8rem;
 }
 
 .ai-detail-skill {
@@ -1691,6 +1812,244 @@ h3 {
   font-size: 0.8rem;
 }
 
+/* ── Category pills ── */
+
+.skill-cat-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.28rem 0.72rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.skill-cat-pill-default {
+  background: #f1f5f9;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+.skill-cat-pill-ml {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-color: #93c5fd;
+}
+
+.skill-cat-pill-genai {
+  background: #fae8ff;
+  color: #a21caf;
+  border-color: #f0abfc;
+}
+
+.skill-cat-pill-robotics {
+  background: #fef3c7;
+  color: #b45309;
+  border-color: #fcd34d;
+}
+
+.skill-cat-pill-governance {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fca5a5;
+}
+
+/* ── Tag pills ── */
+
+.skill-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.skill-tag-pill-dl { background: #ede9fe; color: #6d28d9; border-color: #c4b5fd; }
+.skill-tag-pill-nlp { background: #fff7ed; color: #c2410c; border-color: #fdba74; }
+.skill-tag-pill-cv { background: #ccfdf4; color: #0f766e; border-color: #5eead4; }
+.skill-tag-pill-agents { background: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
+.skill-tag-pill-auto { background: #ecfccb; color: #4d7c0f; border-color: #bef264; }
+.skill-tag-pill-mlops { background: #dcfce7; color: #166534; border-color: #86efac; }
+.skill-tag-pill-gov { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+.skill-tag-pill-platform { background: #f1f5f9; color: #334155; border-color: #cbd5e1; }
+.skill-tag-pill-general { background: #f8fafc; color: #64748b; border-color: #e2e8f0; }
+.skill-tag-pill-default { background: #f1f5f9; color: #334155; border-color: #cbd5e1; }
+
+.skill-tags-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+/* ── Category cards (AI Skills Demand section) ── */
+
+.ai-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.ai-cat-card {
+  appearance: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font: inherit;
+  width: 100%;
+  padding: 1rem 1.05rem;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.ai-cat-card:hover,
+.ai-cat-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+  outline: none;
+}
+
+.ai-cat-card-ml { border-color: #93c5fd; background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%); }
+.ai-cat-card-genai { border-color: #e9d5ff; background: linear-gradient(180deg, #fdf4ff 0%, #f8fafc 100%); }
+.ai-cat-card-robotics { border-color: #fcd34d; background: linear-gradient(180deg, #fffbeb 0%, #f8fafc 100%); }
+.ai-cat-card-governance { border-color: #fca5a5; background: linear-gradient(180deg, #fef2f2 0%, #f8fafc 100%); }
+
+.ai-cat-icon {
+  line-height: 0;
+  color: #94a3b8;
+}
+
+.ai-cat-card-ml .ai-cat-icon { color: #3b82f6; }
+.ai-cat-card-genai .ai-cat-icon { color: #a855f7; }
+.ai-cat-card-robotics .ai-cat-icon { color: #d97706; }
+.ai-cat-card-governance .ai-cat-icon { color: #ef4444; }
+
+.ai-cat-name {
+  color: var(--ink-strong);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.ai-cat-count {
+  color: var(--ink-strong);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.ai-cat-breakdown {
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+/* ── Tag bar chart ── */
+
+.ai-tag-chart-title {
+  color: var(--ink-strong);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 1.2rem 0 0.3rem;
+}
+
+.ai-tag-chart-subtitle {
+  color: #64748b;
+  font-size: 0.88rem;
+  margin-bottom: 0.8rem;
+}
+
+.ai-tag-bars {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ai-tag-bar-row {
+  display: grid;
+  grid-template-columns: 180px minmax(100px, 1fr) 40px;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.ai-tag-bar-label {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ai-tag-bar-track {
+  height: 0.72rem;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.ai-tag-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #818cf8 0%, #4f46e5 100%);
+}
+
+.ai-tag-bar-value {
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* ── Demand by category ── */
+
+.ai-demand-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+
+.ai-demand-cat-card {
+  border: 2px solid transparent;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  padding: 1rem 1.05rem;
+}
+
+.ai-demand-cat-card-ml { border-color: #bfdbfe; }
+.ai-demand-cat-card-genai { border-color: #e9d5ff; }
+.ai-demand-cat-card-robotics { border-color: #fde68a; }
+.ai-demand-cat-card-governance { border-color: #fecaca; }
+
+.ai-demand-cat-top {
+  margin-bottom: 0.9rem;
+}
+
+.ai-demand-cat-name {
+  color: var(--ink-strong);
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.ai-demand-cat-meta {
+  margin-top: 0.3rem;
+  color: #64748b;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
 .skill-modal-body p {
   margin: 0;
   color: #475569;
@@ -1715,8 +2074,8 @@ body.modal-open {
   .ai-flowchart-branches,
   .ai-bars-grid,
   .ai-stats-grid,
-  .ai-cluster-grid,
-  .ai-demand-cluster-grid,
+  .ai-category-grid,
+  .ai-demand-category-grid,
   .ai-match-grid,
   .ai-regional-layout,
   .digital-stack-legend {
@@ -1733,6 +2092,10 @@ body.modal-open {
 
   .ai-flow-arrow {
     transform: rotate(90deg);
+  }
+
+  .ai-detail-panels {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1764,12 +2127,16 @@ body.modal-open {
   .ai-flowchart-branches,
   .ai-bars-grid,
   .ai-stats-grid,
-  .ai-cluster-grid,
-  .ai-demand-cluster-grid,
+  .ai-category-grid,
+  .ai-demand-category-grid,
   .ai-match-grid,
   .ai-regional-layout,
   .digital-stack-legend {
     grid-template-columns: 1fr;
+  }
+
+  .ai-tag-bar-row {
+    grid-template-columns: 140px minmax(60px, 1fr) 36px;
   }
 
   .ai-bar-row {
