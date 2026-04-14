@@ -28,6 +28,7 @@
     { key: "martins_neto", label: "Martins-Neto et al. 2026", numeric: false },
     { key: "cluster", label: "Cluster", numeric: false },
     { key: "subcategory", label: "Lightcast subcategory", numeric: false },
+    { key: "categorization", label: "Categorization", numeric: false },
   ];
 
   const normalize = (value) => String(value || "").toLocaleLowerCase("en");
@@ -41,27 +42,6 @@
 
   const badgeHtml = (label, variant) =>
     `<span class="skill-flag skill-flag-${variant}">${escapeHtml(label)}</span>`;
-
-  const clusterVariantByName = {
-    "AI Agent": "ai-agent",
-    "AI Ethics, Governance and Regulations": "ai-ethics",
-    "Artificial Intelligence": "artificial-intelligence",
-    "Autonomous Driving": "autonomous-driving",
-    "Generative AI": "generative-ai",
-    "Machine Learning": "machine-learning",
-    "Natural Language Processing": "nlp",
-    "Neural Networks": "neural-networks",
-    Robotics: "robotics",
-    "Visual Image Recognition": "vision",
-  };
-
-  const clusterPillHtml = (label) => {
-    if (!label) {
-      return '<span class="skill-empty">Not classified yet</span>';
-    }
-    const variant = clusterVariantByName[label] || "default";
-    return `<span class="skill-cluster-pill skill-cluster-pill-${variant}">${escapeHtml(label)}</span>`;
-  };
 
   const shortText = (value, maxChars) => {
     const text = String(value || "").trim();
@@ -125,8 +105,18 @@
     }
     result.sort((a, b) => {
       const dir = state.sortDirection === "asc" ? 1 : -1;
-      const left = state.sortKey === "martins_neto" ? normalize(a.martins_neto ? "yes" : "no") : normalize(a[state.sortKey]);
-      const right = state.sortKey === "martins_neto" ? normalize(b.martins_neto ? "yes" : "no") : normalize(b[state.sortKey]);
+      const left =
+        state.sortKey === "martins_neto"
+          ? normalize(a.martins_neto ? "yes" : "no")
+          : state.sortKey === "categorization"
+            ? normalize(a.cluster_source)
+            : normalize(a[state.sortKey]);
+      const right =
+        state.sortKey === "martins_neto"
+          ? normalize(b.martins_neto ? "yes" : "no")
+          : state.sortKey === "categorization"
+            ? normalize(b.cluster_source)
+            : normalize(b[state.sortKey]);
       return left.localeCompare(right, "en") * dir;
     });
     return result;
@@ -306,8 +296,13 @@
                             <div class="skill-id">${escapeHtml(row.skill_id)}</div>
                           </td>
                           <td>${row.martins_neto ? badgeHtml("M-N et al. 2026", "martins") : badgeHtml("Added", "new")}</td>
-                          <td>${clusterPillHtml(row.cluster)}</td>
+                          <td>${row.cluster ? escapeHtml(row.cluster) : '<span class="skill-empty">Not classified yet</span>'}</td>
                           <td>${row.subcategory ? escapeHtml(row.subcategory) : '<span class="skill-empty">n/a</span>'}</td>
+                          <td>${
+                            row.cluster_source === "paper"
+                              ? badgeHtml("M-N et al. 2026 cluster", "martins")
+                              : badgeHtml("Added: embedding-based classification", "new")
+                          }</td>
                           <td>
                             <button class="skill-view-btn skill-view-btn-compact" type="button" data-open-modal="${start + idx}">Description</button>
                           </td>
@@ -317,7 +312,7 @@
                     .join("")
                 : `
                   <tr>
-                    <td colspan="5" class="skill-empty-row">No skills match the current search and filter.</td>
+                    <td colspan="8" class="skill-empty-row">No skills match the current search and filter.</td>
                   </tr>
                 `
             }
