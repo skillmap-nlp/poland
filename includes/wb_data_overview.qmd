@@ -1,0 +1,25 @@
+::: {.section-card}
+### Data overview
+
+The figures below summarise monthly listing volumes from Pracuj.pl and BUR in 2025, together with the longer-run evolution of BUR service provision since 2016.
+
+**Job postings (OJP)** capture recruitment *activity* online. **Estimated vacancies (OJV)** apply a conservative rule set: explicit counts are taken at face value, “multiple positions” without a number are coded as 2, and empty fields default to 1.
+
+```{=html}
+<div class="chart-duo">
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 2.</strong> Pracuj.pl estimated vacancies</div>
+    <div id="chart-monthly-vacancies" class="plotly-chart" role="img" aria-label="Monthly estimated vacancies on Pracuj.pl in 2025"></div>
+  </div>
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 3.</strong> BUR training services</div>
+    <div id="chart-monthly-bur" class="plotly-chart" role="img" aria-label="Monthly BUR training services in 2025"></div>
+  </div>
+</div>
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 4.</strong> BUR training services by year (2016–2025)</div>
+  <div id="chart-bur-yearly" class="plotly-chart plotly-chart--wide" role="img" aria-label="BUR training services by year 2016 to 2025"></div>
+</div>
+<p class="notes source-note">Source: Pracuj.pl · Baza Usług Rozwojowych (BUR) · authors’ calculations on 2025 listings.</p>
+```
+:::

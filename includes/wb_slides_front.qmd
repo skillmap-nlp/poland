@@ -1,0 +1,36 @@
+::: {.section-card}
+### Project overview
+
+**Objective.** This report analyses demand and supply of skills in Poland using online job postings and training data.
+
+::: {.framing-callout}
+**Framing.** Job postings proxy skill **demand** and BUR trainings proxy subsidised skill **supply**. Both sides are mapped to a common skill taxonomy (ESCO, with Lightcast for granular AI signals). The analysis compares the **mix of skills on each side** — not absolute volumes.
+:::
+
+::: {.overview-grid}
+::: {.overview-panel}
+<p class="overview-panel-kicker">Data</p>
+<ul class="overview-list">
+<li><strong>~733k</strong> online job postings (OJP) (≈ <strong>1.2M</strong> estimated vacancies — OJV) from <a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a></li>
+<li><strong>~131k</strong> training services from <a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych (BUR)</a> (2025)</li>
+<li>Coverage includes <strong>all listings in 2025</strong> on Pracuj.pl; BUR scope is training services with usable regional metadata in 2025</li>
+</ul>
+<p class="overview-foot">Pracuj.pl is Poland’s largest job portal; BUR is the largest publicly accessible training database, operated by the Polish Agency for Enterprise Development (PARP).</p>
+:::
+
+::: {.overview-panel}
+<p class="overview-panel-kicker">Methodology</p>
+<ul class="overview-list">
+<li><strong>Full data extraction:</strong> web scraping (Pracuj.pl) and official API access (BUR)</li>
+<li><strong>NLP-based enrichment</strong> to standardise unstructured text (ESCO skills, NACE sectors, occupations)</li>
+</ul>
+<p class="overview-panel-kicker" style="margin-top:1rem;">Analytical focus</p>
+<ul class="overview-list">
+<li>Skills demand and supply profiles across ESCO skill groups</li>
+<li>Special focus: <strong>digital</strong>, <strong>AI</strong>, <strong>care services</strong>, <strong>green skills</strong>, and openness to foreign workers</li>
+<li><strong>Skills mismatch:</strong> gaps between labour demand (job postings) and training supply (BUR)</li>
+</ul>
+:::
+:::
+
+:::

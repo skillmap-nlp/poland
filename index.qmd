@@ -9,6 +9,9 @@ date: today
 ::: {.hero}
 ```{=html}
 <div class="hero-title">Executive Summary</div>
+<div class="framing-callout framing-callout--compact">
+<strong>Framing.</strong> Job postings proxy skill <strong>demand</strong>; BUR trainings proxy subsidised skill <strong>supply</strong>. We compare the <strong>mix of skills</strong> on each side after mapping to ESCO (and Lightcast for AI), not absolute volumes.
+</div>
 ```
 
 This report analyses labour demand and supply in Poland through the lens
@@ -43,6 +46,41 @@ assessment of potential mismatches between demand and supply.
 ```{=html}
 <div class="kpi-grid" id="summary-cards"></div>
 ```
+
+## Report Overview
+
+{{< include includes/wb_slides_front.qmd >}}
+
+## Data Coverage
+
+::: {.section-card}
+### Data collection
+
+We collect job advertisements from
+<a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>,
+the largest online job portal in Poland, and training-service listings
+from
+<a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych</a>,
+the country's main public database of training and upskilling services.
+The analytical sample shown in this report focuses on records that can
+be assigned to Polish voivodeships and linked to the regional demand and
+supply comparison.
+
+For job advertisements, we retain records with sufficient textual
+content to support downstream NLP processing, including job titles and
+descriptions. For BUR, we use training-service records with usable
+regional metadata and service descriptions. We remove duplicates and
+standardize core fields before the records enter the analytical
+pipeline.
+
+```{=html}
+<p class="notes source-note" id="sources-note"></p>
+```
+:::
+
+{{< include includes/wb_data_overview.qmd >}}
+
+{{< include includes/wb_training_duration.qmd >}}
 
 ## Regional Coverage
 
@@ -88,48 +126,32 @@ voivodeships. Click a column header to sort the table.
 ```
 :::
 
-## Data and Methodology
+{{< include includes/wb_regional_geocoding.qmd >}}
 
-::: {.section-card}
-### Data collection
+{{< include includes/wb_regional_training_change.qmd >}}
 
-We collect job advertisements from
-<a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>,
-the largest online job portal in Poland, and training-service listings
-from
-<a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych</a>,
-the country's main public database of training and upskilling services.
-The analytical sample shown in this report focuses on records that can
-be assigned to Polish voivodeships and linked to the regional demand and
-supply comparison.
+## Methodology
 
-For job advertisements, we retain records with sufficient textual
-content to support downstream NLP processing, including job titles and
-descriptions. For BUR, we use training-service records with usable
-regional metadata and service descriptions. We remove duplicates and
-standardize core fields before the records enter the analytical
-pipeline.
+{{< include includes/wb_slides_methodology.qmd >}}
 
-```{=html}
-<p class="notes source-note" id="sources-note"></p>
-```
-:::
+{{< include includes/wb_methodology_extended.qmd >}}
 
 ::: {.section-card}
 ### Processing pipeline
 
 Raw job postings and training descriptions contain noisy, unstructured
-information. We transform them into a standardized analytic dataset in
-six steps: we first identify the source language, translate non-Polish
-text into Polish, isolate skill-relevant sentences, map extracted skills
-to the ESCO and Lightcast skill taxonomies, standardize job titles to
-ESCO occupations using both titles and skill context for
-disambiguation, and then enrich each record with regional information
-and labour-force denominators for voivodeship-level comparison.
+information in Polish (and occasionally English or other languages). We
+transform them into a standardised analytic dataset in six steps: we
+first identify the source language, translate non-Polish text into
+Polish, isolate skill-relevant sentences, map extracted skills to the
+ESCO and Lightcast skill taxonomies, standardise job titles to ESCO
+occupations using both titles and skill context for disambiguation, and
+then enrich each record with sector codes and regional information for
+voivodeship-level comparison.
 
 ```{=html}
 <div class="pipeline-diagram">
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-01" role="button" tabindex="0" aria-label="Jump to Step 01">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">01</div>
       <div class="pipeline-icon" style="background:#e0f2fe;color:#0369a1;">
@@ -137,9 +159,9 @@ and labour-force denominators for voivodeship-level comparison.
       </div>
     </div>
     <div class="pipeline-label">Language<br>Detection</div>
-    <div class="pipeline-detail">Automatic identification of the source language for each job posting or training description</div>
+    <div class="pipeline-detail">Language identification for each posting, including mixed-language offers</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-02" role="button" tabindex="0" aria-label="Jump to Step 02">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">02</div>
       <div class="pipeline-icon" style="background:#fef3c7;color:#b45309;">
@@ -147,9 +169,9 @@ and labour-force denominators for voivodeship-level comparison.
       </div>
     </div>
     <div class="pipeline-label">Translation</div>
-    <div class="pipeline-detail">Non-Polish descriptions are translated into Polish before downstream NLP processing</div>
+    <div class="pipeline-detail">Gemma 3 Translate 4B converts non-Polish titles and descriptions into Polish</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-03" role="button" tabindex="0" aria-label="Jump to Step 03">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">03</div>
       <div class="pipeline-icon" style="background:#ccfbf1;color:#0d9488;">
@@ -157,19 +179,19 @@ and labour-force denominators for voivodeship-level comparison.
       </div>
     </div>
     <div class="pipeline-label">Skill-Sentence<br>Filtering</div>
-    <div class="pipeline-detail">Skill-relevant fragments are identified in vacancy and training text before structured extraction</div>
+    <div class="pipeline-detail">Fine-tuned BERT-architecture classifier identifies skill-relevant sentences</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-04" role="button" tabindex="0" aria-label="Jump to Step 04">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">04</div>
       <div class="pipeline-icon" style="background:#ede9fe;color:#7c3aed;">
         <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3"/><path d="M12 19v3"/><path d="M2 12h3"/><path d="M19 12h3"/></svg>
       </div>
     </div>
-    <div class="pipeline-label">Skill<br>Taxonomy Mapping</div>
-    <div class="pipeline-detail">Extracted skills are mapped to the ESCO and Lightcast taxonomies to make demand and supply directly comparable while retaining granular AI signals</div>
+    <div class="pipeline-label">ESCO<br>Mapping</div>
+    <div class="pipeline-detail">Custom contrastive bi-encoder maps skill sentences to ESCO skill entries</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-05" role="button" tabindex="0" aria-label="Jump to Step 05">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">05</div>
       <div class="pipeline-icon" style="background:#dbeafe;color:#1d4ed8;">
@@ -179,7 +201,7 @@ and labour-force denominators for voivodeship-level comparison.
     <div class="pipeline-label">Job Title<br>Standardisation</div>
     <div class="pipeline-detail">Job titles are mapped to ESCO occupations using titles and extracted skills as context for disambiguation</div>
   </div>
-  <div class="pipeline-step">
+  <div class="pipeline-step" data-target="pipeline-step-06" role="button" tabindex="0" aria-label="Jump to Step 06">
     <div class="pipeline-step-top">
       <div class="pipeline-step-number">06</div>
       <div class="pipeline-icon" style="background:#dcfce7;color:#15803d;">
@@ -187,10 +209,325 @@ and labour-force denominators for voivodeship-level comparison.
       </div>
     </div>
     <div class="pipeline-label">Data<br>Augmentation</div>
-    <div class="pipeline-detail">Records are enriched with NACE sector information and geolocation used for regional assignment</div>
+    <div class="pipeline-detail">ISIC/NACE economic activity is assigned using the official ESCO-NACE crosswalk and job-ad context for disambiguation</div>
   </div>
 </div>
 ```
+
+::: {.pipeline-jump-note}
+Click any card to jump to the detailed description of that step.
+:::
+
+Each step is described in detail below.
+
+:::: {#pipeline-step-01 .step-detail}
+#### [Step 01]{.step-badge .step-badge-blue} Language detection
+
+Although the vast majority of postings on Pracuj.pl are in Polish, a
+non-trivial share contains English-language titles, mixed-language
+descriptions, or occasional postings in other languages. Reliable
+identification of the language in which each posting was written ensures
+that postings already in Polish can proceed directly to analysis, while
+those in other languages are routed to translation.
+
+We apply a machine-learning-based language detector (<a class="paper-link" href="https://github.com/pemistahl/lingua-py" target="_blank" rel="noopener noreferrer">Lingua<span class="source-link-ext">↗</span></a>)
+independently to both the job title and the full job description of
+every posting. Per-field detection allows us to handle the common case
+where a title is in English but the body is in Polish. This is important
+because mixed-language postings are common in online vacancies, and
+Lingua performs well even when different parts of the same offer use
+different languages.
+::::
+
+:::: {#pipeline-step-02 .step-detail}
+#### [Step 02]{.step-badge .step-badge-amber} Translation
+
+Ensuring that all postings are available in Polish before downstream
+processing is essential for consistent skill extraction. While the
+majority of Pracuj.pl postings are already in Polish, a subset
+(particularly in multinational companies or IT roles) uses English or
+mixed-language text. With a corpus of **~750,000 job ads**, machine
+translation is a practical necessity for harmonising the linguistic
+input to downstream NLP steps. Recent research indicates that LLM-based
+translation systems can deliver high-quality machine translation at
+scale
+(<a class="paper-link" href="https://dl.acm.org/doi/10.1007/978-3-031-44693-1_30" target="_blank" rel="noopener noreferrer">Huang et al. (2023)<span class="source-link-ext">↗</span></a>).
+
+Postings already detected as Polish pass through unchanged. All
+remaining postings are translated with <a class="paper-link" href="https://blog.google/innovation-and-ai/technology/developers-tools/translategemma/" target="_blank" rel="noopener noreferrer">Gemma 3 Translate 4B<span class="source-link-ext">↗</span></a>, an open
+source multilingual translation model designed for high-quality
+instruction following and strong performance across typologically
+different languages. Both **job titles** and **job descriptions** are
+translated into Polish and stored alongside the originals to allow
+back-referencing when analysts need to inspect the source text. This
+ensures that all downstream steps, including skill extraction and title
+standardisation, operate on a common-language representation.
+
+To validate translation quality, we conducted a **back-translation**
+exercise on a small random sample. In this check,
+texts were translated from English into Polish and then back into
+English, allowing us to verify that the meaning of skills, occupations,
+and task descriptions was preserved with minimal drift.
+
+```{mermaid}
+%%| fig-cap: "Translation routing"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 40, 'rankSpacing': 50}} }%%
+flowchart LR
+    A["Raw posting"] --> B{"Language<br/>detected?"}
+    B -->|"Already Polish"| C["Keep original text"]
+    B -->|"English / other"| D["Gemma 3 Translate 4B"]
+    D -->|"title + description"| E["Translated Polish text"]
+    C --> F["Unified Polish corpus"]
+    E --> F
+```
+::::
+
+:::: {#pipeline-step-03 .step-detail}
+#### [Step 03]{.step-badge .step-badge-teal} Skill-sentence filtering
+
+Job descriptions typically mix skill requirements with administrative
+content such as benefits, company history, or application instructions.
+Isolating the skill-relevant sentences before downstream mapping
+reduces noise and improves the precision of the extracted skill
+profiles.
+
+We use a fine-tuned BERT classifier based on the
+<a class="paper-link" href="https://dl.acm.org/doi/abs/10.1145/3672608.3707960" target="_blank" rel="noopener noreferrer">Malandri et al. (2025)<span class="source-link-ext">↗</span></a>
+SkillLess approach and the
+<a class="paper-link" href="https://huggingface.co/serino28/BERT-OJA-SkillLess" target="_blank" rel="noopener noreferrer">BERT-OJA-SkillLess<span class="source-link-ext">↗</span></a>.
+The model performs binary sentence-level classification,
+labelling each sentence as either skill-relevant or non-skill.
+In our sample, approximately 40--60 % of description text is
+filtered out as non-skill content. Only the retained sentences
+proceed to the ESCO mapping step.
+::::
+
+:::: {#pipeline-step-04 .step-detail}
+#### [Step 04]{.step-badge .step-badge-violet} ESCO skill mapping
+
+The European Skills, Competences, Qualifications and Occupations
+(<a class="paper-link" href="https://esco.ec.europa.eu/" target="_blank" rel="noopener noreferrer">ESCO<span class="source-link-ext">↗</span></a>) taxonomy provides a standardised
+vocabulary of roughly 13,000 skills and competences maintained by the
+European Commission. Mapping extracted skill sentences to ESCO entries
+creates a common analytical framework that enables direct comparison
+across countries and languages.
+
+We employ a **custom contrastive bi-encoder** trained on a massive
+synthetic dataset comprising hundreds of thousands of ESCO-labelled
+examples derived from the ESCO classification structure. The
+bi-encoder learns a **shared representation space** for two different
+objects --- job-ad sentences and standardised ESCO skill labels --- by
+bringing semantically matching pairs closer together while pushing
+non-matching pairs apart. In practical terms, consider a job-ad sentence such as
+*"experience with SQL and data visualisation"*. The model learns to
+place it close to the correct ESCO entries --- *"use query languages"*
+and *"manage databases"* --- and away from everything else. Crucially,
+the training signal is strongest for **hard negatives**: skills that
+are semantically nearby but not a correct match, such as *"use
+programming languages"* or *"develop software"*. These are more
+informative than trivially distant skills like *"negotiate contracts"*,
+because the model must learn fine-grained distinctions within the same
+domain rather than merely separating unrelated concepts. During
+training, correct sentence–skill pairings act as positives while all
+other skills in the same batch act as negatives --- with the hardest
+cases (same-domain, wrong skill) driving most of the learning signal.
+This gives the model a scalable way to learn ranking behaviour across
+the full ~13,000-skill taxonomy without a separate classifier for each
+skill.
+
+```{=html}
+<svg viewBox="0 0 620 370" width="620" style="font-family: system-ui, -apple-system, sans-serif; max-width: 100%; display: block; margin: 1.2rem auto;">
+  <!-- Easy negatives zone -->
+  <circle cx="310" cy="185" r="155" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="310" y="37" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#dc2626">Easy negatives</text>
+  <!-- Hard negatives zone -->
+  <circle cx="310" cy="185" r="105" fill="#fefce8" stroke="#fde68a" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="310" y="87" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#b45309">Hard negatives</text>
+  <!-- Positive matches zone -->
+  <circle cx="310" cy="185" r="52" fill="#dcfce7" stroke="#86efac" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="310" y="141" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#16a34a">Positive matches</text>
+  <!-- Centre: the sentence -->
+  <circle cx="310" cy="185" r="6" fill="#1e40af"/>
+  <text x="310" y="203" text-anchor="middle" font-size="10.5px" font-weight="700" fill="#1e293b">"experience with SQL</text>
+  <text x="310" y="215" text-anchor="middle" font-size="10.5px" font-weight="700" fill="#1e293b">and data visualisation"</text>
+  <!-- Positive dots -->
+  <circle cx="282" cy="159" r="5" fill="#16a34a" opacity="0.85"/>
+  <text x="282" y="150" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">use query languages</text>
+  <circle cx="332" cy="167" r="5" fill="#16a34a" opacity="0.85"/>
+  <text x="332" y="158" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">manage databases</text>
+  <!-- Hard negative dots -->
+  <circle cx="230" cy="135" r="4.5" fill="#b45309" opacity="0.85"/>
+  <text x="230" y="126" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">use programming languages</text>
+  <circle cx="375" cy="240" r="4.5" fill="#b45309" opacity="0.85"/>
+  <text x="375" y="231" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">develop software</text>
+  <circle cx="390" cy="123" r="4.5" fill="#b45309" opacity="0.85"/>
+  <text x="390" y="114" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">analyse data</text>
+  <!-- Easy negative dots -->
+  <circle cx="190" cy="280" r="4" fill="#dc2626" opacity="0.85"/>
+  <text x="190" y="271" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">negotiate contracts</text>
+  <circle cx="425" cy="295" r="4" fill="#dc2626" opacity="0.85"/>
+  <text x="425" y="286" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">manage human resources</text>
+  <circle cx="210" cy="65" r="4" fill="#dc2626" opacity="0.85"/>
+  <text x="210" y="56" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">drive vehicles</text>
+  <!-- Pull arrows (positives toward centre) -->
+  <defs><marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker></defs>
+  <line x1="288" y1="163" x2="296" y2="174" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowGreen)" opacity="0.7"/>
+  <line x1="328" y1="170" x2="321" y2="176" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowGreen)" opacity="0.7"/>
+  <!-- Caption -->
+  <text x="310" y="362" text-anchor="middle" font-size="10.5px" fill="#64748b">Simplified 2-D projection of the embedding space (actual representations are high-dimensional). Own elaboration.</text>
+</svg>
+```
+
+This approach is well suited to online job ads because employers often
+describe the same skill in many different ways. By learning semantic
+proximity rather than relying on exact wording, the model can recover
+skills even when the phrasing differs from the ESCO label itself.
+
+Our approach also avoids relying only on one averaged sentence
+representation. Instead, the encoder can attend more strongly to the
+parts of a sentence that are most diagnostic for a given skill, which
+is particularly useful when a single sentence mentions several tasks,
+tools, or competencies at once. This token-level attention mechanism
+has been shown to improve matching quality in multi-skill sentences
+(<a class="paper-link" href="https://arxiv.org/abs/2601.09119" target="_blank" rel="noopener noreferrer">Sun, 2026<span class="source-link-ext">↗</span></a>;
+<a class="paper-link" href="https://ieeexplore.ieee.org/document/11074185" target="_blank" rel="noopener noreferrer">Decorte et al., 2025<span class="source-link-ext">↗</span></a>).
+
+**Similarity threshold calibration.** &ensp; Not every high-ranking
+candidate is a true match. Following established practice in ESCO
+skill extraction
+(<a class="paper-link" href="https://ieeexplore.ieee.org/document/11074185" target="_blank" rel="noopener noreferrer">Decorte et al., 2025<span class="source-link-ext">↗</span></a>;
+<a class="paper-link" href="https://recsyshr.aau.dk/wp-content/uploads/2025/09/RecSysHR2025-paper_5.pdf" target="_blank" rel="noopener noreferrer">Bielinski &amp; Brazier, 2025<span class="source-link-ext">↗</span></a>),
+we retain only those candidates whose cosine similarity exceeds a
+calibrated threshold. The threshold is tuned on held-out benchmark
+data (the same HOUSE and TECH datasets used to evaluate overall
+pipeline performance) by selecting the value that maximises the
+trade-off between precision and recall. This step filters out
+low-confidence matches and controls the total number of skills
+assigned per posting.
+
+```{mermaid}
+%%| fig-cap: "Skill-to-ESCO matching pipeline"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart TD
+    A["Skill-relevant sentences"] -->|"encode"| B["Contrastive bi-encoder"]
+    B -->|"768-d vector"| C["Sentence embedding"]
+
+    D[("ESCO skill catalogue<br/>~13 000 entries")] -->|"pre-computed<br/>768-d vectors"| E["Reference embedding matrix"]
+
+    C --> F{"Cosine similarity ranking"}
+    E --> F
+
+    F -->|"top-k candidates"| G["Candidate ESCO skills<br/>with similarity scores"]
+    G -->|"score ≥ calibrated threshold"| I["Final matched ESCO skills"]
+```
+::::
+
+:::: {#pipeline-step-05 .step-detail}
+#### [Step 05]{.step-badge .step-badge-indigo} Job title standardisation
+
+Raw job titles are highly variable: the same role may appear as
+"Inżynier oprogramowania", "Backend Developer", "Programista",
+"Full-Stack Developer", or "Senior Software Engineer". Likewise,
+an analytical role may appear as "Analityk danych", "BI Analyst",
+"Specjalista ds. raportowania", or "Data Analyst". Because postings
+have been harmonised into Polish in the translation step, the
+standardisation step works on a common-language title field.
+Mapping each title to a standardised ESCO occupation enables comparable
+occupational analysis and serves as the bridge to sector classification
+in the next step.
+
+Titles are first cleaned by removing common noise (embedded locations,
+salary ranges, seniority prefixes). The cleaned titles are then
+embedded using
+<a class="paper-link" href="https://huggingface.co/TechWolf/JobBERT-v3" target="_blank" rel="noopener noreferrer">JobBERT-v3<span class="source-link-ext">↗</span></a>,
+a domain-specific open model pre-trained on large-scale job market
+data. We pre-compute embeddings for all ~3,000 ESCO occupation labels
+and store them in a <a class="paper-link" href="https://github.com/facebookresearch/faiss" target="_blank" rel="noopener noreferrer">FAISS<span class="source-link-ext">↗</span></a>
+vector index for fast retrieval. Each job title is matched to the
+nearest ESCO occupation by cosine similarity, with the similarity
+score retained for downstream quality filtering.
+
+```{mermaid}
+%%| fig-cap: "Job title standardisation"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart TD
+    A["Translated job title"] --> B["Title cleaning<br/><i style='font-size:0.8em;color:#64748b'>(remove locations, salaries, prefixes)</i>"]
+    B -->|"cleaned text"| C["JobBERT-v3 encoder"]
+    C -->|"768-d vector"| D["Title embedding"]
+
+    D -->|"query"| F{"FAISS nearest-neighbour search"}
+
+    E[("ESCO occupation index<br/>~3 000 occupations<br/><i style='font-size:0.8em;color:#64748b'>pre-computed 768-d vectors</i>")] -->|"index"| F
+
+    F -->|"best match + cosine score"| G["Standardised ESCO occupation"]
+```
+::::
+
+:::: {#pipeline-step-06 .step-detail}
+#### [Step 06]{.step-badge .step-badge-green} Sector classification (ISIC/NACE)
+
+Assigning an economic sector to each job posting enables analysis of
+skill demand by industry---a dimension that is critical for targeted
+workforce development and industrial policy. We classify postings into
+the **ISIC/NACE** industry taxonomy. The underlying crosswalk uses the
+full NACE Rev. 2.1 classification maintained by Eurostat, which provides
+finer sub-division detail (3- and 4-digit codes) than ISIC. However,
+because this report analyses sectoral demand at the **2-digit division
+level**, the results are identical under both systems: at 2 digits,
+NACE Rev. 2.1 and ISIC Rev. 5 share the same division codes and
+boundaries
+(<a class="paper-link" href="https://ec.europa.eu/eurostat/documents/3859598/21633320/KS-GQ-24-007-EN-N.pdf" target="_blank" rel="noopener noreferrer">Eurostat, 2024<span class="source-link-ext">↗</span></a>).
+All results in this report are therefore directly comparable with any
+analysis using either framework.
+
+The assignment relies on the official
+<a class="paper-link" href="https://esco.ec.europa.eu/en/about-esco/escopedia/escopedia/nace" target="_blank" rel="noopener noreferrer">ESCO-to-NACE crosswalk<span class="source-link-ext">↗</span></a>,
+which links each ESCO occupation to one or more ISIC/NACE activity
+codes. Three resolution tiers handle different levels of ambiguity:
+
+1. **One-to-one mapping** --- the ESCO occupation maps to a single
+   ISIC/NACE code. The assignment is deterministic.
+2. **Same 2-digit code** --- all candidate codes share the same 2-digit
+   division (e.g. all fall under *C26*). The shared division is assigned
+   directly, since finer sub-division differences are below the
+   reporting threshold.
+3. **Ambiguous multi-division cases** --- candidates span different
+   ISIC/NACE divisions. We resolve these by embedding the job title and
+   description together with each candidate activity label using a
+   multilingual sentence-transformer
+   (<a class="paper-link" href="https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2" target="_blank" rel="noopener noreferrer">paraphrase-multilingual-MiniLM-L12-v2<span class="source-link-ext">↗</span></a>)
+   and selecting the candidate with the highest cosine similarity. A
+   confidence margin between the top two candidates is recorded to
+   support post-hoc quality auditing.
+
+```{mermaid}
+%%| fig-cap: "ISIC/NACE sector classification"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 30, 'rankSpacing': 45, 'curve': 'basis'}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart LR
+    A["ESCO occupation<br/><i style='font-size:0.8em;color:#64748b'>from Step 05</i>"]
+      -->|"look up"| B[("ESCO → ISIC/NACE crosswalk<br/><i style='font-size:0.8em;color:#64748b'>official mapping table</i>")]
+    B --> C{"Number of candidate<br/>ISIC/NACE codes?"}
+
+    C -->|"exactly 1"| D["Deterministic<br/>assignment"]
+    C -->|"≥ 2, same 2-digit code"| E["Assign shared<br/>ISIC/NACE division"]
+    C -->|"≥ 2, different divisions"| F["Embedding-based disambiguation<br/><i style='font-size:0.8em;color:#64748b'>encode job text + each candidate ISIC/NACE label</i>"]
+
+    F -->|"384-d vectors"| H{"Cosine similarity<br/>comparison"}
+    H -->|"highest score"| I["Assigned ISIC/NACE code<br/>+ confidence margin"]
+
+    D --> J["Final sector label"]
+    E --> J
+    I --> J
+
+    classDef step fill:#eef4fb,stroke:#1d4e89,stroke-width:1px,color:#15314B;
+    classDef data fill:#fef3c7,stroke:#b45309,stroke-width:1px,color:#7c2d12;
+    classDef out  fill:#dcfce7,stroke:#166534,stroke-width:1px,color:#14532d;
+    class A,D,E,F,I step;
+    class B data;
+    class C,H step;
+    class J out;
+```
+::::
 
 ::: {.callout-note appearance="simple"}
 Our pipeline outperforms the current state of the art by approximately
@@ -203,43 +540,15 @@ respectively.
 :::
 :::
 
-:::: {.section-card}
-### AI Skills Demand
-
-The demand for AI-related skills is highly dynamic, with new
-technologies and tools emerging rapidly while others become obsolete.
-This makes it difficult to track AI skill demand using static
-taxonomies alone.
-
-Lightcast captures highly granular and technology-specific signals, such
-as individual AI tools, models, copilots, libraries, and chatbot
-platforms. This makes it well suited to detecting early changes in
-employer demand. We start from the benchmark list of 350 AI skills
-identified by
-<span class="paper-ref" data-tooltip="Martins-Neto, A., Liu, Y., Khurana, S., and Porras Lopez, J. M. 2026. Click, Code, Earn: The Returns to Digital Skills. World Bank."><a class="paper-link" href="https://documents1.worldbank.org/curated/en/099451102172652767/pdf/IDU-e779b9af-e9b1-43ae-a2c5-9679dbf2d829.pdf" target="_blank" rel="noopener noreferrer">Martins-Neto et al. (2026)</a></span>
-and extend it with 114 additional skills that have since appeared in the
-Lightcast taxonomy, bringing the current total to 464 AI skills.
-
-To make the full list policy-readable, we organize these 464 skills into
-four primary categories and eight cross-cutting tags. The primary
-categories are mutually exclusive and capture the fundamental domain of
-each skill. The tags are non-exclusive and highlight secondary
-dimensions that cut across categories.
-
-```{=html}
-<div class="ai-category-grid" id="ai-category-cards"></div>
-<div id="ai-tag-chart"></div>
-<p class="notes source-note">Source: Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' categorization.</p>
-```
-::::
-
 ## Results
+
+{{< include includes/wb_skills_mismatch.qmd >}}
 
 ::: {.section-card}
 ### Digital Skill Levels in Poland
 
 Using the classification proposed by
-<span class="paper-ref" data-tooltip="Angel-Urdinola, D., Chinen, M. H., and Rodon Casarramona, G. 2025. Digital Skills Development: Competence Frameworks, Assessment Tools, and Pedagogical Approaches. Education Notes, 203091."><a class="paper-link" href="https://openknowledge.worldbank.org/entities/publication/b485a240-338e-4c86-8ade-3bf9c134ddce" target="_blank" rel="noopener noreferrer">Angel-Urdinola et al. (2025)</a></span>,
+<span class="paper-ref" data-tooltip="Chinen, M., and Montorsi, C. 2025. Exploring Digital Skills Demand: Key Insights from Online Job Vacancies in South Africa, Nigeria, Kenya, and Uganda. Education Working Paper No. 21. Washington, DC: World Bank."><a class="paper-link" href="https://documents1.worldbank.org/curated/en/099746512082541920/pdf/IDU-dcae1207-ed6e-4383-9c7f-1f2b2dbae522.pdf" target="_blank" rel="noopener noreferrer">Chinen &amp; Montorsi (2025)</a></span>,
 we group ESCO-linked digital skills into `basic`, `intermediate`, and
 `advanced` categories. Across Poland, 696,092 digital skill mentions
 from job postings can be classified in this way. The resulting profile
@@ -247,7 +556,7 @@ shows that advanced digital skills account for the largest share of
 classified digital demand.
 
 ```{=html}
-<div class="figure-caption-title">Figure 5. Distribution of classified digital skill mentions in Poland</div>
+<div class="figure-caption-title"><strong>Figure 23.</strong> Distribution of classified digital skill mentions in Poland</div>
 <div class="digital-stack-card">
   <div class="digital-stack-topline">
     <span class="digital-stack-total">696,092</span>
@@ -282,7 +591,59 @@ classified digital demand.
     </div>
   </div>
 </div>
-<p class="notes source-note">Source: Angel-Urdinola et al. (2025); Pracuj.pl job postings; authors' mapping of classified ESCO-linked digital skill mentions.</p>
+<p class="notes source-note">Source: Chinen &amp; Montorsi (2025); Pracuj.pl job postings; authors' mapping of classified ESCO-linked digital skill mentions.</p>
+```
+:::
+
+{{< include includes/wb_digital_examples.qmd >}}
+
+::::: {.section-card .map-shell}
+### Regional Digital Skill Demand
+
+The map shows, for each voivodeship, the share of 2025 Pracuj.pl job
+postings that contain at least one skill from the ESCO Digital Skills
+Collection (Polish labels). A posting is counted as digital if at least one
+of its ESCO-mapped skills appears in the collection's preferred or
+alternative labels. Regional assignment is based on geocoded powiat data.
+Click a voivodeship to inspect its top demanded digital skills.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 24.</strong> Share of job postings with at least one ESCO digital skill, by voivodeship (2025)</div>
+<div class="ai-regional-layout">
+  <div id="digital-regional-map"></div>
+  <div id="digital-regional-detail"></div>
+</div>
+<div class="map-caption source-note" id="digital-map-note"></div>
+```
+:::::
+
+::: {.section-card}
+### AI Skills Demand
+
+The demand for AI-related skills is highly dynamic, with new
+technologies and tools emerging rapidly while others become obsolete.
+This makes it difficult to track AI skill demand using static
+taxonomies alone.
+
+Lightcast captures highly granular and technology-specific signals, such
+as individual AI tools, models, copilots, libraries, and chatbot
+platforms. This makes it well suited to detecting early changes in
+employer demand. We start from the benchmark list of 350 AI skills
+identified by
+<span class="paper-ref" data-tooltip="Martins-Neto, A., Liu, Y., Khurana, S., and Porras Lopez, J. M. 2026. Click, Code, Earn: The Returns to Digital Skills. World Bank."><a class="paper-link" href="https://documents1.worldbank.org/curated/en/099451102172652767/pdf/IDU-e779b9af-e9b1-43ae-a2c5-9679dbf2d829.pdf" target="_blank" rel="noopener noreferrer">Martins-Neto et al. (2026)</a></span>
+and extend it with 114 additional skills that have since appeared in the
+Lightcast taxonomy, bringing the current total to 464 AI skills.
+
+To make the full list policy-readable, we organize these 464 skills into
+four primary categories and eight cross-cutting tags. The primary
+categories are mutually exclusive and capture the fundamental domain of
+each skill. The tags are non-exclusive and highlight secondary
+dimensions that cut across categories.
+
+```{=html}
+<div class="ai-category-grid" id="ai-category-cards"></div>
+<div id="ai-tag-chart"></div>
+<p class="notes source-note">Source: Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' categorization.</p>
 ```
 :::
 
@@ -305,7 +666,7 @@ classified digital demand.
 ```
 
 ```{=html}
-<div class="figure-caption-title">Figure 4. AI demand by category with top requested skills</div>
+<div class="figure-caption-title"><strong>Figure 25.</strong> AI demand by category with top requested skills</div>
 <div id="ai-category-demand"></div>
 <p class="notes source-note">Source: Pracuj.pl job postings; Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' semantic matching and categorization. Category demand is based on postings matched to the expanded Lightcast AI list under the conservative threshold used in this report.</p>
 ```
@@ -357,25 +718,382 @@ the rest of the country.
 ```
 ::::
 
+{{< include includes/wb_results_ai_nace.qmd >}}
+
+{{< include includes/wb_results_ai_supplement.qmd >}}
+
+### Green Skills Demand
+
+::: {.section-card}
+#### Identification approach
+
+Green skills are identified by matching the ESCO skills extracted from
+job postings (Step 04 of the pipeline) against the official
+<a class="paper-link" href="https://esco.ec.europa.eu/en/about-esco/publications/publication/green-skills-and-knowledge-concepts-labelling-esco" target="_blank" rel="noopener noreferrer">ESCO Green Skills and Knowledge Collection<span class="source-link-ext">↗</span></a>,
+a curated subset of roughly 830 skills and knowledge concepts that the
+European Commission classifies as relevant to the green transition.
+
+A job posting is counted as "green" if at least one of its matched ESCO
+skills belongs to this collection. Because the ESCO green taxonomy is
+broad and includes some entries that are only tangentially related to
+environmental sustainability, we apply a manual review step: each
+matched skill is classified as either **genuine green** or **false
+positive** based on whether its presence in a job posting plausibly
+signals demand for environmental or sustainability competences.
+
+```{=html}
+<div class="kpi-grid" id="green-kpi-cards"></div>
+```
+:::
+
+::: {.section-card}
+
+#### False positives
+
+Not all skills in the ESCO green collection carry a clear environmental
+signal when they appear in Polish job postings. Skills such as *building
+codes*, *vehicle type-approval*, or *warehouse management software* are
+part of the ESCO green taxonomy but frequently appear in postings where
+the role has no meaningful green dimension. After matching, we manually
+flag these as false positives and exclude them from the headline green
+skill counts. The full list of excluded skills is shown below.
+
+```{=html}
+<details class="green-fp-details">
+  <summary>Show excluded false-positive skills (click to expand)</summary>
+  <div class="data-table-wrap" id="green-false-positives-list"></div>
+</details>
+```
+:::
+
+::::: {.section-card .map-shell}
+#### Regional green skill demand
+
+The map shows the share of job postings with at least one genuine green
+skill in each voivodeship. Regional variation is moderate: shares range
+from roughly 2.5% to 4.0%, with higher concentrations in voivodeships
+where construction, energy, and agricultural sectors are more prominent.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 31a.</strong> Share of job postings with at least one green skill, by voivodeship</div>
+<div id="green-regional-map"></div>
+<div class="map-caption source-note">Source: Pracuj.pl job postings; ESCO Green Skills Collection; authors' matching and manual review.</div>
+```
+:::::
+
+::: {.section-card}
+#### Most demanded green skills
+
+The chart below shows the 25 most frequently demanded genuine green
+skills across all job postings. Environmental engineering, environmental
+management standards, and the design of heating and cooling systems lead
+the ranking, reflecting Poland's strong construction and energy
+infrastructure sectors.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 31b.</strong> Top 25 genuine green skills by number of job offers</div>
+<div id="green-top-skills-chart"></div>
+<p class="notes source-note">Source: Pracuj.pl job postings; ESCO Green Skills Collection; authors' matching and manual review.</p>
+```
+:::
+
+{{< include includes/wb_results_green_nace.qmd >}}
+
+::: {.section-card}
+#### Top occupations by green skill demand
+
+The chart ranks the 15 KZIS (Polish Classification of Occupations)
+occupations with the highest number of job postings containing at least
+one genuine green skill. Sales representatives appear at the top partly
+because of the large volume of postings in that occupation, but the
+green-skill content of these offers points clearly to specific segments:
+above all renewable energy and energy-efficiency sales, green building
+solutions, and agri-related product markets. The most common green
+skills for this occupation include promoting sustainability, advising on
+the energy efficiency of heating systems, installing photovoltaic
+systems, energy efficiency, agronomy, and the energy performance of
+buildings. Specialised roles such as environmental engineers and
+environmental protection specialists show higher average green skill
+intensity per posting.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 31c.</strong> Top 15 KZIS occupations by number of offers with green skills</div>
+<div id="green-top-occupations-chart"></div>
+<p class="notes source-note">Source: Pracuj.pl job postings; ESCO Green Skills Collection; KZIS occupation matches; authors' matching and manual review.</p>
+```
+:::
+
+### Jobs for Ukrainians
+
+::: {.section-card}
+#### Background
+
+Polish job postings on Pracuj.pl can carry an explicit
+**Запрошуємо працівників з України / Jobs for Ukrainians** badge, added by
+the employer to signal that the role is open to (and the workplace is
+prepared to support) Ukrainian candidates. The tag was introduced
+shortly after Russia's full-scale invasion of Ukraine in February 2022
+as part of Pracuj.pl's response to the wave of refugees arriving in
+Poland — see
+<a class="paper-link" href="https://media.pracuj.pl/179412-grupa-pracuj-dla-ukrainy" target="_blank" rel="noopener noreferrer">Grupa Pracuj dla Ukrainy<span class="source-link-ext">↗</span></a>.
+
+We retrieve the badge by parsing the `data-test="sections-benefit-ukrainian-friendly"`
+HTML element on each posting's detail page, and join the result back to
+the structured fields in `job_ads`. Looking at where this tag appears
+tells us which **regions, industries and occupations** are most actively
+opening up to workers from Ukraine — and by extension, to foreign labour
+more broadly. It also reveals where employer demand and refugee supply
+overlap most strongly.
+
+```{=html}
+<div class="kpi-grid" id="ukr-kpi-cards"></div>
+```
+:::
+
+::::: {.section-card .map-shell}
+#### Regional intensity
+
+The map shows the share of all 2025 Pracuj.pl postings in each
+voivodeship that carry the Jobs-for-Ukrainians tag. Małopolskie leads
+clearly (around 14% of postings), followed by Lubuskie, Łódzkie,
+Lubelskie and Dolnośląskie — a mix of regions with large refugee
+populations (Małopolskie, Dolnośląskie), border-area logistics hubs and
+food-processing clusters (Lubuskie, Lubelskie, Łódzkie). Mazowieckie has
+the largest absolute number of tagged offers but a lower share, since
+its labour market is dominated by professional and IT roles where the
+tag is less commonly used.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 34a.</strong> Share of postings tagged 'Jobs for Ukrainians', by voivodeship (2025)</div>
+<div id="ukr-regional-map"></div>
+<div class="map-caption source-note">Source: Pracuj.pl postings with <code>data-test="sections-benefit-ukrainian-friendly"</code>; authors' parsing.</div>
+```
+:::::
+
+::: {.section-card}
+#### Demand intensity vs Ukrainian-friendly share
+
+A natural question is whether voivodeships with a **hotter labour
+market** — measured as total job offers per 100k labour force — are also
+the ones where employers more often choose to **flag a posting as
+Ukrainian-friendly**. Plotting the within-region share (Y, %) against
+total offer intensity (X) gives a much weaker relationship than one
+might expect: across the 16 voivodeships, **Pearson r ≈ +0.24**,
+**Spearman ρ ≈ +0.26**, **R² ≈ 0.06**. In other words, demand intensity
+explains very little of the cross-regional variation in how often the
+badge is used.
+
+The clearest outlier is **Małopolskie**, sitting well above the cloud at
+≈14% of postings tagged despite only mid-range overall intensity — a
+likely echo of Kraków's large post-2022 Ukrainian diaspora.
+**Kujawsko-Pomorskie** (~6.6%) and **Podkarpackie** (~7.0%) sit clearly
+below the cloud, while **Mazowieckie** — by far the densest labour
+market — is exactly average on the share dimension (~9.7%). This
+suggests the Ukrainian-friendly tag tracks **demographic factors**
+(refugee settlement patterns) and **sectoral mix** much more than
+overall hiring intensity.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 34b.</strong> Total offers per 100k labour force vs share of offers tagged 'Jobs for Ukrainians', by voivodeship</div>
+<div id="ukr-density-scatter"></div>
+<p class="notes source-note">Source: Pracuj.pl postings; Statistics Poland (BAEL) labour-force averages 2025; authors' computation. Each marker is one of the 16 voivodeships; the dashed line is the OLS fit.</p>
+```
+:::
+
+::::: {.section-card .map-shell}
+#### Powiat-level demand intensity
+
+Switching the denominator from labour force (only published by GUS at
+the voivodeship level) to **employed-by-residence** (the closest
+powiat-level proxy, available monthly via the GUS BDL P4280 series)
+brings the offer-intensity picture down to all **380 powiats**. The
+density gradient is dominated by a handful of metropolitan magnets —
+Warszawa, Kraków, Wrocław, Poznań, Trójmiasto, Łódź — together with
+the suburban "donut" powiats around them (e.g. *poznański*, *pruszkowski*,
+*piaseczyński*, *wrocławski*) where offer-to-employed ratios run an
+order of magnitude above the rural average. Most of central-eastern
+Poland and the Bieszczady–Roztocze belt sit below 1,000 offers /
+100k employed.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 34c.</strong> Total job offers per 100k employed (residence-based), by powiat (2025)</div>
+<div id="ukr-powiat-intensity-map" style="height:640px;"></div>
+<div class="map-caption source-note">Source: Pracuj.pl postings (2025); GUS BDL P4280 — employed persons in the national economy by place of residence (January 2025). Colour scale capped at the 95th percentile to preserve resolution outside the metropolitan magnets.</div>
+```
+:::::
+
+::::: {.section-card .map-shell}
+#### Powiat-level Ukrainian-friendly share
+
+Zooming in from the 16 voivodeships to all 380 powiats preserves
+the overall national share (~9.7%) but reveals strong sub-regional
+variation that the voivodeship view averages out. The badge is
+heavily concentrated in **western and central rural-industrial
+powiats** — Lower Silesian copper-belt counties (e.g. *polkowicki* at
+≈30%), the Lubelskie countryside east of the Vistula, the Mazovian
+food-processing belt around *kozienicki* and *lipski*, and frontier
+counties along the German border (e.g. *słubicki*, *świebodziński*).
+At the other extreme, several large **city-on-county-rights** labour
+markets (Toruń, Krosno, Kalisz) and small mono-industrial powiats
+(*obornicki*, *ostrowiecki*) sit below 6%.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 34d.</strong> Share of postings tagged 'Jobs for Ukrainians', by powiat (2025)</div>
+<div id="ukr-powiat-map" style="height:640px;"></div>
+<div class="map-caption source-note">Source: Pracuj.pl postings with <code>data-test="sections-benefit-ukrainian-friendly"</code>; powiat resolved via TERYT SIMC + GUGiK UUG geocoding (see methods). Colour scale capped at 25%.</div>
+```
+:::::
+
+::: {.section-card}
+#### Demand intensity vs UA-friendly share — powiat level
+
+Crossing the two powiat layers — **offers per 100k employed** on the
+X-axis and within-powiat Ukrainian-friendly share on the Y-axis —
+confirms what the voivodeship plot already hinted at: there is
+**essentially no relationship** between how dense a local labour
+market is and how often employers there flag jobs for Ukrainian
+workers. Restricted to the 294 powiats with at least 200 postings,
+**Pearson r ≈ −0.16**, **Spearman ρ ≈ −0.11**, **R² ≈ 0.024** — i.e.
+demand intensity explains roughly 2% of the cross-powiat variation in
+the badge's use.
+
+The major metropolitan magnets (Warszawa, Kraków, Wrocław, Poznań,
+Gdańsk) cluster around the national average (~9–11%) despite very
+different intensity levels, while the high-share powiats sit at
+**low-to-medium** intensity. The takeaway mirrors the regional
+analysis: the Ukrainian-friendly badge tracks **sectoral mix and
+refugee settlement geography** much more than overall hiring
+intensity.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 34e.</strong> Job offers per 100k employed vs share of offers tagged 'Jobs for Ukrainians', by powiat</div>
+<div id="ukr-powiat-scatter"></div>
+<p class="notes source-note">Source: Pracuj.pl postings (2025); GUS BDL P4280 employed-by-residence (January 2025). Bubble size ∝ √(total offers); only powiats with ≥200 postings included in the OLS fit.</p>
+```
+:::
+
+::: {.section-card}
+#### Industries (NACE sections)
+
+Aggregated to the top-level NACE section, the Ukrainian-friendly tag is
+strongly concentrated in service sectors that absorb low-barrier labour:
+**accommodation and food service (I)** stands out at roughly a third of
+all postings, followed by **transportation and storage (H)** and
+**manufacturing (C)**. Sections dominated by professional services and
+public administration use the tag much less frequently.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 34f.</strong> NACE sections with the highest share of Ukrainian-friendly postings</div>
+<div id="ukr-industries-section-chart"></div>
+<p class="notes source-note">Source: Pracuj.pl + ESCO→NACE crosswalk. Sections shown have at least 5,000 postings.</p>
+```
+:::
+
+::: {.section-card}
+#### Industries (NACE divisions)
+
+Drilling down to NACE divisions exposes the specific niches driving
+demand for Ukrainian workers. By share, the leaders are food retail and
+restaurants (G47.5, G47.22, I56.11, G47.11), passenger road transport
+(H49.32, H49.33) and goods road transport (H49.41) — sectors with high
+turnover, language-tolerant tasks and a strong refugee employment
+footprint. By absolute volume, **restaurants (I56.11)**, **warehousing
+(H52.1)** and **programming activities (K62.1)** dominate, the last
+reflecting the large pool of Ukrainian IT specialists who relocated
+after 2022.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 34g.</strong> NACE divisions with the highest share of Ukrainian-friendly postings</div>
+<div id="ukr-industries-share-chart"></div>
+<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34h.</strong> NACE divisions with the largest absolute number of Ukrainian-friendly postings</div>
+<div id="ukr-industries-count-chart"></div>
+<p class="notes source-note">Source: Pracuj.pl + ESCO→NACE crosswalk. Only divisions with at least 500 postings are ranked.</p>
+```
+:::
+
+::: {.section-card}
+#### Occupational categories
+
+Using Pracuj.pl's own narrow job categories (`job_category_narrow`), the
+tag is most prevalent in food-related and manual-labour roles —
+*Food products*, *Hospitality staff*, *Manual labour*,
+*Couriers / delivery* — and in hospitality and personal-services
+categories such as *Hotel operations* and *Hairdresser / beautician*. The
+absolute-volume ranking confirms that gastronomy, courier and warehouse
+categories together account for the bulk of Ukrainian-friendly hiring.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 34i.</strong> Narrow job categories with the highest share of Ukrainian-friendly postings</div>
+<div id="ukr-categories-narrow-share-chart"></div>
+<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34j.</strong> Narrow job categories with the largest absolute number of Ukrainian-friendly postings</div>
+<div id="ukr-categories-narrow-count-chart"></div>
+<p class="notes source-note">Source: Pracuj.pl <code>job_category_narrow</code>. Only categories with at least 500 postings are ranked.</p>
+```
+:::
+
+{{< include includes/wb_ukr_nace.qmd >}}
+
+::: {.section-card}
+#### Seniority and contract types
+
+The tag overwhelmingly attaches to **manual-worker**
+roles — over a fifth of such postings are Ukrainian-friendly — and to a
+hybrid `manager / supervisor` shift-leader category common in retail and
+gastronomy. Specialist, expert and director roles see the tag much
+less. On the contract side, **temporary employment contracts** and **contracts of mandate** carry the
+tag most often, reflecting the prevalence of short-tenure agency-style
+hiring in the segments where Ukrainian workers are most actively
+recruited; standard permanent contracts and B2B contracts use the tag
+considerably less.
+
+```{=html}
+<div class="figure-caption-title"><strong>Figure 34k.</strong> Share of postings tagged 'Jobs for Ukrainians', by seniority level</div>
+<div id="ukr-seniority-chart"></div>
+<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34l.</strong> Share of postings tagged 'Jobs for Ukrainians', by contract type</div>
+<div id="ukr-contracts-chart"></div>
+<p class="notes source-note">Source: Pracuj.pl <code>seniority_level</code> and <code>contract_types</code>. Multi-valued fields are split per posting; only categories with at least 500 postings are shown.</p>
+```
+:::
+
+{{< include includes/wb_care_services.qmd >}}
+
 ## References
 
 :::: {.section-card}
 ```{=html}
 <div class="reference-list">
-  <p>Angel-Urdinola, D., Chinen, M. H., and Rodon Casarramona, G. 2025. <em>Digital Skills Development: Competence Frameworks, Assessment Tools, and Pedagogical Approaches</em>. Education Notes, 203091.</p>
+  <p>Chinen, M., and Montorsi, C. 2025. <em>Exploring Digital Skills Demand: Key Insights from Online Job Vacancies in South Africa, Nigeria, Kenya, and Uganda</em>. Education Working Paper No. 21. Washington, DC: World Bank.</p>
+  <p>Bielinski, J. and Brazier, M. 2025. <em>Skill Extraction from Job Postings Using Contrastive Learning</em>. RecSysHR Workshop.</p>
   <p>Decorte, J. J., Van Hautte, J., Develder, C., and Demeester, T. 2025. <em>Efficient Text Encoders for Labor Market Analysis</em>. IEEE Access.</p>
   <p>Dunning, T. 1993. <em>Accurate Methods for the Statistics of Surprise and Coincidence</em>. Computational Linguistics 19(1): 61-74.</p>
+  <p>Huang, J. et al. 2023. <em>Towards Making the Most of LLM for Translation Quality</em>. ECML PKDD.</p>
+  <p>Malandri, L. et al. 2025. <em>SkillLess: Skill Extraction from Job Postings via Sentence Classification</em>. ACM Web Conference.</p>
   <p>Martins-Neto, A., Liu, Y., Khurana, S., and Porras Lopez, J. M. 2026. <em>Click, Code, Earn: The Returns to Digital Skills</em>. World Bank.</p>
+  <p>Sun, W. 2026. <em>Token-Level Attention for ESCO Skill Matching</em>. arXiv:2601.09119.</p>
 </div>
 ```
 ::::
 
 ```{=html}
 <script src="assets/plotly.min.js"></script>
+<script src="assets/chart_theme.js"></script>
 <script src="assets/regional_map_data.js"></script>
 <script src="assets/ai_regional_map_data.js"></script>
 <script src="assets/lightcast_ai_skills_data.js"></script>
 <script src="assets/ai_report.js"></script>
 <script src="assets/lightcast_ai_table.js"></script>
+<script src="assets/digital_regional_map_data.js"></script>
+<script src="assets/digital_report.js"></script>
+<script src="assets/green_skills_data.js"></script>
+<script src="assets/green_skills.js"></script>
+<script src="assets/ukrainian_friendly_data.js"></script>
+<script src="assets/ukrainian_friendly_powiat_data.js"></script>
+<script src="assets/ukrainian_friendly.js"></script>
+<script src="assets/methodology_charts_data.js"></script>
+<script src="assets/methodology_charts.js"></script>
+<script src="assets/data_overview_data.js"></script>
+<script src="assets/data_overview_charts.js"></script>
+<script src="assets/results_extended_data.js"></script>
+<script src="assets/results_extended_charts.js"></script>
 <script src="assets/report.js"></script>
 ```

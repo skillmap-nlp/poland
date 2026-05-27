@@ -1,0 +1,15 @@
+::: {.section-card}
+### Change in BUR training supply (2019 vs 2025)
+
+The map in Regional Coverage compares **levels** of training intensity in 2025. The chart below shows **how subsidised training volumes shifted** between 2019 and 2025 within each voivodeship — a period spanning two EU programming cycles and the post-pandemic recovery of BUR listings.
+
+Red bars indicate voivodeships where the number of registered training-service editions **declined**; green bars indicate growth. The pattern reflects both funding-cycle effects and structural changes in how providers re-list courses on the platform, not labour-demand shifts alone.
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 2a.</strong> Percentage change in BUR training services by voivodeship (2019 → 2025)</div>
+  <div id="chart-training-change-2019-2025" class="plotly-chart plotly-chart--wide" role="img" aria-label="Percentage change in BUR training services by voivodeship between 2019 and 2025"></div>
+</div>
+<p class="notes source-note">Source: BUR yearly exports (<code>Usługa szkoleniowa</code>), counted by provider-reported voivodeship.</p>
+```
+:::

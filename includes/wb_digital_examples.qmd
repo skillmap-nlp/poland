@@ -1,0 +1,10 @@
+::: {.section-card}
+### Examples of digital skills by proficiency level
+
+The basic / intermediate / advanced split from Chinen & Montorsi (2025) maps ESCO digital labels into three policy-relevant tiers. The examples below illustrate the type of competence requested at each level in Polish job postings.
+
+```{=html}
+<div class="digital-examples-columns" id="digital-examples-columns"></div>
+<p class="notes source-note">Illustrative ESCO labels per tier from the Chinen &amp; Montorsi (2025) digital-skills mapping applied to Pracuj.pl postings.</p>
+```
+:::

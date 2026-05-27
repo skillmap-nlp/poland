@@ -1,0 +1,13 @@
+::: {.section-card}
+### Geocoding and regional assignment
+
+Job postings and BUR training services are assigned to Polish **NUTS-2 voivodeships** (and, where possible, **powiat** level) using a multi-step geocoding pipeline:
+
+1. **Structured location fields** — city and voivodeship names from the portal or BUR registry are normalised and matched against the official **TERYT / SIMC** register.
+2. **Address geocoding** — when powiat cannot be resolved from TERYT alone, the **GUGiK UUG** (Usługa Ujednoliconego Geokodowania) address API resolves city–voivodeship pairs to gmina and powiat codes.
+3. **Regional aggregation** — counts are summed to voivodeship level for the interactive maps and comparison table. **Per-100k labour force** normalisation uses GUS BDL average economically active population in 2025 as the denominator, enabling direct comparison of posting intensity and subsidised training supply across regions of different size.
+
+Roughly **95%** of Pracuj.pl postings with a usable location field resolve to a Polish powiat; the remainder are excluded from powiat-level views but retained in national aggregates. BUR records use provider or service location metadata with the same regional crosswalk.
+
+Foreign or ambiguous locations are flagged and excluded from regional maps but included in national skill-mix statistics.
+:::

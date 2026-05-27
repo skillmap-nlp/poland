@@ -1,0 +1,41 @@
+::: {.section-card}
+#### Public-health training in BUR
+
+BUR listings classified as **public health / medical professions** remain a small share of the registry (**0.89%** in 2025, **1,165** services) but have grown sharply since 2022. Training is overwhelmingly **in-person** (~87%) and **short to medium length** (median bucket 9–16 h and 25–40 h). Regional supply is led by **Śląskie**, **Pomorskie** and **Małopolskie**.
+
+Within this subset, ESCO tags stress **assisting & caring (S3)** — nursing, patient care and rehabilitation — with supporting shares for communication (S1) and information skills (S2). Top training skills include **elderly care**, **first aid** and **podiatry consultations**.
+
+```{=html}
+<div class="chart-grid chart-grid--2">
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 39.</strong> Public-health BUR trainings as share of all BUR services (2016–2025)</div>
+    <div id="chart-care-bur-ph-share" class="plotly-chart" role="img" aria-label="Public health training share in BUR over time"></div>
+  </div>
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 40.</strong> ESCO skill-pillar mix in public-health BUR trainings (2025)</div>
+    <div id="chart-care-ph-s1s8" class="plotly-chart" role="img" aria-label="Skill pillar distribution in public health BUR trainings"></div>
+  </div>
+</div>
+<div class="chart-block" style="margin-top:1.25rem;">
+  <div class="figure-caption-title"><strong>Figure 41.</strong> Top voivodeships for public-health BUR training services</div>
+  <div id="chart-ph-regions" class="plotly-chart plotly-chart--wide" role="img" aria-label="Public health trainings by region"></div>
+</div>
+<div class="chart-grid chart-grid--2" style="margin-top:1.25rem;">
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 42.</strong> Delivery modality — public-health BUR (2025)</div>
+    <div id="chart-ph-modality" class="plotly-chart" role="img" aria-label="Modality of public health trainings"></div>
+  </div>
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 43.</strong> Duration distribution — public-health BUR (2025)</div>
+    <div id="chart-ph-duration" class="plotly-chart" role="img" aria-label="Duration of public health trainings"></div>
+  </div>
+</div>
+<div class="chart-block" style="margin-top:1.25rem;">
+  <div class="figure-caption-title"><strong>Figure 44.</strong> Top skills taught in public-health BUR trainings</div>
+  <div id="chart-ph-top-skills" class="plotly-chart plotly-chart--wide" role="img" aria-label="Top skills in public health BUR"></div>
+</div>
+<p class="notes source-note">Source: BUR 2016–2025; public-health subset via service category and keyword rules.</p>
+```
+
+The demand–supply comparison for care skills should be read alongside the skills-mismatch caveats: Pracuj.pl under-represents public hospitals and municipal social care, while BUR over-indexes subsidised care reskilling — so apparent *over-supply* of assisting & caring skills partly reflects complementary coverage of the two data sources.
+:::

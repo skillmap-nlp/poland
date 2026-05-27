@@ -9,6 +9,8 @@ import sqlite3
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from chart_label_translations import voivodeship_en
+
 import numpy as np
 import pandas as pd
 
@@ -396,6 +398,7 @@ def compute_payload() -> dict:
         rows.append(
             {
                 "voivodeship": voiv,
+                "voivodeship_en": voivodeship_en(voiv),
                 "offers": base["offers"],
                 "labour_force_2025_avg": base["labour_force_2025_avg"],
                 "ai_offers": ai_offers,

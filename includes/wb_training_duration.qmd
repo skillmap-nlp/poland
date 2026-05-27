@@ -1,0 +1,37 @@
+::: {.section-card}
+### Training duration in BUR
+
+Duration is recorded as **`liczba_godzin`** (contact hours) for each training-service edition. The analysis covers **`Usługa szkoleniowa`** records with positive hour values.
+
+Median duration has remained in the **low tens of hours** over the registry’s lifetime, with a long right tail driven by formal qualifications, language courses, and degree-linked programmes. The 2025 distribution is strongly concentrated in **short courses (≤40 h)**, while a minority of listings exceed **160 h** — often multi-module certificates or study programmes registered on the platform.
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 12.</strong> BUR training duration — median, mean and 90th percentile by year</div>
+  <div id="chart-duration-yearly" class="plotly-chart plotly-chart--wide" role="img" aria-label="Training duration statistics by year in BUR"></div>
+</div>
+<p class="notes source-note">Source: BUR yearly exports (`Usługa szkoleniowa`, positive <code>liczba_godzin</code>).</p>
+```
+:::
+
+::: {.section-card}
+### Duration distribution and category profiles (2025)
+
+In 2025, the **median** training length is **26 hours** and the **90th percentile** is **82 hours**. Most subsidised services are designed as short upskilling modules rather than full qualification pathways, though a long tail of multi-module programmes remains.
+
+Category medians vary widely: **language and IT** courses tend to be longer and more variable, while **occupational safety (BHP)** and **soft-skills** modules cluster at the short end.
+
+```{=html}
+<div class="chart-grid chart-grid--2">
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 13.</strong> Share of BUR trainings by duration bucket (2025)</div>
+    <div id="chart-duration-buckets" class="plotly-chart" role="img" aria-label="Distribution of training durations in 2025"></div>
+  </div>
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 14.</strong> Median duration by BUR service category — top 10 by volume (2025)</div>
+    <div id="chart-duration-category" class="plotly-chart" role="img" aria-label="Median training hours by category in 2025"></div>
+  </div>
+</div>
+<p class="notes source-note">Source: BUR 2025; categories with the largest number of training-service editions.</p>
+```
+:::

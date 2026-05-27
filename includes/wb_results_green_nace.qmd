@@ -1,0 +1,13 @@
+::: {.section-card}
+#### Green skills intensity by sector
+
+Green skill mentions are not evenly distributed across the economy. The **highest within-section green shares** appear in **utilities (E)**, **energy (D)**, **agriculture (A)** and **public administration (P)** — sectors where environmental regulation and sustainability reporting are most salient. In absolute terms, green demand is still largest in **trade (G)**, **professional services (N)** and **manufacturing (C)** because those sections dominate total posting volume.
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 31.</strong> Green skill share within NACE section (top sections by intensity)</div>
+  <div id="chart-green-nace-sections" class="plotly-chart plotly-chart--wide" role="img" aria-label="Green skill share by NACE section"></div>
+</div>
+<p class="notes source-note">Source: Pracuj.pl green skill mentions matched to Chinen et al. (2025) taxonomy; NACE section from occupation crosswalk.</p>
+```
+:::

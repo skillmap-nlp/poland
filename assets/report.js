@@ -1,7 +1,8 @@
 (function () {
   const payload = window.__REGIONAL_REPORT__;
+  const T = window.__CHART_THEME__;
 
-  if (!payload || !window.Plotly) {
+  if (!payload || !window.Plotly || !T) {
     return;
   }
 
@@ -10,16 +11,13 @@
   const geojson = payload.geojson;
 
   const fmtInt = (value) =>
-    new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 }).format(value);
+    new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(value);
 
   const fmtRate = (value) =>
-    new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 }).format(value);
+    new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(value);
 
-  const titleVoiv = (name) =>
-    name
-      .split("-")
-      .map((part) => part.charAt(0).toLocaleUpperCase("pl-PL") + part.slice(1))
-      .join("-");
+  const titleVoiv = (row) =>
+    row.voivodeship_en || T.voivodeshipLabel(row.voivodeship);
 
   const rowsOffer = [...rows].sort(
     (a, b) => b.offers_per_100k_lf - a.offers_per_100k_lf
@@ -41,8 +39,8 @@
     { key: "voivodeship", label: "Voivodeship", numeric: false },
     { key: "offers", label: "Job offers", numeric: true },
     { key: "offers_per_100k_lf", label: "Offers per 100k LF", numeric: true },
-    { key: "trainings", label: "Trainings", numeric: true },
-    { key: "trainings_per_100k_lf", label: "Trainings per 100k LF", numeric: true },
+    { key: "trainings", label: "Trainings 2025", numeric: true },
+    { key: "trainings_per_100k_lf", label: "Trainings 2025 per 100k LF", numeric: true },
   ];
   const sortState = {
     key: "offers_per_100k_lf",
@@ -58,18 +56,18 @@
         subtext: "Source: Pracuj.pl",
       },
       {
-        label: "Mapped trainings",
+        label: "Mapped trainings (2025)",
         value: fmtInt(meta.trainings_total_with_voivodeship),
         subtext: "Source: Baza Usług Rozwojowych",
       },
       {
         label: "Highest demand intensity",
-        value: titleVoiv(topOffer.voivodeship),
+        value: titleVoiv(topOffer),
         subtext: `${fmtRate(topOffer.offers_per_100k_lf)} job offers per 100k labour force.`,
       },
       {
         label: "Highest supply intensity",
-        value: titleVoiv(topTraining.voivodeship),
+        value: titleVoiv(topTraining),
         subtext: `${fmtRate(
           topTraining.trainings_per_100k_lf
         )} trainings per 100k labour force.`,
@@ -105,15 +103,8 @@
         locations,
         z: rows.map((row) => row.offers_per_100k_lf),
         customdata,
-        colorscale: [
-          [0.0, "#e8f1fb"],
-          [0.35, "#9fc1e1"],
-          [0.7, "#4c86b9"],
-          [1.0, "#184a78"],
-        ],
-        marker: {
-          line: { color: "rgba(255,255,255,0.95)", width: 1 },
-        },
+        colorscale: T.scale.demand,
+        marker: T.mapMarker(),
         colorbar: {
           title: { text: "Offers<br>per 100k LF" },
           thickness: 16,
@@ -126,7 +117,7 @@
           "<b>%{location}</b><br>" +
           "Job offers per 100k LF: %{z:.0f}<br>" +
           "Job offers: %{customdata[0]}<br>" +
-          "Trainings: %{customdata[1]}<br>" +
+          "Trainings 2025: %{customdata[1]}<br>" +
           "Labour force (avg. 2025): %{customdata[2]}<br>" +
           "National share of offers: %{customdata[3]}<extra></extra>",
         visible: true,
@@ -138,17 +129,10 @@
         locations,
         z: rows.map((row) => row.trainings_per_100k_lf),
         customdata,
-        colorscale: [
-          [0.0, "#edf8f7"],
-          [0.35, "#9dd6d1"],
-          [0.7, "#43a49f"],
-          [1.0, "#0f6e6b"],
-        ],
-        marker: {
-          line: { color: "rgba(255,255,255,0.95)", width: 1 },
-        },
+        colorscale: T.scale.supply,
+        marker: T.mapMarker(),
         colorbar: {
-          title: { text: "Trainings<br>per 100k LF" },
+          title: { text: "Trainings 2025<br>per 100k LF" },
           thickness: 16,
           len: 0.7,
           x: 1.03,
@@ -157,8 +141,8 @@
         },
         hovertemplate:
           "<b>%{location}</b><br>" +
-          "Trainings per 100k LF: %{z:.0f}<br>" +
-          "Trainings: %{customdata[1]}<br>" +
+          "Trainings 2025 per 100k LF: %{z:.0f}<br>" +
+          "Trainings 2025: %{customdata[1]}<br>" +
           "Job offers: %{customdata[0]}<br>" +
           "Labour force (avg. 2025): %{customdata[2]}<br>" +
           "National share of trainings: %{customdata[4]}<extra></extra>",
@@ -181,7 +165,7 @@
           xanchor: "left",
           yanchor: "top",
           showactive: true,
-          bgcolor: "#eef4fb",
+          bgcolor: T.track,
           bordercolor: "rgba(36, 56, 89, 0.12)",
           borderwidth: 1,
           pad: { r: 8, t: 0, b: 0, l: 0 },
@@ -192,7 +176,7 @@
               args: [{ visible: [true, false] }],
             },
             {
-              label: "Trainings per 100k LF",
+              label: "Trainings 2025 per 100k LF",
               method: "update",
               args: [{ visible: [false, true] }],
             },
@@ -226,7 +210,7 @@
   function renderHighlights() {
     document.getElementById(
       "highlights-copy"
-    ).innerHTML = `Mazowieckie leads demand intensity, while Małopolskie leads training intensity. The largest positive difference between job postings and training provision per 100,000 labour force is observed in <strong>Mazowieckie</strong>.`;
+    ).innerHTML = `<strong>${titleVoiv(topOffer)}</strong> leads demand intensity, while <strong>${titleVoiv(topTraining)}</strong> leads training intensity. The largest positive gap between job postings and training provision per 100,000 labour force is in <strong>${titleVoiv(topOffer)}</strong>.`;
 
     const buildRankList = (title, topRows, metricKey, metricLabel) => `
       <div class="rank-box">
@@ -238,7 +222,7 @@
                 <div class="rank-item">
                   <div class="rank-badge">${idx + 1}</div>
                   <div class="rank-copy">
-                    <div class="rank-name">${titleVoiv(row.voivodeship)}</div>
+                    <div class="rank-name">${titleVoiv(row)}</div>
                     <div class="rank-metric">${fmtRate(
                   row[metricKey]
                 )} ${metricLabel}</div>
@@ -271,7 +255,7 @@
       const { key, direction } = sortState;
       const dir = direction === "asc" ? 1 : -1;
       if (key === "voivodeship") {
-        return titleVoiv(a[key]).localeCompare(titleVoiv(b[key]), "pl") * dir;
+        return titleVoiv(a).localeCompare(titleVoiv(b), "en") * dir;
       }
       return ((a[key] || 0) - (b[key] || 0)) * dir;
     });
@@ -310,7 +294,7 @@
             .map(
               (row) => `
                 <tr>
-                  <td>${titleVoiv(row.voivodeship)}</td>
+                  <td>${titleVoiv(row)}</td>
                   <td class="num">${fmtInt(row.offers)}</td>
                   <td class="num">${fmtRate(row.offers_per_100k_lf)}</td>
                   <td class="num">${fmtInt(row.trainings)}</td>

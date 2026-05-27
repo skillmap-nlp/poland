@@ -1,0 +1,53 @@
+::: {.section-card}
+### Quantifying demand and supply
+
+::: {.columns}
+::: {.column width="48%"}
+<p class="overview-panel-kicker">Estimating vacancies from job postings (OJV vs OJP)</p>
+<ul class="overview-list">
+<li>Postings with an <strong>explicit vacancy count</strong> (6.7%) → taken at face value</li>
+<li>Postings stating <strong>“multiple” positions</strong> without a number (8.9%) → coded as <strong>2 vacancies</strong> (conservative)</li>
+<li><strong>Single-position</strong> postings (84.4%) → coded as <strong>1 vacancy</strong></li>
+</ul>
+:::
+
+::: {.column width="48%"}
+<p class="overview-panel-kicker">Training data — scope and limitations</p>
+<ul class="overview-list">
+<li>Training records include only <strong>minimum and maximum capacity</strong> per service — actual participant numbers are unavailable</li>
+<li>Without attendance distributions, estimating total participants is not feasible</li>
+<li>Analysis therefore focuses on the <strong>structure of training offerings</strong>: course types and skills taught</li>
+</ul>
+<p class="overview-foot">Skills are extracted from learning outcomes and service descriptions and mapped to ESCO.</p>
+:::
+:::
+
+::: {.framing-callout}
+Both sides are reduced to the same unit — the share of each skill group in demand vs. in supply. Skill analyses focus on <strong>composition</strong>, not on scaling postings to vacancies or courses to participants. What matters is that skill shares are measured consistently on both sides.
+:::
+
+:::
+
+::: {.section-card}
+### Why Pracuj.pl as the single source for online vacancies
+
+Online job-posting research faces a methodological trade-off: (a) a single dominant portal with known sectoral selection bias, vs. (b) multi-source aggregation with noise from imperfect cross-source deduplication.
+
+Cross-source deduplication is the core technical challenge in (b). The same vacancy may appear with slightly different titles, descriptions, or layouts across portals; identifying matches requires a similarity threshold that inevitably either over-merges (losing real vacancies) or under-merges (inflating counts).
+
+**Empirical context:** Lightcast reports ~2.24M Polish postings in 2025 vs. ~731k unique postings on Pracuj.pl alone. Broader coverage explains part of the gap, but a 3× ratio is hard to reconcile with unique vacancies — likely reflecting residual duplicates.
+
+::: {.framing-callout}
+This report uses a single-source approach based on Pracuj.pl — Poland's largest commercial job portal, with strong coverage of white-collar, IT, and specialist roles. We do not claim full-population coverage of online vacancies; Pracuj.pl is treated as a high-quality, internally consistent sample of market labour demand.
+:::
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 5.</strong> Pracuj.pl estimated vacancies (flow) vs GUS open vacancies (stock), 2025</div>
+  <div id="chart-quarterly-gus" class="plotly-chart plotly-chart--wide" role="img" aria-label="Pracuj.pl quarterly vacancy flow compared with GUS vacant jobs stock in 2025"></div>
+</div>
+<p class="notes source-note" id="chart-quarterly-gus-note"></p>
+<p class="notes source-note">Pracuj.pl flow series uses the conservative vacancy estimator described above. GUS figures refer to vacant jobs at the end of each quarter (stock). The two measures are complementary rather than directly comparable.</p>
+```
+
+:::

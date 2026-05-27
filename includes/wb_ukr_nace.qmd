@@ -1,0 +1,13 @@
+::: {.section-card}
+#### NACE sectors — Ukrainian-friendly vs other postings
+
+The Ukrainian-friendly tag is unevenly distributed across the economy. **Transport (H)**, **hospitality (I)** and **manufacturing (C)** show the largest positive gaps versus other postings — consistent with operational hiring in logistics, food service and plant work. **Professional services (N)** and **finance (L)** under-index sharply, reflecting credential and language barriers in those segments.
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 34m.</strong> Share of postings with the Ukrainian-friendly tag, by NACE section</div>
+  <div id="chart-ukr-nace-sections" class="plotly-chart plotly-chart--wide" role="img" aria-label="Ukrainian-friendly share by NACE section"></div>
+</div>
+<p class="notes source-note">Source: Pracuj.pl 2025; occupation → NACE crosswalk. Bars show within-section shares for UA-tagged vs other postings.</p>
+```
+:::

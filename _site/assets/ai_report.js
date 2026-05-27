@@ -1,8 +1,9 @@
 (function () {
   const payload = window.__AI_REGIONAL_REPORT__;
   const regionalPayload = window.__REGIONAL_REPORT__;
+  const T = window.__CHART_THEME__;
 
-  if (!payload || !window.Plotly || !regionalPayload || !regionalPayload.geojson) {
+  if (!payload || !window.Plotly || !regionalPayload || !regionalPayload.geojson || !T) {
     return;
   }
 
@@ -11,25 +12,22 @@
   const geojson = regionalPayload.geojson;
 
   const fmtInt = (value) =>
-    new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 }).format(value);
+    new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(value);
 
   const fmtRate = (value) =>
-    new Intl.NumberFormat("pl-PL", {
+    new Intl.NumberFormat("en-US", {
       minimumFractionDigits: value < 10 ? 2 : 1,
       maximumFractionDigits: value < 10 ? 2 : 1,
     }).format(value);
 
   const fmtPct = (value) =>
-    new Intl.NumberFormat("pl-PL", {
+    new Intl.NumberFormat("en-US", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(value);
 
-  const titleVoiv = (name) =>
-    name
-      .split("-")
-      .map((part) => part.charAt(0).toLocaleUpperCase("pl-PL") + part.slice(1))
-      .join("-");
+  const titleVoiv = (row) =>
+    row.voivodeship_en || T.voivodeshipLabel(row.voivodeship);
 
   function renderDetail(row) {
     const detailEl = document.getElementById("ai-regional-detail");
@@ -68,7 +66,7 @@
     detailEl.innerHTML = `
       <div class="ai-detail-card">
         <p class="section-kicker">Selected voivodeship</p>
-        <h3>${titleVoiv(row.voivodeship)}</h3>
+        <h3>${titleVoiv(row)}</h3>
         <div class="ai-detail-metrics">
           <div class="ai-detail-metric">
             <span class="ai-detail-metric-label">AI offers per 100k LF</span>
@@ -112,16 +110,10 @@
           geojson,
           featureidkey: "properties.nazwa",
           locations,
+          customdata: rows.map((row) => [titleVoiv(row)]),
           z: rows.map((row) => row.ai_offers_per_100k_lf),
-          colorscale: [
-            [0.0, "#fff2e8"],
-            [0.35, "#fdba74"],
-            [0.7, "#f97316"],
-            [1.0, "#9a3412"],
-          ],
-          marker: {
-            line: { color: "rgba(255,255,255,0.95)", width: 1 },
-          },
+          colorscale: T.scale.demand,
+          marker: T.mapMarker(),
           colorbar: {
             title: { text: "AI offers<br>per 100k LF" },
             thickness: 16,
@@ -131,7 +123,7 @@
             outlinewidth: 0,
           },
           hovertemplate:
-            "<b>%{location}</b><extra></extra>",
+            "<b>%{customdata[0]}</b><extra></extra>",
         },
       ],
       {
@@ -163,7 +155,7 @@
     });
 
     document.getElementById("ai-map-figure-title").textContent =
-      "Figure 3. Regional AI demand intensity across Polish voivodeships";
+      "Figure 27. Regional AI demand intensity across Polish voivodeships";
     document.getElementById("ai-map-note").innerHTML = `
       <div class="figure-caption-source">
         Source: <a href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>;

@@ -14,8 +14,12 @@ format:
       light: cosmo
     css: styles.css
     toc: true
-    toc-depth: 2
+    toc-depth: 3
     toc-location: right
+    toc-expand: 1
+    include-in-header:
+      - text: |
+          <script src="assets/toc_sections.js" defer></script>
     self-contained: false
     smooth-scroll: true
     grid:
@@ -29,13 +33,28 @@ execute:
   message: false
 
 resources:
+  - assets/toc_sections.js
+  - assets/methodology_charts_data.js
+  - assets/methodology_charts.js
+  - assets/data_overview_data.js
+  - assets/data_overview_charts.js
+  - assets/results_extended_data.js
+  - assets/results_extended_charts.js
+  - presentation/jsd_formula.png
   - data/regional_metrics.csv
   - data/regional_metrics_meta.json
   - data/pl_voivodeships.geojson
+  - data/pl_powiats_keyed.geojson
   - assets/ai_regional_map_data.js
   - assets/lightcast_ai_skills_data.js
   - assets/ai_report.js
   - assets/lightcast_ai_table.js
   - assets/plotly.min.js
+  - assets/chart_theme.js
   - assets/regional_map_data.js
+  - assets/green_skills_data.js
+  - assets/green_skills.js
+  - assets/ukrainian_friendly_data.js
+  - assets/ukrainian_friendly_powiat_data.js
+  - assets/ukrainian_friendly.js
   - assets/report.js

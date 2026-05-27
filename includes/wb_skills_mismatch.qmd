@@ -1,0 +1,126 @@
+::: {.section-card}
+### Skills Mismatch
+
+**What we compare**
+
+- **Demand side** — every ESCO skill mention extracted from Pracuj.pl 2025 postings → **5.36 M mentions** across **748,922 offers**
+- **Supply side** — every BUR training service mapped to ESCO via semantic matching → **719,265 trainings**, **410,868 (training, ESCO-skill) tags**
+
+**How we measure mismatch**
+
+Both sides share the **same ESCO concept hierarchy** (L1: 25 main groups · L2: 205 sub-groups). For each group *g*:
+
+- `demand_share[g] = mentions[g] / Σ mentions`
+- `supply_share[g] = training_tags[g] / Σ training_tags`
+- `gap_pp[g] = (demand_share − supply_share) × 100` (percentage points)
+
+**How to read the result**
+
+- **Gap > 0** → *under-supplied*: employers request the skill more often than the training system delivers it
+- **Gap < 0** → *over-supplied*: training output exceeds the demand signal from online vacancies
+
+**Why shares, not counts**
+
+Both sides are **multi-tag** (one offer can mention many skills; one training can teach many skills). Comparing tag shares is scale-free and robust to the absolute volume gap between online vacancies and subsidised training listings.
+
+**Caveats**
+
+Online vacancies under-represent **public-sector and manual occupations**, where BUR is most active — the measured over-supply for personal-care and protective-service skills is partly a demand-side blind spot. BUR captures only the **subsidised and registered** slice of training supply; commercial and in-house training is absent from the supply side.
+:::
+
+::: {.section-card}
+### Distribution of competences (all ESCO families)
+
+Before drilling into skill pillars, the aggregate picture shows where tag mass concentrates on each side. **ESCO skills (S1–S8)** dominate demand mentions; **knowledge concepts** and **transversal competences** are also substantial. On the supply side, the S-pillar still leads, but **knowledge** and **assisting & caring** skills weigh more heavily than in vacancies — the first sign of compositional mismatch.
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 15.</strong> Share of ESCO tag mass by competence family — demand vs supply</div>
+  <div id="chart-mismatch-family" class="plotly-chart plotly-chart--wide" role="img" aria-label="Demand and supply shares by ESCO competence family"></div>
+</div>
+<p class="notes source-note">Source: Pracuj.pl 2025 ESCO mentions vs BUR 2025 training tags.</p>
+```
+:::
+
+::: {.section-card}
+### Skill mix — demand vs supply (ESCO S1–S8)
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 16.</strong> ESCO skill mix on the demand and supply sides (S1–S8, share of tag mass)</div>
+  <div id="chart-mismatch-s1s8-overview" class="plotly-chart plotly-chart--wide" role="img" aria-label="Demand and supply shares for ESCO skill pillars S1 through S8"></div>
+</div>
+<p class="notes source-note">Source: Pracuj.pl ESCO skill mentions vs BUR training tags, 2025.</p>
+```
+
+**Management skills (S4)** account for **21.9%** of demand-side mentions but only **8.1%** of training tags — the largest positive gap in the catalogue. **Communication / collaboration / creativity (S1)** is the second-largest demand block (**17.0%**) and comparatively well covered (**13.8%**). **Working with computers (S5)** and **ICT knowledge (06)** show meaningful positive gaps — a digital-skills signal that the BUR mix has not fully caught up with. Conversely, **Assisting & caring (S3)**, **Working with machinery (S8)** and **Services (10)** are the largest *over-supplied* groups — partly reflecting EU-funded reskilling priorities and partly online vacancies under-representing those occupations.
+:::
+
+::: {.section-card}
+### Where supply lags demand (gap in pp)
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 17.</strong> Demand–supply gap by ESCO skill pillar (S1–S8, percentage points)</div>
+  <div id="chart-mismatch-s1s8-gap" class="plotly-chart plotly-chart--wide" role="img" aria-label="Diverging bar chart of demand minus supply gap for ESCO skill pillars"></div>
+</div>
+```
+
+The chart is dominated by two forces: a **white-collar / cognitive deficit** on the demand-heavy side — management, digital, team-working and ICT knowledge — and a **personal-services / blue-collar surplus** on the supply-heavy side — assisting & caring, machinery, services, handling & moving. The deficit on the red side is concentrated in occupations where online vacancies provide near-complete coverage; the green side partly reflects measurement limits rather than genuine over-provision.
+:::
+
+::: {.section-card}
+### Top L2 sub-groups — under- and over-supplied
+
+```{=html}
+<div class="chart-grid chart-grid--2">
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 18.</strong> Most under-supplied L2 skill groups</div>
+    <div id="chart-mismatch-l2-under" class="plotly-chart" role="img" aria-label="Top under-supplied L2 ESCO groups"></div>
+  </div>
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 19.</strong> Most over-supplied L2 skill groups</div>
+    <div id="chart-mismatch-l2-over" class="plotly-chart" role="img" aria-label="Top over-supplied L2 ESCO groups"></div>
+  </div>
+</div>
+<p class="notes source-note">Source: ESCO L2 groups; ranked by absolute gap in percentage points.</p>
+```
+
+At L2, generic **management skills (S4.0)** alone show a **+13 pp** gap, followed by **business & administration (041)**, **collaborating in teams (T4.3)**, **accessing digital data (S5.5)** and **ICT knowledge (061)**. The over-supplied panel clusters around **personal care (S3.6)**, **protective services (S3.3)**, **driving (S8.2)** and **health-care delivery (S3.2)** — aligning with EU-financed reskilling priorities and sectors where hiring migrates offline.
+:::
+
+::: {.section-card}
+### Transversal, knowledge and language competences
+
+The S-pillar summary masks important gaps in **transversal** and **knowledge** domains. Employers overweight **social & communication (T4)** and **self-management (T3)** relative to BUR; training supply is thin on both. Among knowledge fields, **business & administration (04)** and **ICT (06)** are under-represented in training tags, while **services (10)** and **health & welfare (09)** are over-represented — mirroring the care and public-service bias of subsidised programmes.
+
+**Languages** are shown on a renormalised within-pillar basis (top nine demand languages plus an “Other” bucket; Polish and generic L1 tags excluded), matching the standalone mismatch charts. English and German still dominate employer demand; training supply is spread across several languages rather than appearing only on the demand side at near-zero global shares.
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 20.</strong> Transversal competences (T1–T6): demand vs supply shares within the transversal pillar (each side renormalised to 100%)</div>
+  <div id="chart-mismatch-transversal" class="plotly-chart plotly-chart--wide" role="img" aria-label="Transversal skills demand vs supply"></div>
+</div>
+<div class="chart-block" style="margin-top:1.25rem;">
+  <div class="figure-caption-title"><strong>Figure 21.</strong> Knowledge fields (ISCED-F): demand vs supply shares within the knowledge pillar (each side renormalised to 100%)</div>
+  <div id="chart-mismatch-knowledge" class="plotly-chart plotly-chart--wide" role="img" aria-label="Knowledge concepts demand vs supply"></div>
+</div>
+<div class="chart-block" style="margin-top:1.25rem;">
+  <div class="figure-caption-title"><strong>Figure 22.</strong> Languages: demand vs supply shares within the language pillar (Polish excluded; long tail grouped as Other; each side renormalised to 100%)</div>
+  <div id="chart-mismatch-languages" class="plotly-chart plotly-chart--wide" role="img" aria-label="Language skills demand vs supply"></div>
+</div>
+```
+:::
+
+::: {.section-card}
+### Measuring overall mismatch: Jensen–Shannon divergence
+
+Treating skill shares as probability distributions, we summarise overall compositional distance with the **Jensen–Shannon divergence (JSD)**. Values lie in **[0, 1]** (base 2): 0 means identical mixes; values around **0.16** indicate a moderate L1 (S1–S8) mismatch; **~0.30** at L2 signals a substantial reallocation need within skill sub-groups.
+
+```{=html}
+<div class="jsd-formula-wrap">
+  <img src="presentation/jsd_formula.png" alt="Jensen-Shannon divergence formula" class="jsd-formula-img" width="720"/>
+</div>
+<p class="notes source-note">JSD compares renormalised S-pillar distributions on the demand and supply sides. L1 JSD ≈ 0.16; L2 JSD ≈ 0.30 (2025, Pracuj.pl vs BUR).</p>
+```
+:::

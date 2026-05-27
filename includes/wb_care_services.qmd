@@ -1,0 +1,43 @@
+### Care Services and Public Health Training
+
+::: {.section-card}
+#### Demand for care services in online vacancies
+
+Using KZiS-aligned occupation codes (care and social-work families), we identify **~1,100 postings** in 2025 that signal direct care-service delivery — a narrow slice of Pracuj.pl dominated by **medical care assistants**, **elderly-care workers** and related roles. A broader text-and-title classifier surfaces roughly **14,200** postings when clinical and therapeutic occupations are included.
+
+Employer concentration is **high** in both segments: the top 10 employers account for roughly **half** of care-tagged offers, compared with a more fragmented market in general healthcare NACE postings.
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 35.</strong> Top care-related occupations by posting volume (KZiS-mapped titles, 2025)</div>
+  <div id="chart-care-top-occupations" class="plotly-chart plotly-chart--wide" role="img" aria-label="Top care-related occupations on Pracuj.pl"></div>
+</div>
+<p class="notes source-note">Source: Pracuj.pl 2025; KZiS-mapped occupation titles.</p>
+```
+:::
+
+::: {.section-card}
+#### Skills profile of care-related offers
+
+Care postings emphasise **assisting & caring (S3)** and **management (S4)** more than the general healthcare NACE sample, while **ICT (S5)** is less prominent — reflecting hands-on and coordination tasks rather than hospital IT roles. Top requested skills include **computer literacy**, **management skills** and **elderly care**; knowledge demand centres on **paramedical practice** and **nursing science**.
+
+```{=html}
+<div class="chart-grid chart-grid--2">
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 36.</strong> Top ESCO skills in care-related offers</div>
+    <div id="chart-care-top-skills" class="plotly-chart" role="img" aria-label="Top skills in care offers"></div>
+  </div>
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 37.</strong> Top knowledge concepts in care-related offers</div>
+    <div id="chart-care-top-knowledge" class="plotly-chart" role="img" aria-label="Top knowledge in care offers"></div>
+  </div>
+</div>
+<div class="chart-block" style="margin-top:1.25rem;">
+  <div class="figure-caption-title"><strong>Figure 38.</strong> Care services vs NACE R86 healthcare — share of offers with each S-pillar skill</div>
+  <div id="chart-care-s1s8-compare" class="plotly-chart plotly-chart--wide" role="img" aria-label="S1-S8 comparison care vs healthcare"></div>
+</div>
+<p class="notes source-note">Source: Pracuj.pl ESCO skill mentions, 2025.</p>
+```
+:::
+
+{{< include includes/wb_public_health_bur.qmd >}}

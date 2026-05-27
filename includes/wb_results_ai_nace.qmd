@@ -1,0 +1,13 @@
+::: {.section-card}
+### AI demand by economic sector (NACE)
+
+AI-related postings are concentrated in **knowledge-intensive services**. More than **80%** of mapped AI offers fall in NACE sections **N (Professional, scientific & technical)** and **K (Telecommunications, IT & information services)**; manufacturing accounts for most of the remainder.
+
+```{=html}
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 28.</strong> AI-related job offers by NACE section (2025)</div>
+  <div id="chart-ai-nace-sections" class="plotly-chart plotly-chart--wide" role="img" aria-label="AI job offers by NACE section"></div>
+</div>
+<p class="notes source-note">Source: Pracuj.pl AI skill matches; occupation → NACE crosswalk. Share among AI-tagged offers with a mapped NACE section.</p>
+```
+:::
