@@ -2599,3 +2599,137 @@ body.modal-open {
 .green-fp-details[open] summary {
   margin-bottom: 0.6rem;
 }
+
+/* ── International comparison cards ────────────────────────── */
+
+.section-card.intl-card {
+  background: linear-gradient(180deg, #faf5ff 0%, #f5f3ff 100%);
+  border: 1px solid #ddd6fe;
+  border-left: 4px solid #7c3aed;
+  position: relative;
+}
+
+.section-card.intl-card::before {
+  content: "International comparison";
+  position: absolute;
+  top: 0.65rem;
+  right: 0.9rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6d28d9;
+  background: #ede9fe;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid #ddd6fe;
+}
+
+.section-card.intl-card h3,
+.section-card.intl-card h4 {
+  color: #4c1d95;
+}
+
+.intl-table-wrap {
+  overflow-x: auto;
+  margin-top: 0.4rem;
+}
+
+.intl-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.intl-table th,
+.intl-table td {
+  padding: 0.45rem 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.intl-table th {
+  background: #f5f3ff;
+  font-weight: 700;
+  color: #4c1d95;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.intl-table td.num,
+.intl-table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.intl-table tr:last-child td {
+  border-bottom: none;
+}
+
+.intl-table tr.intl-row-highlight {
+  background: #eff6ff;
+  border-left: 3px solid #1d4ed8;
+}
+
+.intl-table tr.intl-row-highlight td:first-child {
+  border-left: 3px solid #1d4ed8;
+}
+
+.intl-table tr.intl-row-highlight td {
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.intl-country {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.intl-region-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.intl-region-east_asia {
+  background: #0f766e;
+}
+
+.intl-region-benchmark {
+  background: #7c3aed;
+}
+
+.intl-this-report {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1d4ed8;
+  background: #dbeafe;
+  border: 1px solid #bfdbfe;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  margin-left: 0.3rem;
+}
+
+.intl-callout {
+  background: #ffffff;
+  border: 1px dashed #c4b5fd;
+  border-radius: 12px;
+  padding: 0.65rem 0.9rem;
+  margin: 0.5rem 0 0.8rem;
+  color: #4c1d95;
+  font-size: 0.86rem;
+}
+
+.intl-callout strong {
+  color: #4c1d95;
+}

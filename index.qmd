@@ -82,6 +82,26 @@ pipeline.
 
 {{< include includes/wb_training_duration.qmd >}}
 
+::: {.section-card .intl-card}
+### Poland in context: East Asia and benchmark economies
+
+To anchor the Poland 2025 findings against international comparators, we
+re-use the country panel from the World Bank East Asia skill-demand
+report. Macro indicators (GDP per capita PPP, demographics, structural
+shares) come from the World Bank's external series and are kept as in
+the East Asia report. **Poland's row uses the figures reported here**,
+so labour-market and skill-mix comparisons elsewhere on this page can be
+read on top of this structural backdrop. East Asian economies are shown
+with a green dot; benchmark economies (India, Mexico, Poland) with a
+purple dot. Periods are not perfectly aligned across countries — we
+follow the East Asia report convention of treating the latest available
+year as comparable.
+
+```{=html}
+<div id="intl-macro-card"></div>
+```
+:::
+
 ## Regional Coverage
 
 ::: {.section-card .map-shell}
@@ -595,6 +615,23 @@ classified digital demand.
 ```
 :::
 
+::: {.section-card .intl-card}
+### Digital skill levels across countries
+
+The same `basic` / `intermediate` / `advanced` classification, applied
+to the East Asia and benchmark panel, shows where Poland sits relative
+to other economies. Poland's bar uses the figures from Figure 23 in
+this report; the other countries come from the East Asia skill-demand
+report. The stack always sums to 100% of classified digital skill
+mentions, so cross-country differences reflect the *mix* of digital
+skill demand rather than its volume.
+
+```{=html}
+<div id="intl-digital-levels"></div>
+<p class="notes source-note">Source: Chinen &amp; Montorsi (2025) classification; Pracuj.pl (Poland) and online job postings reported in the East Asia skill-demand panel for the other economies; authors' mapping. Poland's values are taken from Figure 23 of this report. Periods are not strictly aligned across countries (see footnote in the macro card above).</p>
+```
+:::
+
 {{< include includes/wb_digital_examples.qmd >}}
 
 ::::: {.section-card .map-shell}
@@ -1095,5 +1132,7 @@ considerably less.
 <script src="assets/data_overview_charts.js"></script>
 <script src="assets/results_extended_data.js"></script>
 <script src="assets/results_extended_charts.js"></script>
+<script src="assets/international_comparison_data.js"></script>
+<script src="assets/international_comparison.js"></script>
 <script src="assets/report.js"></script>
 ```

@@ -1,1 +1,1 @@
-Sitemap: https://michal-palinski.github.io/skills-pl/sitemap.xml
+Sitemap: https://skillmap-nlp.github.io/poland/sitemap.xml

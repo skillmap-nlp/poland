@@ -56,6 +56,26 @@ Before drilling into skill pillars, the aggregate picture shows where tag mass c
 **Management skills (S4)** account for **21.9%** of demand-side mentions but only **8.1%** of training tags — the largest positive gap in the catalogue. **Communication / collaboration / creativity (S1)** is the second-largest demand block (**17.0%**) and comparatively well covered (**13.8%**). **Working with computers (S5)** and **ICT knowledge (06)** show meaningful positive gaps — a digital-skills signal that the BUR mix has not fully caught up with. Conversely, **Assisting & caring (S3)**, **Working with machinery (S8)** and **Services (10)** are the largest *over-supplied* groups — partly reflecting EU-funded reskilling priorities and partly online vacancies under-representing those occupations.
 :::
 
+::: {.section-card .intl-card}
+### Demand-side ESCO mix across countries
+
+The Poland demand mix (top row) sits next to the East Asia and benchmark
+panel. **Communication, collaboration and creativity (S1)** and
+**management skills (S4)** dominate everywhere, but their relative
+weight differs: Poland leans more on **management (S4)** than India or
+Indonesia, and is closer to Singapore and South Korea in the share of
+**working with computers (S5)**. **Assisting & caring (S3)** is markedly
+lower on the demand side in Poland than in Southeast Asian benchmarks —
+consistent with the under-representation of care and public-sector
+hiring in Pracuj.pl noted in the caveats above. Bars sum to 100% of the
+S1–S8 family within each country.
+
+```{=html}
+<div id="intl-esco-s1s8"></div>
+<p class="notes source-note">Source: ESCO S1–S8 demand-side shares. Poland (highlighted) uses the figures from Figure 16 of this report; other countries come from the East Asia skill-demand report. Periods are not strictly aligned across countries.</p>
+```
+:::
+
 ::: {.section-card}
 ### Where supply lags demand (gap in pp)
 
