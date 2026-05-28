@@ -7,6 +7,12 @@ Using KZiS-aligned occupation codes (care and social-work families), we identify
 
 Employer concentration is **high** in both segments: the top 10 employers account for roughly **half** of care-tagged offers, compared with a more fragmented market in general healthcare NACE postings.
 
+**The slice of care demand visible in online postings.** The care-related postings captured in this section represent a narrow and structurally specific segment of total care demand in Poland. They predominantly reflect commercial private providers — care chains, staffing agencies, and for-profit long-term-care operators — whose footprint has expanded over the past decade in response to public-sector capacity not keeping pace with demographic pressure. The bulk of actual care provision is not visible here: formal public employment (NFZ-contracted hospitals, municipal social welfare centres, county-level institutions) recruits through dedicated administrative channels rather than commercial portals, while informal arrangements — household-based elder care, family-provided support, undocumented work — sit entirely outside both OJP and BUR.
+
+This selection effect shapes the skill profile observed below. The unexpectedly high share of digital skills, particularly computer literacy, in care offers is not a signal that bedside care has become digitalised. It reflects the operational reality of commercial care operators, who require workers to use internal scheduling, billing, electronic documentation, and CRM systems alongside their primary care duties. Similarly, the prominent weight of management and coordination skills (S4) reflects supervisory and operational roles in growing care-chain businesses, not direct patient interaction.
+
+The implication for interpretation is important: this section describes the skill structure of the commercially-mediated, formally-posted slice of care demand, which is itself a marker of the partial privatisation of care provision in Poland. It should not be read as a representation of the care sector as a whole. A complete picture would require administrative employment data (ZUS sector tables, NFZ contracting) and dedicated surveys covering informal care.
+
 ```{=html}
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 35.</strong> Top care-related occupations by posting volume (KZiS-mapped titles, 2025)</div>
