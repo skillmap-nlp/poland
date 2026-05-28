@@ -391,14 +391,19 @@ def main() -> None:
         ],
         "ukr_nace_sections": [
             {
+                "code": row.nace_section,
                 "label": row.nace_section_label,
+                "chart_label": f"{row.nace_section}  ·  {row.nace_section_label}",
                 "ukr_pct": round(float(row.ukrainian_friendly_share_pct), 2),
                 "other_pct": round(float(row.non_ukrainian_friendly_share_pct), 2),
                 "diff_pp": round(float(row.diff_pp), 2),
             }
             for row in pd.read_csv(PRES / "ukr_nace_sections_en.csv")
+            .loc[
+                lambda d: (d["ukrainian_friendly_share_pct"] >= 0.2)
+                | (d["non_ukrainian_friendly_share_pct"] >= 0.2)
+            ]
             .sort_values("diff_pp", ascending=False)
-            .head(12)
             .itertuples(index=False)
         ],
         "care": {

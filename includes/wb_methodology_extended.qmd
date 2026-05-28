@@ -1,145 +1,18 @@
 ::: {.section-card}
 ### ESCO skill mapping — illustrative output
 
-Downstream NLP maps heterogeneous phrasing in job ads and training descriptions to standardised **ESCO skill labels**. The examples below are English labels from the taxonomy; the pipeline operates on Polish text before mapping.
-
-```{=html}
-<div class="esco-sample-grid" id="esco-sample-grid"></div>
-<p class="notes source-note">Illustrative ESCO skill labels assigned after sentence-level extraction and semantic matching. Full taxonomy: ~13,000 skills (European Commission ESCO v1.2).</p>
-```
-:::
-
-::: {.section-card}
-### Source representativeness: Pracuj.pl vs MRPiPS / PUP
-
-**Pracuj.pl** provides a conservative lower bound on online vacancies. The vacancy estimator codes empty fields as one position, explicit counts at face value, and “multiple positions” without a number as two.
-
-**MRPiPS administrative data** capture vacancies reported by employers to poviat labour offices (PUP). The two sources reflect **different market segments**, not different measurements of the same population:
-
-- Pracuj.pl dominates **white-collar, IT, and specialist** hiring.
-- PUP reporting over-represents **blue-collar, public-sector, and foreign-worker** vacancies; private employers have no general obligation to report online vacancies to PUP.
-
-Pracuj.pl is therefore treated as a strong proxy for **market-driven labour demand**. A seasonal drop in PUP vacancies from H1 to H2 may partly reflect cyclical hiring and activation programmes concentrated in the first half of the year.
+Downstream NLP maps heterogeneous phrasing in job ads and training descriptions to standardised **ESCO skill labels**. The example below shows a BUR training-service description (English translation) and the ESCO skills assigned to it after sentence-level extraction and semantic matching.
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 6.</strong> Vacancy structure by KZiS major group: Pracuj.pl vs MRPiPS / PUP (2025, share of total)</div>
-  <div id="chart-kzis-comparison" class="plotly-chart plotly-chart--wide" role="img" aria-label="Comparison of vacancy shares by KZiS major group between Pracuj.pl and MRPiPS PUP data in 2025"></div>
+  <div class="figure-caption-title"><strong>Figure 5a.</strong> Example BUR training service and mapped ESCO skills</div>
+  <div class="bur-training-example-shell">
+```
+{{< include presentation/training_2147461_embed.html >}}
+```{=html}
+  </div>
 </div>
-<p class="notes source-note">Source: Pracuj.pl job postings mapped to KZiS via title embedding; MRPiPS / PUP vacancy reports for H1 and H2 2025 (<a class="paper-link" href="https://psz.praca.gov.pl/-/bezrobotni-i-wolne-miejsca-pracy-wg-zawodow-i-specjalnosci-w-2025-r." target="_blank" rel="noopener noreferrer">MPRiPS</a>).</p>
-```
-:::
-
-::: {.section-card}
-### Baza Usług Rozwojowych (BUR)
-
-BUR is Poland’s largest national registry of training and advisory services, launched in 2016 under the EU Partnership Agreement and operated by PARP. The analysis is restricted to **training services** (`Usługa szkoleniowa`).
-
-The registry includes diverse provider types — private companies, NGOs, public educational institutions, and public-finance entities — and, as of April 2025, **75% of registered providers** offered services with public co-financing. From January 2026, registration in BUR is a mandatory prerequisite for providers delivering publicly funded training (EU funds and the National Training Fund).
-
-**Analytical scope.** Skill-mismatch analysis compares **2025** BUR listings with 2025 job postings. Earlier BUR years are retained separately to trace how subsidised supply — for example in care services — evolved over funding cycles.
-
-The full database contains **~870k training-service editions (2016–2025)** and **~131k in 2025**. Annual volumes reflect EU funding cycles (2014–2020 vs 2021–2027), pandemic disruption, and the system’s early ramp-up — not training needs alone. Analyses therefore work with **within-year skill shares** to reduce sensitivity to these volume swings.
-
-::: {.stat-grid}
-```{=html}
-<article class="stat-card"><p class="stat-label">Training services (2025)</p><p class="stat-value">~131k</p></article>
-<article class="stat-card"><p class="stat-label">Registered providers (2025)</p><p class="stat-value">~3,100 active</p></article>
-<article class="stat-card"><p class="stat-label">Full registry (2016–2025)</p><p class="stat-value">~870k</p></article>
-<article class="stat-card"><p class="stat-label">Public co-financing</p><p class="stat-value">75% of providers</p></article>
-```
-:::
-:::
-
-::: {.section-card}
-### Training providers in BUR (2025)
-
-In 2025, roughly **3,100 providers** delivered training through BUR — about half of all entities registered on the platform. Providers were classified by keywords in legal names (e.g. *Sp. z o.o.* / *S.A.* → private company; *uniwersytet* / *politechnika* → public education; *fundacja* / *stowarzyszenie* → NGO).
-
-```{=html}
-<div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 7.</strong> BUR training providers and services by provider type (2025)</div>
-  <div id="chart-bur-providers" class="plotly-chart plotly-chart--wide" role="img" aria-label="Distribution of BUR training providers and services by provider type in 2025"></div>
-</div>
-<p class="notes source-note">Private companies account for 86.5% of providers and 90.6% of training services delivered. Source: BUR API · authors’ keyword classifier on provider legal names.</p>
-```
-:::
-
-::: {.section-card}
-### Course recurrence in BUR
-
-BUR assigns a fresh `id` to every edition of a service, so raw posting counts cannot reveal whether the catalogue is genuinely new each year.
-
-**Strict “same course” key.** Two postings are treated as the same course only if they share all four attributes: `provider_id`, normalised title (lowercased, diacritics stripped, edition/format markers removed), rounded number of hours, and `kategoria_uslugi`. A course is **recurring** if its key appears in ≥2 calendar years (2016–2025).
-
-::: {.stat-grid}
-```{=html}
-<article class="stat-card"><p class="stat-label">Unique courses (2016–2025)</p><p class="stat-value" id="recur-unique-courses">274,081</p></article>
-<article class="stat-card"><p class="stat-label">Recurring courses</p><p class="stat-value" id="recur-recurring-courses">42,549</p><p class="stat-sub">15.5% of unique courses</p></article>
-<article class="stat-card"><p class="stat-label">Postings on recurring courses</p><p class="stat-value" id="recur-recurring-postings">418,785</p><p class="stat-sub">48.3% of all postings</p></article>
-<article class="stat-card"><p class="stat-label">2025 postings re-running earlier courses</p><p class="stat-value" id="recur-2025">38,130</p><p class="stat-sub">29.1% of 2025 postings</p></article>
-```
-:::
-
-About half of BUR postings replicate an earlier offering by the same provider under the strict matching rule above.
-
-```{=html}
-<div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 8.</strong> BUR postings by number of years a course remained on offer (2016–2025)</div>
-  <div id="chart-bur-recurrence" class="plotly-chart plotly-chart--wide" role="img" aria-label="Distribution of BUR postings by number of years a course was offered"></div>
-</div>
-<p class="notes source-note"><strong>Posting (edition):</strong> one BUR row — a single edition with its own date, location, and price. <strong>Course:</strong> editions sharing provider, normalised title, hours, and category. <strong>Recurring course:</strong> a course appearing in ≥2 calendar years.</p>
-```
-:::
-
-::: {.section-card}
-### Recognised qualifications in BUR (until 2023)
-
-Until 2023, BUR distinguished four types of **recognised qualifications** in the `inne_kwalifikacje` questionnaire:
-
-- **Q1** — vocational qualification (craftsman / master / KKZ)
-- **Q2** — state or public-authority qualification (e.g. UDT, Welding Institute)
-- **Q3** — position-based entitlement after validation (e.g. excavator operator)
-- **Q4** — international certificate from an identified list
-
-From 2024, the form structure changed; Q1–Q4 fields are no longer populated in the same way. The chart below shows the historical composition through 2023.
-
-```{=html}
-<div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 9.</strong> Share of BUR trainings ending with each recognised-qualification type (2016–2023)</div>
-  <div id="chart-bur-qualifications" class="plotly-chart plotly-chart--wide" role="img" aria-label="Historical share of BUR trainings by recognised qualification type"></div>
-</div>
-```
-:::
-
-::: {.section-card}
-### Training completion documents (2025)
-
-In 2025, BUR records whether a training ends with a formal competence certificate based on learning outcomes (**Q17–Q19**):
-
-- **Q17** — document contains a description of learning outcomes
-- **Q18** — validation carried out against criteria defined in learning outcomes
-- **Q19** — separation of the training process from the validation process
-
-A training is classified as ending with a **recognised competence certificate** only when all three conditions are met.
-
-```{=html}
-<div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 10.</strong> Type of document issued by BUR trainings (2025)</div>
-  <div id="chart-bur-documents-2025" class="plotly-chart plotly-chart--wide" role="img" aria-label="Share of BUR trainings by completion document type in 2025"></div>
-</div>
-<p class="notes source-note">In 2025, 77.5% of training services with parsable qualification metadata end with a recognised competence certificate (Q17–Q19); the remainder issue an informal or attendance certificate only.</p>
-```
-:::
-
-::: {.section-card}
-### Delivery modality (2025)
-
-```{=html}
-<div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 11.</strong> BUR training delivery modality (2025)</div>
-  <div id="chart-bur-modality" class="plotly-chart plotly-chart--wide" role="img" aria-label="Share of BUR trainings by delivery modality in 2025"></div>
-</div>
-<p class="notes source-note">Training services only (`Usługa szkoleniowa`, n=130,521). Online includes live and asynchronous remote delivery; hybrid covers mixed in-person and remote formats.</p>
+<div class="esco-sample-grid esco-sample-grid--below-example" id="esco-sample-grid"></div>
+<p class="notes source-note"><strong>Identified ESCO skills (EN labels).</strong> Mapped ESCO skill labels for BUR ID 2147461 — <em>AI for Managers — ChatGPT Workshops and Designing Custom AI Assistants</em>. Full taxonomy: ~13,000 skills (European Commission ESCO v1.2).</p>
 ```
 :::

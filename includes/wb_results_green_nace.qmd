@@ -7,6 +7,7 @@ Green skill mentions are not evenly distributed across the economy. The **highes
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 31.</strong> Green skill share within NACE section (top sections by intensity)</div>
   <div id="chart-green-nace-sections" class="plotly-chart plotly-chart--wide" role="img" aria-label="Green skill share by NACE section"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Green intensity is highest in utilities, energy, agriculture, and public administration, where regulation and sustainability obligations are salient. However, large sectors with lower intensity may still generate substantial absolute demand.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl green skill mentions matched to Chinen et al. (2025) taxonomy; NACE section from occupation crosswalk.</p>
 ```

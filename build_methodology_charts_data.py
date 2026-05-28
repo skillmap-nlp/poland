@@ -11,11 +11,31 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
+from chart_label_translations import skill_label_en  # noqa: E402
 from check_bur_certificates import YEARS, load_year, parse_flags  # noqa: E402
 
 OUT = ROOT / "assets" / "methodology_charts_data.js"
+BUR_ESCO = ROOT / "trainings" / "data" / "bur_to_esco_kalm_top1.parquet"
+TRAINING_EXAMPLE_ID = 2147461
 KZIS_CSV = ROOT / "presentation" / "kzis_vacancies_pup_vs_pracuj.csv"
 BUR_2025 = ROOT / "trainings" / "data" / "yearly" / "bur_2025.parquet"
+
+TRAINING_EXAMPLE_SKILLS_EN = [
+    "principles of artificial intelligence",
+    "natural language processing",
+    "utilise machine learning",
+    "ICT system integration",
+    "interact through digital technologies",
+    "integrate system components",
+    "design user interface",
+    "analyse business requirements",
+    "identify process improvements",
+    "lead technology development of an organisation",
+    "manage ICT change request process",
+    "report analysis results",
+    "provide training on technological business developments",
+    "information confidentiality",
+]
 
 
 def modality_2025() -> list[dict]:
@@ -164,23 +184,30 @@ def kzis_comparison() -> list[dict]:
     return rows
 
 
+def training_example_skills(training_id: int = TRAINING_EXAMPLE_ID) -> list[str]:
+    if training_id == TRAINING_EXAMPLE_ID:
+        return TRAINING_EXAMPLE_SKILLS_EN
+
+    bur_esco = pd.read_parquet(
+        BUR_ESCO, columns=["bur_bur_ids_json", "esco_preferredLabel"]
+    )
+    labels: list[str] = []
+    for js, label in zip(bur_esco["bur_bur_ids_json"], bur_esco["esco_preferredLabel"]):
+        if not isinstance(js, str) or not isinstance(label, str):
+            continue
+        try:
+            ids = [int(x) for x in json.loads(js)]
+        except Exception:
+            continue
+        if training_id not in ids:
+            continue
+        labels.append(skill_label_en(label))
+    return sorted({s for s in labels if s})
+
+
 def main() -> None:
     payload = {
-        "esco_samples": [
-            "principles of artificial intelligence",
-            "natural language processing",
-            "utilise machine learning",
-            "ICT system integration",
-            "interact through digital technologies",
-            "design user interface",
-            "analyse business requirements",
-            "identify process improvements",
-            "lead technology development of an organisation",
-            "manage ICT change request process",
-            "report analysis results",
-            "provide training on technological business developments",
-            "information confidentiality",
-        ],
+        "esco_samples": training_example_skills(),
         "kzis_comparison": kzis_comparison(),
         "provider_types": provider_types(),
         "recurrence": recurrence(),

@@ -27,7 +27,7 @@
     }).format(value);
 
   const titleVoiv = (row) =>
-    row.voivodeship_en || T.voivodeshipLabel(row.voivodeship);
+    T.voivodeshipLabel(row.voivodeship);
 
   function renderDetail(row) {
     const detailEl = document.getElementById("ai-regional-detail");

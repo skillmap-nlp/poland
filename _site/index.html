@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-05-27">
+<meta name="dcterms.date" content="2026-05-28">
 
 <title>Skill Demand and Supply in Poland 2025</title>
 <style>
@@ -76,6 +76,35 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <script src="assets/toc_sections.js" defer=""></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -93,17 +122,22 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary">Executive Summary</a></li>
-  <li><a href="#report-overview" id="toc-report-overview" class="nav-link" data-scroll-target="#report-overview">Report Overview</a>
-  <ul class="collapse">
-  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">Project overview</a></li>
-  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#data-coverage" id="toc-data-coverage" class="nav-link" data-scroll-target="#data-coverage">Data Coverage</a>
   <ul class="collapse">
   <li><a href="#data-collection" id="toc-data-collection" class="nav-link" data-scroll-target="#data-collection">Data collection</a></li>
+  <li><a href="#quantifying-demand-and-supply" id="toc-quantifying-demand-and-supply" class="nav-link" data-scroll-target="#quantifying-demand-and-supply">Quantifying demand and supply</a></li>
+  <li><a href="#why-pracuj.pl-as-the-single-source-for-online-vacancies" id="toc-why-pracuj.pl-as-the-single-source-for-online-vacancies" class="nav-link" data-scroll-target="#why-pracuj.pl-as-the-single-source-for-online-vacancies">Why Pracuj.pl as the single source for online vacancies</a></li>
+  <li><a href="#source-representativeness-pracuj.pl-vs-mrpips-pup" id="toc-source-representativeness-pracuj.pl-vs-mrpips-pup" class="nav-link" data-scroll-target="#source-representativeness-pracuj.pl-vs-mrpips-pup">Source representativeness: Pracuj.pl vs MRPiPS / PUP</a></li>
+  <li><a href="#baza-usług-rozwojowych-bur" id="toc-baza-usług-rozwojowych-bur" class="nav-link" data-scroll-target="#baza-usług-rozwojowych-bur">Baza Usług Rozwojowych (BUR)</a></li>
+  <li><a href="#training-providers-in-bur-2025" id="toc-training-providers-in-bur-2025" class="nav-link" data-scroll-target="#training-providers-in-bur-2025">Training providers in BUR (2025)</a></li>
+  <li><a href="#course-recurrence-in-bur" id="toc-course-recurrence-in-bur" class="nav-link" data-scroll-target="#course-recurrence-in-bur">Course recurrence in BUR</a></li>
+  <li><a href="#recognised-qualifications-in-bur-until-2023" id="toc-recognised-qualifications-in-bur-until-2023" class="nav-link" data-scroll-target="#recognised-qualifications-in-bur-until-2023">Recognised qualifications in BUR (until 2023)</a></li>
+  <li><a href="#training-completion-documents-2025" id="toc-training-completion-documents-2025" class="nav-link" data-scroll-target="#training-completion-documents-2025">Training completion documents (2025)</a></li>
+  <li><a href="#delivery-modality-2025" id="toc-delivery-modality-2025" class="nav-link" data-scroll-target="#delivery-modality-2025">Delivery modality (2025)</a></li>
   <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview">Data overview</a></li>
   <li><a href="#training-duration-in-bur" id="toc-training-duration-in-bur" class="nav-link" data-scroll-target="#training-duration-in-bur">Training duration in BUR</a></li>
   <li><a href="#duration-distribution-and-category-profiles-2025" id="toc-duration-distribution-and-category-profiles-2025" class="nav-link" data-scroll-target="#duration-distribution-and-category-profiles-2025">Duration distribution and category profiles (2025)</a></li>
-  <li><a href="#poland-in-context-east-asia-and-benchmark-economies" id="toc-poland-in-context-east-asia-and-benchmark-economies" class="nav-link" data-scroll-target="#poland-in-context-east-asia-and-benchmark-economies">Poland in context: East Asia and benchmark economies</a></li>
   </ul></li>
   <li><a href="#regional-coverage" id="toc-regional-coverage" class="nav-link" data-scroll-target="#regional-coverage">Regional Coverage</a>
   <ul class="collapse">
@@ -114,28 +148,20 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
   <ul class="collapse">
-  <li><a href="#quantifying-demand-and-supply" id="toc-quantifying-demand-and-supply" class="nav-link" data-scroll-target="#quantifying-demand-and-supply">Quantifying demand and supply</a></li>
-  <li><a href="#why-pracuj.pl-as-the-single-source-for-online-vacancies" id="toc-why-pracuj.pl-as-the-single-source-for-online-vacancies" class="nav-link" data-scroll-target="#why-pracuj.pl-as-the-single-source-for-online-vacancies">Why Pracuj.pl as the single source for online vacancies</a></li>
-  <li><a href="#esco-skill-mapping-illustrative-output" id="toc-esco-skill-mapping-illustrative-output" class="nav-link" data-scroll-target="#esco-skill-mapping-illustrative-output">ESCO skill mapping — illustrative output</a></li>
-  <li><a href="#source-representativeness-pracuj.pl-vs-mrpips-pup" id="toc-source-representativeness-pracuj.pl-vs-mrpips-pup" class="nav-link" data-scroll-target="#source-representativeness-pracuj.pl-vs-mrpips-pup">Source representativeness: Pracuj.pl vs MRPiPS / PUP</a></li>
-  <li><a href="#baza-usług-rozwojowych-bur" id="toc-baza-usług-rozwojowych-bur" class="nav-link" data-scroll-target="#baza-usług-rozwojowych-bur">Baza Usług Rozwojowych (BUR)</a></li>
-  <li><a href="#training-providers-in-bur-2025" id="toc-training-providers-in-bur-2025" class="nav-link" data-scroll-target="#training-providers-in-bur-2025">Training providers in BUR (2025)</a></li>
-  <li><a href="#course-recurrence-in-bur" id="toc-course-recurrence-in-bur" class="nav-link" data-scroll-target="#course-recurrence-in-bur">Course recurrence in BUR</a></li>
-  <li><a href="#recognised-qualifications-in-bur-until-2023" id="toc-recognised-qualifications-in-bur-until-2023" class="nav-link" data-scroll-target="#recognised-qualifications-in-bur-until-2023">Recognised qualifications in BUR (until 2023)</a></li>
-  <li><a href="#training-completion-documents-2025" id="toc-training-completion-documents-2025" class="nav-link" data-scroll-target="#training-completion-documents-2025">Training completion documents (2025)</a></li>
-  <li><a href="#delivery-modality-2025" id="toc-delivery-modality-2025" class="nav-link" data-scroll-target="#delivery-modality-2025">Delivery modality (2025)</a></li>
   <li><a href="#processing-pipeline" id="toc-processing-pipeline" class="nav-link" data-scroll-target="#processing-pipeline">Processing pipeline</a></li>
+  <li><a href="#esco-skill-mapping-illustrative-output" id="toc-esco-skill-mapping-illustrative-output" class="nav-link" data-scroll-target="#esco-skill-mapping-illustrative-output">ESCO skill mapping — illustrative output</a></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
   <ul class="collapse">
   <li><a href="#skills-mismatch" id="toc-skills-mismatch" class="nav-link" data-scroll-target="#skills-mismatch">Skills Mismatch</a></li>
   <li><a href="#distribution-of-competences-all-esco-families" id="toc-distribution-of-competences-all-esco-families" class="nav-link" data-scroll-target="#distribution-of-competences-all-esco-families">Distribution of competences (all ESCO families)</a></li>
   <li><a href="#skill-mix-demand-vs-supply-esco-s1s8" id="toc-skill-mix-demand-vs-supply-esco-s1s8" class="nav-link" data-scroll-target="#skill-mix-demand-vs-supply-esco-s1s8">Skill mix — demand vs supply (ESCO S1–S8)</a></li>
-  <li><a href="#demand-side-esco-mix-across-countries" id="toc-demand-side-esco-mix-across-countries" class="nav-link" data-scroll-target="#demand-side-esco-mix-across-countries">Demand-side ESCO mix across countries</a></li>
+  <li><a href="#poland-in-context-demand-side-esco-mix-across-countries" id="toc-poland-in-context-demand-side-esco-mix-across-countries" class="nav-link" data-scroll-target="#poland-in-context-demand-side-esco-mix-across-countries">Poland in context: demand-side ESCO mix across countries</a></li>
   <li><a href="#where-supply-lags-demand-gap-in-pp" id="toc-where-supply-lags-demand-gap-in-pp" class="nav-link" data-scroll-target="#where-supply-lags-demand-gap-in-pp">Where supply lags demand (gap in pp)</a></li>
   <li><a href="#top-l2-sub-groups-under--and-over-supplied" id="toc-top-l2-sub-groups-under--and-over-supplied" class="nav-link" data-scroll-target="#top-l2-sub-groups-under--and-over-supplied">Top L2 sub-groups — under- and over-supplied</a></li>
   <li><a href="#transversal-knowledge-and-language-competences" id="toc-transversal-knowledge-and-language-competences" class="nav-link" data-scroll-target="#transversal-knowledge-and-language-competences">Transversal, knowledge and language competences</a></li>
   <li><a href="#measuring-overall-mismatch-jensenshannon-divergence" id="toc-measuring-overall-mismatch-jensenshannon-divergence" class="nav-link" data-scroll-target="#measuring-overall-mismatch-jensenshannon-divergence">Measuring overall mismatch: Jensen–Shannon divergence</a></li>
+  <li><a href="#mismatch-sensitivity" id="toc-mismatch-sensitivity" class="nav-link" data-scroll-target="#mismatch-sensitivity">Are the mismatch results stable?</a></li>
   <li><a href="#digital-skill-levels-in-poland" id="toc-digital-skill-levels-in-poland" class="nav-link" data-scroll-target="#digital-skill-levels-in-poland">Digital Skill Levels in Poland</a></li>
   <li><a href="#digital-skill-levels-across-countries" id="toc-digital-skill-levels-across-countries" class="nav-link" data-scroll-target="#digital-skill-levels-across-countries">Digital skill levels across countries</a></li>
   <li><a href="#examples-of-digital-skills-by-proficiency-level" id="toc-examples-of-digital-skills-by-proficiency-level" class="nav-link" data-scroll-target="#examples-of-digital-skills-by-proficiency-level">Examples of digital skills by proficiency level</a></li>
@@ -148,7 +174,20 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#ai-offers-nace-divisions-and-transversal-skills" id="toc-ai-offers-nace-divisions-and-transversal-skills" class="nav-link" data-scroll-target="#ai-offers-nace-divisions-and-transversal-skills">AI offers — NACE divisions and transversal skills</a></li>
   <li><a href="#green-skills-demand" id="toc-green-skills-demand" class="nav-link" data-scroll-target="#green-skills-demand">Green Skills Demand</a></li>
   <li><a href="#jobs-for-ukrainians" id="toc-jobs-for-ukrainians" class="nav-link" data-scroll-target="#jobs-for-ukrainians">Jobs for Ukrainians</a></li>
+  <li><a href="#beyond-the-voivodeship-map-decomposing-where-the-tag-really-comes-from" id="toc-beyond-the-voivodeship-map-decomposing-where-the-tag-really-comes-from" class="nav-link" data-scroll-target="#beyond-the-voivodeship-map-decomposing-where-the-tag-really-comes-from">Beyond the voivodeship map — decomposing where the tag really comes from</a></li>
   <li><a href="#care-services-and-public-health-training" id="toc-care-services-and-public-health-training" class="nav-link" data-scroll-target="#care-services-and-public-health-training">Care Services and Public Health Training</a></li>
+  </ul></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#technical-annex" id="toc-technical-annex" class="nav-link" data-scroll-target="#technical-annex">Technical annex</a>
+  <ul class="collapse">
+  <li><a href="#nlp-processing-methods" id="toc-nlp-processing-methods" class="nav-link" data-scroll-target="#nlp-processing-methods">NLP Processing Methods</a></li>
+  <li><a href="#pipeline-step-01" id="toc-pipeline-step-01" class="nav-link" data-scroll-target="#pipeline-step-01">Step 01 — Language Detection</a></li>
+  <li><a href="#pipeline-step-02" id="toc-pipeline-step-02" class="nav-link" data-scroll-target="#pipeline-step-02">Step 02 — Translation</a></li>
+  <li><a href="#pipeline-step-03" id="toc-pipeline-step-03" class="nav-link" data-scroll-target="#pipeline-step-03">Step 03 — Skill-Sentence Filtering</a></li>
+  <li><a href="#pipeline-step-04" id="toc-pipeline-step-04" class="nav-link" data-scroll-target="#pipeline-step-04">Step 04 — ESCO Skill Mapping</a></li>
+  <li><a href="#pipeline-step-05" id="toc-pipeline-step-05" class="nav-link" data-scroll-target="#pipeline-step-05">Step 05 — Job-Title Standardisation</a></li>
+  <li><a href="#pipeline-step-06" id="toc-pipeline-step-06" class="nav-link" data-scroll-target="#pipeline-step-06">Step 06 — Sector Classification (ISIC/NACE)</a></li>
+  <li><a href="#validation-and-benchmarking" id="toc-validation-and-benchmarking" class="nav-link" data-scroll-target="#validation-and-benchmarking">Validation and Benchmarking</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -171,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 27, 2026</p>
+      <p class="date">May 28, 2026</p>
     </div>
   </div>
   
@@ -187,73 +226,26 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
 <div class="hero">
 <div class="hero-title">Executive Summary</div>
-<div class="framing-callout framing-callout--compact">
-<strong>Framing.</strong> Job postings proxy skill <strong>demand</strong>; BUR trainings proxy subsidised skill <strong>supply</strong>. We compare the <strong>mix of skills</strong> on each side after mapping to ESCO (and Lightcast for AI), not absolute volumes.
-</div>
-<p>This report analyses labour demand and supply in Poland through the lens of online job advertisements and training provision data. It combines web-scraped vacancy data from <a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>, the largest online job portal in Poland, with information from the <a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych (BUR)</a>, the country’s main database of training and upskilling services. The analysis focuses on how employers signal required skills and how these relate to the skills offered through the training system in 2025.</p>
-<p>The study integrates labour market analysis with modern NLP methods, including automated text processing, classification, and LLM-assisted skill extraction, to transform unstructured job postings and training descriptions into comparable measures of skill demand and skill supply.</p>
-<p>Using mappings to two skill taxonomies, ESCO and Lightcast, the report compares the composition of requested and supplied skills across occupations, with particular attention to digital competencies and emerging skill needs. It also introduces indicators of relative labour demand, derived from job posting intensity, and contrasts them with the structure of available training.</p>
-<p>The Polish labour market is undergoing rapid transformation, with increasing digitalization shaping both hiring practices and skill development pathways. Online job postings provide a timely proxy for employer demand, while training data from BUR offers insight into the supply of skills and reskilling opportunities, enabling a joint assessment of potential mismatches between demand and supply.</p>
+<p>This report provides an evidence-based assessment of skill demand and training supply in Poland in 2025, combining large-scale online job-posting data from <a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a> with training-service data from <a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych (BUR)</a>. The analysis treats online vacancies as a timely proxy for employer demand and BUR listings as a proxy for the publicly visible, subsidised training supply. Both sources are transformed into comparable skill measures using NLP methods and mapped mainly to the ESCO taxonomy, with Lightcast used to capture more granular AI-related skill signals. The focus is compositional: the report compares the distribution of skills demanded by employers with the distribution of skills supplied through training, rather than attempting to compare the absolute number of vacancies with the number of training participants.</p>
+<p>The main finding is that Poland’s training supply only partially matches the structure of employer demand. Employer demand is concentrated in management, communication, collaboration, digital, ICT, and business-administration skills. BUR training provision, by contrast, is relatively more concentrated in assisting and caring, machinery-related, services, health, and welfare skills. The resulting mismatch is moderate at the broad ESCO pillar level and more substantial at the more granular sub-group level, suggesting that the policy challenge is not only to expand training provision but to reallocate part of the training portfolio toward the skills most demanded in market-based hiring.</p>
+<p>Digital and AI skills emerge as central areas of demand. Among classified digital skill mentions, advanced digital skills account for the largest share, followed by basic and intermediate skills. This suggests that digitalisation in Poland is not limited to basic ICT adoption; many employers are already seeking higher-order digital capabilities. AI-related demand remains small in total job postings under a conservative matching approach, but it is concentrated in knowledge-intensive services, especially professional, scientific, technical, telecommunications, IT, and information services. This pattern points to an early-stage but strategically important AI labour market, where demand is still narrow but likely to be important for productivity growth and competitiveness.</p>
+<p>Green skills are present but still moderate in scale. Regional green-skill demand varies within a relatively narrow range, while sectoral intensity is highest in utilities, energy, agriculture, and public administration. In absolute terms, however, green demand is largest in large-employment sectors such as trade, professional services, and manufacturing. This distinction is important for policy: sector-specific green transition strategies should target high-intensity sectors, but large-scale upskilling efforts should also account for sectors where green skills are less concentrated but affect many workers.</p>
+<p>The report also highlights the importance of migration and care-related labour needs. Postings explicitly tagged as open to Ukrainian workers are concentrated in hospitality, transport, manufacturing, food retail, restaurants, warehousing, and manual or operational roles. Their regional distribution appears to reflect sectoral structure and refugee settlement geography more than overall labour-market tightness. In care and public-health training, Pracuj.pl captures only a narrow part of direct care demand, while BUR shows a growing but still small public-health training segment. This reinforces the need to interpret demand–supply comparisons carefully where either source has known coverage limitations.</p>
+<p>For policymakers, the results support three priorities. First, strengthen the alignment of subsidised training with employer demand in management, digital, ICT, business, and transversal skills. Second, maintain targeted support for care, health, and inclusion-related training, while recognising that online vacancies understate demand in public and social services. Third, develop more granular labour-market intelligence systems that combine online vacancy data, training registries, administrative sources, and taxonomies such as ESCO and Lightcast. Such systems can help Poland move from retrospective monitoring toward faster, evidence-based skill policy.</p>
 </div>
 <div class="kpi-grid" id="summary-cards"></div>
 </section>
-<section id="report-overview" class="level2">
-<h2 class="anchored" data-anchor-id="report-overview">Report Overview</h2>
-<section id="project-overview" class="level3 section-card">
-<h3 class="anchored" data-anchor-id="project-overview">Project overview</h3>
-<p><strong>Objective.</strong> This report analyses demand and supply of skills in Poland using online job postings and training data.</p>
-<div class="framing-callout">
-<p><strong>Framing.</strong> Job postings proxy skill <strong>demand</strong> and BUR trainings proxy subsidised skill <strong>supply</strong>. Both sides are mapped to a common skill taxonomy (ESCO, with Lightcast for granular AI signals). The analysis compares the <strong>mix of skills on each side</strong> — not absolute volumes.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<div class="section-card">
+<p>This report provides a data-driven assessment of skills demand and training supply in Poland, with a particular focus on the extent to which publicly visible training provision is aligned with employers’ needs. The analysis combines two large-scale sources of labour-market intelligence: online job postings from <a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>, used as a proxy for employer demand, and training-service listings from <a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych (BUR)</a>, used as a proxy for the supply of structured upskilling and reskilling opportunities. By applying natural language processing methods to both datasets, the report translates unstructured vacancy and training descriptions into comparable skill categories.</p>
+<p>The central objective of the report is not to estimate the total number of jobs or training participants in Poland, but to compare the composition of skills demanded by employers with the composition of skills offered through the training system. This distinction is important. Online vacancies capture a specific segment of labour demand, especially market-based and private-sector recruitment, while BUR reflects the supply of registered training services rather than actual enrolment or completion. Despite these limitations, both sources provide timely and granular evidence that can complement official labour-market statistics and support more responsive skills policies.</p>
+<p>The report is organised around three analytical questions. First, what types of skills are currently demanded in the Polish labour market, and how does this demand vary across sectors and regions? Second, what skills are being supplied through BUR training services, and how has this provision evolved over time? Third, where are the main mismatches between employer demand and training supply, especially in areas that are strategically relevant for productivity, inclusion, and structural transformation?</p>
+<p>A key contribution of the analysis is the use of standardised skill taxonomies, primarily ESCO, to make job-posting and training data comparable. This enables the report to move beyond broad occupational categories and examine the specific competences, knowledge fields, and transversal skills that appear in both demand and supply. Additional analysis focuses on selected policy-relevant domains, including digital skills, artificial intelligence, green skills, care-related work, public health training, and job opportunities explicitly open to Ukrainian workers.</p>
+<p>The findings show that Poland’s skill ecosystem is characterised by both strengths and gaps. Employer demand is strongly oriented toward management, communication, collaboration, digital, ICT, and business-related skills. Training supply, by contrast, places relatively greater emphasis on care, services, health, welfare, and machinery-related skills. This does not imply that these areas are overfunded or unimportant; many are linked to major demographic and social challenges. However, it does suggest that the current training portfolio may not fully reflect the structure of market-based employer demand, particularly in areas linked to digitalisation, organisational capabilities, and productivity growth.</p>
+<p>The report also highlights the importance of interpreting data sources carefully. Pracuj.pl vacancies provide rich and timely information on employer demand, but they underrepresent some public-sector, informal, low-wage, and locally recruited jobs. BUR data offer valuable insights into training provision, but they do not measure training quality, take-up, completion, or labour-market outcomes. Therefore, the results should be read as evidence on the structure and direction of demand and supply, rather than as a definitive measure of aggregate labour-market shortages.</p>
+<p>For policymakers, the report points to the value of building an integrated labour-market intelligence system that combines online vacancy data, training registries, administrative sources, and standardised skills taxonomies. Such a system could help identify emerging skill needs earlier, monitor whether training provision is adapting to structural change, and guide public investment in skills toward areas with the highest economic and social returns. In the Polish context, this is particularly relevant for digital transformation, the green transition, demographic ageing, migrant integration, and regional development.</p>
 </div>
-<div class="overview-grid">
-<div class="overview-panel">
-<p class="overview-panel-kicker">
-Data
-</p>
-<ul class="overview-list">
-<li>
-<strong>~733k</strong> online job postings (OJP) (≈ <strong>1.2M</strong> estimated vacancies — OJV) from <a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>
-</li>
-<li>
-<strong>~131k</strong> training services from <a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych (BUR)</a> (2025)
-</li>
-<li>
-Coverage includes <strong>all listings in 2025</strong> on Pracuj.pl; BUR scope is training services with usable regional metadata in 2025
-</li>
-</ul>
-<p class="overview-foot">
-Pracuj.pl is Poland’s largest job portal; BUR is the largest publicly accessible training database, operated by the Polish Agency for Enterprise Development (PARP).
-</p>
-</div>
-<div class="overview-panel">
-<p class="overview-panel-kicker">
-Methodology
-</p>
-<ul class="overview-list">
-<li>
-<strong>Full data extraction:</strong> web scraping (Pracuj.pl) and official API access (BUR)
-</li>
-<li>
-<strong>NLP-based enrichment</strong> to standardise unstructured text (ESCO skills, NACE sectors, occupations)
-</li>
-</ul>
-<p class="overview-panel-kicker" style="margin-top:1rem;">
-Analytical focus
-</p>
-<ul class="overview-list">
-<li>
-Skills demand and supply profiles across ESCO skill groups
-</li>
-<li>
-Special focus: <strong>digital</strong>, <strong>AI</strong>, <strong>care services</strong>, <strong>green skills</strong>, and openness to foreign workers
-</li>
-<li>
-<strong>Skills mismatch:</strong> gaps between labour demand (job postings) and training supply (BUR)
-</li>
-</ul>
-</div>
-</div>
-</section>
 </section>
 <section id="data-coverage" class="level2">
 <h2 class="anchored" data-anchor-id="data-coverage">Data Coverage</h2>
@@ -263,106 +255,6 @@ Special focus: <strong>digital</strong>, <strong>AI</strong>, <strong>care servi
 <p>For job advertisements, we retain records with sufficient textual content to support downstream NLP processing, including job titles and descriptions. For BUR, we use training-service records with usable regional metadata and service descriptions. We remove duplicates and standardize core fields before the records enter the analytical pipeline.</p>
 <p class="notes source-note" id="sources-note"></p>
 </section>
-<section id="data-overview" class="level3 section-card">
-<h3 class="anchored" data-anchor-id="data-overview">Data overview</h3>
-<p>The figures below summarise monthly listing volumes from Pracuj.pl and BUR in 2025, together with the longer-run evolution of BUR service provision since 2016.</p>
-<p><strong>Job postings (OJP)</strong> capture recruitment <em>activity</em> online. <strong>Estimated vacancies (OJV)</strong> apply a conservative rule set: explicit counts are taken at face value, “multiple positions” without a number are coded as 2, and empty fields default to 1.</p>
-<div class="chart-duo">
-  <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 2.</strong> Pracuj.pl estimated vacancies</div>
-    <div id="chart-monthly-vacancies" class="plotly-chart" role="img" aria-label="Monthly estimated vacancies on Pracuj.pl in 2025"></div>
-  </div>
-  <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 3.</strong> BUR training services</div>
-    <div id="chart-monthly-bur" class="plotly-chart" role="img" aria-label="Monthly BUR training services in 2025"></div>
-  </div>
-</div>
-<div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 4.</strong> BUR training services by year (2016–2025)</div>
-  <div id="chart-bur-yearly" class="plotly-chart plotly-chart--wide" role="img" aria-label="BUR training services by year 2016 to 2025"></div>
-</div>
-<p class="notes source-note">Source: Pracuj.pl · Baza Usług Rozwojowych (BUR) · authors’ calculations on 2025 listings.</p>
-</section>
-<section id="training-duration-in-bur" class="level3 section-card">
-<h3 class="anchored" data-anchor-id="training-duration-in-bur">Training duration in BUR</h3>
-<p>Duration is recorded as <strong><code>liczba_godzin</code></strong> (contact hours) for each training-service edition. The analysis covers <strong><code>Usługa szkoleniowa</code></strong> records with positive hour values.</p>
-<p>Median duration has remained in the <strong>low tens of hours</strong> over the registry’s lifetime, with a long right tail driven by formal qualifications, language courses, and degree-linked programmes. The 2025 distribution is strongly concentrated in <strong>short courses (≤40 h)</strong>, while a minority of listings exceed <strong>160 h</strong> — often multi-module certificates or study programmes registered on the platform.</p>
-<div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 12.</strong> BUR training duration — median, mean and 90th percentile by year</div>
-  <div id="chart-duration-yearly" class="plotly-chart plotly-chart--wide" role="img" aria-label="Training duration statistics by year in BUR"></div>
-</div>
-<p class="notes source-note">Source: BUR yearly exports (`Usługa szkoleniowa`, positive <code>liczba_godzin</code>).</p>
-</section>
-<section id="duration-distribution-and-category-profiles-2025" class="level3 section-card">
-<h3 class="anchored" data-anchor-id="duration-distribution-and-category-profiles-2025">Duration distribution and category profiles (2025)</h3>
-<p>In 2025, the <strong>median</strong> training length is <strong>26 hours</strong> and the <strong>90th percentile</strong> is <strong>82 hours</strong>. Most subsidised services are designed as short upskilling modules rather than full qualification pathways, though a long tail of multi-module programmes remains.</p>
-<p>Category medians vary widely: <strong>language and IT</strong> courses tend to be longer and more variable, while <strong>occupational safety (BHP)</strong> and <strong>soft-skills</strong> modules cluster at the short end.</p>
-<div class="chart-grid chart-grid--2">
-  <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 13.</strong> Share of BUR trainings by duration bucket (2025)</div>
-    <div id="chart-duration-buckets" class="plotly-chart" role="img" aria-label="Distribution of training durations in 2025"></div>
-  </div>
-  <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 14.</strong> Median duration by BUR service category — top 10 by volume (2025)</div>
-    <div id="chart-duration-category" class="plotly-chart" role="img" aria-label="Median training hours by category in 2025"></div>
-  </div>
-</div>
-<p class="notes source-note">Source: BUR 2025; categories with the largest number of training-service editions.</p>
-</section>
-<section id="poland-in-context-east-asia-and-benchmark-economies" class="level3 section-card intl-card">
-<h3 class="anchored" data-anchor-id="poland-in-context-east-asia-and-benchmark-economies">Poland in context: East Asia and benchmark economies</h3>
-<p>To anchor the Poland 2025 findings against international comparators, we re-use the country panel from the World Bank East Asia skill-demand report. Macro indicators (GDP per capita PPP, demographics, structural shares) come from the World Bank’s external series and are kept as in the East Asia report. <strong>Poland’s row uses the figures reported here</strong>, so labour-market and skill-mix comparisons elsewhere on this page can be read on top of this structural backdrop. East Asian economies are shown with a green dot; benchmark economies (India, Mexico, Poland) with a purple dot. Periods are not perfectly aligned across countries — we follow the East Asia report convention of treating the latest available year as comparable.</p>
-<div id="intl-macro-card"></div>
-</section>
-</section>
-<section id="regional-coverage" class="level2">
-<h2 class="anchored" data-anchor-id="regional-coverage">Regional Coverage</h2>
-<section id="relative-labour-demand" class="level3 section-card map-shell">
-<h3 class="anchored" data-anchor-id="relative-labour-demand">Relative labour demand</h3>
-<div class="figure-caption-title" id="map-figure-title"></div>
-<p>The map shows regional demand and training density normalized by the average labour force in 2025. Use the switch above the map to change the view between job offers and BUR training services.</p>
-<div id="regional-map"></div>
-<div class="map-caption source-note" id="map-note"></div>
-</section>
-<section id="regional-comparison-table" class="level3 section-card">
-<h3 class="anchored" data-anchor-id="regional-comparison-table">Regional comparison table</h3>
-<p>Counts are shown alongside their labour-force-normalized counterparts to make regional demand and supply comparable across differently sized voivodeships. Click a column header to sort the table.</p>
-<div class="data-table-wrap" id="regional-table"></div>
-</section>
-<div class="section-card">
-<div class="section-head">
-  <div>
-    <p class="section-kicker">Quick read</p>
-    <h3 class="anchored">Key regional patterns</h3>
-    <p id="highlights-copy"></p>
-  </div>
-</div>
-<div class="rank-grid" id="highlights-grid"></div>
-</div>
-<section id="geocoding-and-regional-assignment" class="level3 section-card">
-<h3 class="anchored" data-anchor-id="geocoding-and-regional-assignment">Geocoding and regional assignment</h3>
-<p>Job postings and BUR training services are assigned to Polish <strong>NUTS-2 voivodeships</strong> (and, where possible, <strong>powiat</strong> level) using a multi-step geocoding pipeline:</p>
-<ol type="1">
-<li><strong>Structured location fields</strong> — city and voivodeship names from the portal or BUR registry are normalised and matched against the official <strong>TERYT / SIMC</strong> register.</li>
-<li><strong>Address geocoding</strong> — when powiat cannot be resolved from TERYT alone, the <strong>GUGiK UUG</strong> (Usługa Ujednoliconego Geokodowania) address API resolves city–voivodeship pairs to gmina and powiat codes.</li>
-<li><strong>Regional aggregation</strong> — counts are summed to voivodeship level for the interactive maps and comparison table. <strong>Per-100k labour force</strong> normalisation uses GUS BDL average economically active population in 2025 as the denominator, enabling direct comparison of posting intensity and subsidised training supply across regions of different size.</li>
-</ol>
-<p>Roughly <strong>95%</strong> of Pracuj.pl postings with a usable location field resolve to a Polish powiat; the remainder are excluded from powiat-level views but retained in national aggregates. BUR records use provider or service location metadata with the same regional crosswalk.</p>
-<p>Foreign or ambiguous locations are flagged and excluded from regional maps but included in national skill-mix statistics.</p>
-</section>
-<section id="change-in-bur-training-supply-2019-vs-2025" class="level3 section-card">
-<h3 class="anchored" data-anchor-id="change-in-bur-training-supply-2019-vs-2025">Change in BUR training supply (2019 vs 2025)</h3>
-<p>The map in Regional Coverage compares <strong>levels</strong> of training intensity in 2025. The chart below shows <strong>how subsidised training volumes shifted</strong> between 2019 and 2025 within each voivodeship — a period spanning two EU programming cycles and the post-pandemic recovery of BUR listings.</p>
-<p>Red bars indicate voivodeships where the number of registered training-service editions <strong>declined</strong>; green bars indicate growth. The pattern reflects both funding-cycle effects and structural changes in how providers re-list courses on the platform, not labour-demand shifts alone.</p>
-<div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 2a.</strong> Percentage change in BUR training services by voivodeship (2019 → 2025)</div>
-  <div id="chart-training-change-2019-2025" class="plotly-chart plotly-chart--wide" role="img" aria-label="Percentage change in BUR training services by voivodeship between 2019 and 2025"></div>
-</div>
-<p class="notes source-note">Source: BUR yearly exports (<code>Usługa szkoleniowa</code>), counted by provider-reported voivodeship.</p>
-</section>
-</section>
-<section id="methodology" class="level2">
-<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
 <section id="quantifying-demand-and-supply" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="quantifying-demand-and-supply">Quantifying demand and supply</h3>
 <div class="columns">
@@ -416,15 +308,10 @@ Skills are extracted from learning outcomes and service descriptions and mapped 
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 5.</strong> Pracuj.pl estimated vacancies (flow) vs GUS open vacancies (stock), 2025</div>
   <div id="chart-quarterly-gus" class="plotly-chart plotly-chart--wide" role="img" aria-label="Pracuj.pl quarterly vacancy flow compared with GUS vacant jobs stock in 2025"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> The comparison illustrates that Pracuj.pl and GUS measure different labour-market concepts: online posting flows versus end-of-quarter vacancy stocks. The two sources are complementary rather than substitutes.</p>
 </div>
 <p class="notes source-note" id="chart-quarterly-gus-note"></p>
 <p class="notes source-note">Pracuj.pl flow series uses the conservative vacancy estimator described above. GUS figures refer to vacant jobs at the end of each quarter (stock). The two measures are complementary rather than directly comparable.</p>
-</section>
-<section id="esco-skill-mapping-illustrative-output" class="level3 section-card">
-<h3 class="anchored" data-anchor-id="esco-skill-mapping-illustrative-output">ESCO skill mapping — illustrative output</h3>
-<p>Downstream NLP maps heterogeneous phrasing in job ads and training descriptions to standardised <strong>ESCO skill labels</strong>. The examples below are English labels from the taxonomy; the pipeline operates on Polish text before mapping.</p>
-<div class="esco-sample-grid" id="esco-sample-grid"></div>
-<p class="notes source-note">Illustrative ESCO skill labels assigned after sentence-level extraction and semantic matching. Full taxonomy: ~13,000 skills (European Commission ESCO v1.2).</p>
 </section>
 <section id="source-representativeness-pracuj.pl-vs-mrpips-pup" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="source-representativeness-pracuj.pl-vs-mrpips-pup">Source representativeness: Pracuj.pl vs MRPiPS / PUP</h3>
@@ -438,6 +325,7 @@ Skills are extracted from learning outcomes and service descriptions and mapped 
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 6.</strong> Vacancy structure by KZiS major group: Pracuj.pl vs MRPiPS / PUP (2025, share of total)</div>
   <div id="chart-kzis-comparison" class="plotly-chart plotly-chart--wide" role="img" aria-label="Comparison of vacancy shares by KZiS major group between Pracuj.pl and MRPiPS PUP data in 2025"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> The figure highlights selection differences between private online recruitment and public labour-office reporting. Pracuj.pl better captures market-driven, white-collar and specialist hiring, while PUP data better captures public-sector, blue-collar, and some foreign-worker vacancies.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl job postings mapped to KZiS via title embedding; MRPiPS / PUP vacancy reports for H1 and H2 2025 (<a class="paper-link" href="https://psz.praca.gov.pl/-/bezrobotni-i-wolne-miejsca-pracy-wg-zawodow-i-specjalnosci-w-2025-r." target="_blank" rel="noopener noreferrer">MPRiPS</a>).</p>
 </section>
@@ -460,6 +348,7 @@ Skills are extracted from learning outcomes and service descriptions and mapped 
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 7.</strong> BUR training providers and services by provider type (2025)</div>
   <div id="chart-bur-providers" class="plotly-chart plotly-chart--wide" role="img" aria-label="Distribution of BUR training providers and services by provider type in 2025"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> BUR provision is dominated by private companies, both in provider counts and service volumes. This suggests that Poland’s subsidised training system relies heavily on private delivery capacity.</p>
 </div>
 <p class="notes source-note">Private companies account for 86.5% of providers and 90.6% of training services delivered. Source: BUR API · authors’ keyword classifier on provider legal names.</p>
 </section>
@@ -477,6 +366,7 @@ Skills are extracted from learning outcomes and service descriptions and mapped 
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 8.</strong> BUR postings by number of years a course remained on offer (2016–2025)</div>
   <div id="chart-bur-recurrence" class="plotly-chart plotly-chart--wide" role="img" aria-label="Distribution of BUR postings by number of years a course was offered"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> A substantial share of BUR postings are recurring offerings rather than entirely new courses. This points to stability in the training catalogue, but also raises questions about how quickly provision adapts to emerging skill demand.</p>
 </div>
 <p class="notes source-note"><strong>Posting (edition):</strong> one BUR row — a single edition with its own date, location, and price. <strong>Course:</strong> editions sharing provider, normalised title, hours, and category. <strong>Recurring course:</strong> a course appearing in ≥2 calendar years.</p>
 </section>
@@ -493,6 +383,7 @@ Skills are extracted from learning outcomes and service descriptions and mapped 
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 9.</strong> Share of BUR trainings ending with each recognised-qualification type (2016–2023)</div>
   <div id="chart-bur-qualifications" class="plotly-chart plotly-chart--wide" role="img" aria-label="Historical share of BUR trainings by recognised qualification type"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Historically, recognised qualifications in BUR were distributed across several formal categories. Because the questionnaire changed after 2023, the figure is best used to understand the earlier qualification regime rather than current certification patterns.</p>
 </div>
 </section>
 <section id="training-completion-documents-2025" class="level3 section-card">
@@ -507,6 +398,7 @@ Skills are extracted from learning outcomes and service descriptions and mapped 
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 10.</strong> Type of document issued by BUR trainings (2025)</div>
   <div id="chart-bur-documents-2025" class="plotly-chart plotly-chart--wide" role="img" aria-label="Share of BUR trainings by completion document type in 2025"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Most trainings with parsable metadata end with a recognised competence certificate. This indicates that BUR provision is often linked to formalised learning outcomes, although certificate quality and labour-market recognition may still vary.</p>
 </div>
 <p class="notes source-note">In 2025, 77.5% of training services with parsable qualification metadata end with a recognised competence certificate (Q17–Q19); the remainder issue an informal or attendance certificate only.</p>
 </section>
@@ -515,9 +407,112 @@ Skills are extracted from learning outcomes and service descriptions and mapped 
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 11.</strong> BUR training delivery modality (2025)</div>
   <div id="chart-bur-modality" class="plotly-chart plotly-chart--wide" role="img" aria-label="Share of BUR trainings by delivery modality in 2025"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> The modality structure shows how far BUR provision has moved beyond purely classroom-based delivery. The balance between in-person, online, and hybrid formats matters for access, especially for workers outside major urban centres.</p>
 </div>
 <p class="notes source-note">Training services only (`Usługa szkoleniowa`, n=130,521). Online includes live and asynchronous remote delivery; hybrid covers mixed in-person and remote formats.</p>
 </section>
+<section id="data-overview" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="data-overview">Data overview</h3>
+<p>The figures below summarise monthly listing volumes from Pracuj.pl and BUR in 2025, together with the longer-run evolution of BUR service provision since 2016.</p>
+<p><strong>Job postings (OJP)</strong> capture recruitment <em>activity</em> online. <strong>Estimated vacancies (OJV)</strong> apply a conservative rule set: explicit counts are taken at face value, “multiple positions” without a number are coded as 2, and empty fields default to 1.</p>
+<div class="chart-duo">
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 2.</strong> Pracuj.pl estimated vacancies</div>
+    <div id="chart-monthly-vacancies" class="plotly-chart" role="img" aria-label="Monthly estimated vacancies on Pracuj.pl in 2025"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> The vacancy series shows the monthly intensity of market-based recruitment captured by Pracuj.pl. It should be read as a high-quality proxy for online labour demand, particularly in white-collar, specialist, and IT occupations, rather than as a full census of all vacancies.</p>
+  </div>
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 3.</strong> BUR training services</div>
+    <div id="chart-monthly-bur" class="plotly-chart" role="img" aria-label="Monthly BUR training services in 2025"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> BUR listings provide a view of the supply of registered training opportunities. Their volume reflects both training-market activity and public funding cycles, so the figure is most useful as a measure of available training provision rather than actual participation.</p>
+  </div>
+</div>
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 4.</strong> BUR training services by year (2016–2025)</div>
+  <div id="chart-bur-yearly" class="plotly-chart plotly-chart--wide" role="img" aria-label="BUR training services by year 2016 to 2025"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> The long-run BUR series shows strong variation across years, likely linked to EU funding cycles, pandemic disruption, and the platform’s institutional development. This supports the report’s choice to focus on within-year skill shares rather than raw volumes.</p>
+</div>
+<p class="notes source-note">Source: Pracuj.pl · Baza Usług Rozwojowych (BUR) · authors’ calculations on 2025 listings.</p>
+</section>
+<section id="training-duration-in-bur" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="training-duration-in-bur">Training duration in BUR</h3>
+<p>Duration is recorded as <strong><code>liczba_godzin</code></strong> (contact hours) for each training-service edition. The analysis covers <strong><code>Usługa szkoleniowa</code></strong> records with positive hour values.</p>
+<p>Median duration has remained in the <strong>low tens of hours</strong> over the registry’s lifetime, with a long right tail driven by formal qualifications, language courses, and degree-linked programmes. The 2025 distribution is strongly concentrated in <strong>short courses (≤40 h)</strong>, while a minority of listings exceed <strong>160 h</strong> — often multi-module certificates or study programmes registered on the platform.</p>
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 12.</strong> BUR training duration — median, mean and 90th percentile by year</div>
+  <div id="chart-duration-yearly" class="plotly-chart plotly-chart--wide" role="img" aria-label="Training duration statistics by year in BUR"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Training duration is typically short to medium, but the gap between the mean and upper percentiles indicates a long tail of more intensive programmes. This suggests that BUR mainly supports modular upskilling, with a smaller segment of longer qualification-oriented courses.</p>
+</div>
+<p class="notes source-note">Source: BUR yearly exports (`Usługa szkoleniowa`, positive <code>liczba_godzin</code>).</p>
+</section>
+<section id="duration-distribution-and-category-profiles-2025" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="duration-distribution-and-category-profiles-2025">Duration distribution and category profiles (2025)</h3>
+<p>In 2025, the <strong>median</strong> training length is <strong>26 hours</strong> and the <strong>90th percentile</strong> is <strong>82 hours</strong>. Most subsidised services are designed as short upskilling modules rather than full qualification pathways, though a long tail of multi-module programmes remains.</p>
+<p>Category medians vary widely: <strong>language and IT</strong> courses tend to be longer and more variable, while <strong>occupational safety (BHP)</strong> and <strong>soft-skills</strong> modules cluster at the short end.</p>
+<div class="chart-grid chart-grid--2">
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 13.</strong> Share of BUR trainings by duration bucket (2025)</div>
+    <div id="chart-duration-buckets" class="plotly-chart" role="img" aria-label="Distribution of training durations in 2025"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> The 2025 distribution confirms that most BUR training is delivered as relatively short courses. For policy, this means BUR is well suited for targeted upskilling but may be less suited, by itself, for deeper occupational transitions.</p>
+  </div>
+  <div class="chart-block">
+    <div class="figure-caption-title"><strong>Figure 14.</strong> Median duration by BUR service category — top 10 by volume (2025)</div>
+    <div id="chart-duration-category" class="plotly-chart" role="img" aria-label="Median training hours by category in 2025"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> Differences across categories show that training intensity varies substantially by field. Longer IT and language courses likely reflect higher learning requirements, while shorter safety and soft-skill courses reflect more standardised, modular provision.</p>
+  </div>
+</div>
+<p class="notes source-note">Source: BUR 2025; categories with the largest number of training-service editions.</p>
+</section>
+</section>
+<section id="regional-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="regional-coverage">Regional Coverage</h2>
+<section id="relative-labour-demand" class="level3 section-card map-shell">
+<h3 class="anchored" data-anchor-id="relative-labour-demand">Relative labour demand</h3>
+<div class="figure-caption-title" id="map-figure-title"></div>
+<p>The map shows regional demand and training density normalized by the average labour force in 2025. Use the switch above the map to change the view between job offers and BUR training services.</p>
+<div id="regional-map"></div>
+<div class="map-caption source-note" id="map-note"></div>
+</section>
+<section id="regional-comparison-table" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="regional-comparison-table">Regional comparison table</h3>
+<p>Counts are shown alongside their labour-force-normalized counterparts to make regional demand and supply comparable across differently sized voivodeships. Click a column header to sort the table.</p>
+<div class="data-table-wrap" id="regional-table"></div>
+</section>
+<div class="section-card">
+<div class="section-head">
+  <div>
+    <p class="section-kicker">Quick read</p>
+    <h3 class="anchored">Key regional patterns</h3>
+    <p id="highlights-copy"></p>
+  </div>
+</div>
+<div class="rank-grid" id="highlights-grid"></div>
+</div>
+<section id="geocoding-and-regional-assignment" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="geocoding-and-regional-assignment">Geocoding and regional assignment</h3>
+<p>Job postings and BUR training services are assigned to Polish <strong>NUTS-2 voivodeships</strong> (and, where possible, <strong>powiat</strong> level) using a multi-step geocoding pipeline:</p>
+<ol type="1">
+<li><strong>Structured location fields</strong> — city and voivodeship names from the portal or BUR registry are normalised and matched against the official <strong>TERYT / SIMC</strong> register.</li>
+<li><strong>Address geocoding</strong> — when powiat cannot be resolved from TERYT alone, the <strong>GUGiK UUG</strong> (Usługa Ujednoliconego Geokodowania) address API resolves city–voivodeship pairs to gmina and powiat codes.</li>
+<li><strong>Regional aggregation</strong> — counts are summed to voivodeship level for the interactive maps and comparison table. <strong>Per-100k labour force</strong> normalisation uses GUS BDL average economically active population in 2025 as the denominator, enabling direct comparison of posting intensity and subsidised training supply across regions of different size.</li>
+</ol>
+<p>Roughly <strong>95%</strong> of Pracuj.pl postings with a usable location field resolve to a Polish powiat; the remainder are excluded from powiat-level views but retained in national aggregates. BUR records use provider or service location metadata with the same regional crosswalk.</p>
+<p>Foreign or ambiguous locations are flagged and excluded from regional maps but included in national skill-mix statistics.</p>
+</section>
+<section id="change-in-bur-training-supply-2019-vs-2025" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="change-in-bur-training-supply-2019-vs-2025">Change in BUR training supply (2019 vs 2025)</h3>
+<p>The map in Regional Coverage compares <strong>levels</strong> of training intensity in 2025. The chart below shows <strong>how subsidised training volumes shifted</strong> between 2019 and 2025 within each voivodeship — a period spanning two EU programming cycles and the post-pandemic recovery of BUR listings.</p>
+<p>Red bars indicate voivodeships where the number of registered training-service editions <strong>declined</strong>; green bars indicate growth. The pattern reflects both funding-cycle effects and structural changes in how providers re-list courses on the platform, not labour-demand shifts alone.</p>
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 2a.</strong> Percentage change in BUR training services by voivodeship (2019 → 2025)</div>
+  <div id="chart-training-change-2019-2025" class="plotly-chart plotly-chart--wide" role="img" aria-label="Percentage change in BUR training services by voivodeship between 2019 and 2025"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Regional changes in BUR supply are uneven and should be interpreted cautiously. They likely reflect funding-cycle effects and provider re-listing practices as much as changes in local skill needs.</p>
+</div>
+<p class="notes source-note">Source: BUR yearly exports (<code>Usługa szkoleniowa</code>), counted by provider-reported voivodeship.</p>
+</section>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
 <section id="processing-pipeline" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="processing-pipeline">Processing pipeline</h3>
 <p>Raw job postings and training descriptions contain noisy, unstructured information in Polish (and occasionally English or other languages). We transform them into a standardised analytic dataset in six steps: we first identify the source language, translate non-Polish text into Polish, isolate skill-relevant sentences, map extracted skills to the ESCO and Lightcast skill taxonomies, standardise job titles to ESCO occupations using both titles and skill context for disambiguation, and then enrich each record with sector codes and regional information for voivodeship-level comparison.</p>
@@ -584,209 +579,160 @@ Skills are extracted from learning outcomes and service descriptions and mapped 
   </div>
 </div>
 <div class="pipeline-jump-note">
-<p>Click any card to jump to the detailed description of that step.</p>
+<p>Click any card to jump to the detailed description in the Technical annex.</p>
 </div>
-<p>Each step is described in detail below.</p>
-<div id="pipeline-step-01" class="step-detail">
-<section id="step-01-language-detection" class="level4">
-<h4 class="anchored" data-anchor-id="step-01-language-detection"><span class="step-badge step-badge-blue">Step 01</span> Language detection</h4>
-<p>Although the vast majority of postings on Pracuj.pl are in Polish, a non-trivial share contains English-language titles, mixed-language descriptions, or occasional postings in other languages. Reliable identification of the language in which each posting was written ensures that postings already in Polish can proceed directly to analysis, while those in other languages are routed to translation.</p>
-<p>We apply a machine-learning-based language detector (<a class="paper-link" href="https://github.com/pemistahl/lingua-py" target="_blank" rel="noopener noreferrer">Lingua<span class="source-link-ext">↗</span></a>) independently to both the job title and the full job description of every posting. Per-field detection allows us to handle the common case where a title is in English but the body is in Polish. This is important because mixed-language postings are common in online vacancies, and Lingua performs well even when different parts of the same offer use different languages.</p>
-</section>
-</div>
-<div id="pipeline-step-02" class="step-detail">
-<section id="step-02-translation" class="level4">
-<h4 class="anchored" data-anchor-id="step-02-translation"><span class="step-badge step-badge-amber">Step 02</span> Translation</h4>
-<p>Ensuring that all postings are available in Polish before downstream processing is essential for consistent skill extraction. While the majority of Pracuj.pl postings are already in Polish, a subset (particularly in multinational companies or IT roles) uses English or mixed-language text. With a corpus of <strong>~750,000 job ads</strong>, machine translation is a practical necessity for harmonising the linguistic input to downstream NLP steps. Recent research indicates that LLM-based translation systems can deliver high-quality machine translation at scale (<a class="paper-link" href="https://dl.acm.org/doi/10.1007/978-3-031-44693-1_30" target="_blank" rel="noopener noreferrer">Huang et al.&nbsp;(2023)<span class="source-link-ext">↗</span></a>).</p>
-<p>Postings already detected as Polish pass through unchanged. All remaining postings are translated with <a class="paper-link" href="https://blog.google/innovation-and-ai/technology/developers-tools/translategemma/" target="_blank" rel="noopener noreferrer">Gemma 3 Translate 4B<span class="source-link-ext">↗</span></a>, an open source multilingual translation model designed for high-quality instruction following and strong performance across typologically different languages. Both <strong>job titles</strong> and <strong>job descriptions</strong> are translated into Polish and stored alongside the originals to allow back-referencing when analysts need to inspect the source text. This ensures that all downstream steps, including skill extraction and title standardisation, operate on a common-language representation.</p>
-<p>To validate translation quality, we conducted a <strong>back-translation</strong> exercise on a small random sample. In this check, texts were translated from English into Polish and then back into English, allowing us to verify that the meaning of skills, occupations, and task descriptions was preserved with minimal drift.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 40, 'rankSpacing': 50}} }%%
-flowchart LR
-    A["Raw posting"] --&gt; B{"Language&lt;br/&gt;detected?"}
-    B --&gt;|"Already Polish"| C["Keep original text"]
-    B --&gt;|"English / other"| D["Gemma 3 Translate 4B"]
-    D --&gt;|"title + description"| E["Translated Polish text"]
-    C --&gt; F["Unified Polish corpus"]
-    E --&gt; F
-</pre>
-</div>
-<p></p><figcaption> Translation routing</figcaption> </figure><p></p>
-</div>
-</div>
+<div class="framing-callout">
+<p>This section gives the report-level processing flow. The technical details behind language detection, translation, sentence filtering, ESCO skill matching, job-title standardisation, and NACE sector assignment are moved to the <strong>Technical annex</strong> at the end of the report.</p>
 </div>
 </section>
+<section id="esco-skill-mapping-illustrative-output" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="esco-skill-mapping-illustrative-output">ESCO skill mapping — illustrative output</h3>
+<p>Downstream NLP maps heterogeneous phrasing in job ads and training descriptions to standardised <strong>ESCO skill labels</strong>. The example below shows a BUR training-service description (English translation) and the ESCO skills assigned to it after sentence-level extraction and semantic matching.</p>
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 5a.</strong> Example BUR training service and mapped ESCO skills</div>
+  <div class="bur-training-example-shell">
+<div class="bur-training-example" role="article" aria-label="BUR training service 2147461 example">
+<h4 class="bur-training-example-title anchored">
+AI for Managers — ChatGPT Workshops and Designing Custom AI Assistants
+</h4>
+<p class="bur-training-example-kicker">
+English translation of the original Polish course description published on <a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">uslugirozwojowe.parp.gov.pl</a> (BUR).
+</p>
+<div class="bur-training-example-meta">
+<strong>BUR ID:</strong> 2147461 &nbsp;·&nbsp; <strong>Provider:</strong> Lower Silesian Regional Development Agency (DARR S.A.) &nbsp;·&nbsp; <strong>Voivodeship:</strong> Dolnośląskie &nbsp;·&nbsp; <strong>Category:</strong> IT and Telecommunications &nbsp;·&nbsp; <strong>Duration:</strong> 16 hours (2 days)
 </div>
-<div id="pipeline-step-03" class="step-detail">
-<section id="step-03-skill-sentence-filtering" class="level4">
-<h4 class="anchored" data-anchor-id="step-03-skill-sentence-filtering"><span class="step-badge step-badge-teal">Step 03</span> Skill-sentence filtering</h4>
-<p>Job descriptions typically mix skill requirements with administrative content such as benefits, company history, or application instructions. Isolating the skill-relevant sentences before downstream mapping reduces noise and improves the precision of the extracted skill profiles.</p>
-<p>We use a fine-tuned BERT classifier based on the <a class="paper-link" href="https://dl.acm.org/doi/abs/10.1145/3672608.3707960" target="_blank" rel="noopener noreferrer">Malandri et al.&nbsp;(2025)<span class="source-link-ext">↗</span></a> SkillLess approach and the <a class="paper-link" href="https://huggingface.co/serino28/BERT-OJA-SkillLess" target="_blank" rel="noopener noreferrer">BERT-OJA-SkillLess<span class="source-link-ext">↗</span></a>. The model performs binary sentence-level classification, labelling each sentence as either skill-relevant or non-skill. In our sample, approximately 40–60 % of description text is filtered out as non-skill content. Only the retained sentences proceed to the ESCO mapping step.</p>
-</section>
+<h5 class="bur-training-example-heading anchored">
+Educational goal
+</h5>
+<p>
+The goal of the training is to equip <strong>managers</strong> with the competences required to <strong>effectively implement and use AI in their organisations</strong>, with an emphasis on the <strong>practical applications of ChatGPT</strong> and on <strong>designing custom AI assistants</strong>.
+</p>
+<h5 class="bur-training-example-heading anchored">
+Programme
+</h5>
+<h6 class="bur-training-example-day anchored">
+Day 1 — Introduction to AI in business and overview of AI tools
+</h6>
+<p class="bur-training-example-module">
+<strong>Module I — Course introduction</strong>
+</p>
+<ul>
+<li>
+Welcome and participant introductions
+</li>
+<li>
+Presentation of training goals and agenda
+</li>
+<li>
+Pre-test of AI knowledge
+</li>
+</ul>
+<p class="bur-training-example-module">
+<strong>Module II — Foundations of AI in business</strong>
+</p>
+<ul>
+<li>
+Introduction to artificial intelligence and its applications
+</li>
+<li>
+Overview of AI tools available to managers
+</li>
+<li>
+Benefits of using AI in management and business
+</li>
+</ul>
+<p class="bur-training-example-module">
+<strong>Module III — The LLM revolution: ChatGPT and AI assistants</strong>
+</p>
+<ul>
+<li>
+Introduction to ChatGPT — capabilities and limitations
+</li>
+<li>
+Demonstration of practical applications of ChatGPT in management
+</li>
+<li>
+Comparison of ChatGPT with other available AI tools
+</li>
+</ul>
+<p class="bur-training-example-module">
+<strong>Module IV — Workshop: practical application of ChatGPT</strong>
+</p>
+<ul>
+<li>
+Hands-on exercises: using ChatGPT in a manager’s daily work
+</li>
+<li>
+Case study: solving business problems with ChatGPT
+</li>
+<li>
+Discussion and exchange of experiences
+</li>
+</ul>
+<h6 class="bur-training-example-day anchored">
+Day 2 — Designing and implementing AI assistants
+</h6>
+<p class="bur-training-example-module">
+<strong>Module V — Principles of designing effective AI assistants</strong>
+</p>
+<ul>
+<li>
+Key components of an effective AI assistant
+</li>
+<li>
+Designing a conversational user interface
+</li>
+<li>
+Analysing business needs and matching them to AI features
+</li>
+</ul>
+<p class="bur-training-example-module">
+<strong>Module VI — Workshop: building individual AI assistants</strong>
+</p>
+<ul>
+<li>
+Hands-on exercises: designing your own AI assistants
+</li>
+<li>
+Simulating and testing the designed solutions
+</li>
+<li>
+Feedback and optimisation of participants’ projects
+</li>
+</ul>
+<p class="bur-training-example-module">
+<strong>Module VII — Advanced ChatGPT features and integration with business systems</strong>
+</p>
+<ul>
+<li>
+Advanced use of ChatGPT (e.g.&nbsp;data analysis, report generation)
+</li>
+<li>
+Integration of ChatGPT with other business tools and systems
+</li>
+<li>
+Case studies of effective AI implementations in organisations
+</li>
+</ul>
+<p class="bur-training-example-module">
+<strong>Module VIII — Course wrap-up</strong>
+</p>
+<ul>
+<li>
+Post-test of acquired knowledge
+</li>
+<li>
+Summary of the training and key take-aways
+</li>
+<li>
+Award of attendance certificates
+</li>
+</ul>
 </div>
-<div id="pipeline-step-04" class="step-detail">
-<section id="step-04-esco-skill-mapping" class="level4">
-<h4 class="anchored" data-anchor-id="step-04-esco-skill-mapping"><span class="step-badge step-badge-violet">Step 04</span> ESCO skill mapping</h4>
-<p>The European Skills, Competences, Qualifications and Occupations (<a class="paper-link" href="https://esco.ec.europa.eu/" target="_blank" rel="noopener noreferrer">ESCO<span class="source-link-ext">↗</span></a>) taxonomy provides a standardised vocabulary of roughly 13,000 skills and competences maintained by the European Commission. Mapping extracted skill sentences to ESCO entries creates a common analytical framework that enables direct comparison across countries and languages.</p>
-<p>We employ a <strong>custom contrastive bi-encoder</strong> trained on a massive synthetic dataset comprising hundreds of thousands of ESCO-labelled examples derived from the ESCO classification structure. The bi-encoder learns a <strong>shared representation space</strong> for two different objects — job-ad sentences and standardised ESCO skill labels — by bringing semantically matching pairs closer together while pushing non-matching pairs apart. In practical terms, consider a job-ad sentence such as <em>“experience with SQL and data visualisation”</em>. The model learns to place it close to the correct ESCO entries — <em>“use query languages”</em> and <em>“manage databases”</em> — and away from everything else. Crucially, the training signal is strongest for <strong>hard negatives</strong>: skills that are semantically nearby but not a correct match, such as <em>“use programming languages”</em> or <em>“develop software”</em>. These are more informative than trivially distant skills like <em>“negotiate contracts”</em>, because the model must learn fine-grained distinctions within the same domain rather than merely separating unrelated concepts. During training, correct sentence–skill pairings act as positives while all other skills in the same batch act as negatives — with the hardest cases (same-domain, wrong skill) driving most of the learning signal. This gives the model a scalable way to learn ranking behaviour across the full ~13,000-skill taxonomy without a separate classifier for each skill.</p>
-<svg viewbox="0 0 620 370" width="620" style="font-family: system-ui, -apple-system, sans-serif; max-width: 100%; display: block; margin: 1.2rem auto;">
-  <!-- Easy negatives zone -->
-  <circle cx="310" cy="185" r="155" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,3"></circle>
-  <text x="310" y="37" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#dc2626">Easy negatives</text>
-  <!-- Hard negatives zone -->
-  <circle cx="310" cy="185" r="105" fill="#fefce8" stroke="#fde68a" stroke-width="1.5" stroke-dasharray="5,3"></circle>
-  <text x="310" y="87" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#b45309">Hard negatives</text>
-  <!-- Positive matches zone -->
-  <circle cx="310" cy="185" r="52" fill="#dcfce7" stroke="#86efac" stroke-width="1.5" stroke-dasharray="5,3"></circle>
-  <text x="310" y="141" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#16a34a">Positive matches</text>
-  <!-- Centre: the sentence -->
-  <circle cx="310" cy="185" r="6" fill="#1e40af"></circle>
-  <text x="310" y="203" text-anchor="middle" font-size="10.5px" font-weight="700" fill="#1e293b">"experience with SQL</text>
-  <text x="310" y="215" text-anchor="middle" font-size="10.5px" font-weight="700" fill="#1e293b">and data visualisation"</text>
-  <!-- Positive dots -->
-  <circle cx="282" cy="159" r="5" fill="#16a34a" opacity="0.85"></circle>
-  <text x="282" y="150" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">use query languages</text>
-  <circle cx="332" cy="167" r="5" fill="#16a34a" opacity="0.85"></circle>
-  <text x="332" y="158" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">manage databases</text>
-  <!-- Hard negative dots -->
-  <circle cx="230" cy="135" r="4.5" fill="#b45309" opacity="0.85"></circle>
-  <text x="230" y="126" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">use programming languages</text>
-  <circle cx="375" cy="240" r="4.5" fill="#b45309" opacity="0.85"></circle>
-  <text x="375" y="231" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">develop software</text>
-  <circle cx="390" cy="123" r="4.5" fill="#b45309" opacity="0.85"></circle>
-  <text x="390" y="114" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">analyse data</text>
-  <!-- Easy negative dots -->
-  <circle cx="190" cy="280" r="4" fill="#dc2626" opacity="0.85"></circle>
-  <text x="190" y="271" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">negotiate contracts</text>
-  <circle cx="425" cy="295" r="4" fill="#dc2626" opacity="0.85"></circle>
-  <text x="425" y="286" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">manage human resources</text>
-  <circle cx="210" cy="65" r="4" fill="#dc2626" opacity="0.85"></circle>
-  <text x="210" y="56" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">drive vehicles</text>
-  <!-- Pull arrows (positives toward centre) -->
-  <defs><marker id="arrowGreen" viewbox="0 0 10 10" refx="8" refy="5" markerwidth="6" markerheight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"></path></marker></defs>
-  <line x1="288" y1="163" x2="296" y2="174" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowGreen)" opacity="0.7"></line>
-  <line x1="328" y1="170" x2="321" y2="176" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowGreen)" opacity="0.7"></line>
-  <!-- Caption -->
-  <text x="310" y="362" text-anchor="middle" font-size="10.5px" fill="#64748b">Simplified 2-D projection of the embedding space (actual representations are high-dimensional). Own elaboration.</text>
-</svg>
-<p>This approach is well suited to online job ads because employers often describe the same skill in many different ways. By learning semantic proximity rather than relying on exact wording, the model can recover skills even when the phrasing differs from the ESCO label itself.</p>
-<p>Our approach also avoids relying only on one averaged sentence representation. Instead, the encoder can attend more strongly to the parts of a sentence that are most diagnostic for a given skill, which is particularly useful when a single sentence mentions several tasks, tools, or competencies at once. This token-level attention mechanism has been shown to improve matching quality in multi-skill sentences (<a class="paper-link" href="https://arxiv.org/abs/2601.09119" target="_blank" rel="noopener noreferrer">Sun, 2026<span class="source-link-ext">↗</span></a>; <a class="paper-link" href="https://ieeexplore.ieee.org/document/11074185" target="_blank" rel="noopener noreferrer">Decorte et al., 2025<span class="source-link-ext">↗</span></a>).</p>
-<p><strong>Similarity threshold calibration.</strong>   Not every high-ranking candidate is a true match. Following established practice in ESCO skill extraction (<a class="paper-link" href="https://ieeexplore.ieee.org/document/11074185" target="_blank" rel="noopener noreferrer">Decorte et al., 2025<span class="source-link-ext">↗</span></a>; <a class="paper-link" href="https://recsyshr.aau.dk/wp-content/uploads/2025/09/RecSysHR2025-paper_5.pdf" target="_blank" rel="noopener noreferrer">Bielinski &amp; Brazier, 2025<span class="source-link-ext">↗</span></a>), we retain only those candidates whose cosine similarity exceeds a calibrated threshold. The threshold is tuned on held-out benchmark data (the same HOUSE and TECH datasets used to evaluate overall pipeline performance) by selecting the value that maximises the trade-off between precision and recall. This step filters out low-confidence matches and controls the total number of skills assigned per posting.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
-flowchart TD
-    A["Skill-relevant sentences"] --&gt;|"encode"| B["Contrastive bi-encoder"]
-    B --&gt;|"768-d vector"| C["Sentence embedding"]
-
-    D[("ESCO skill catalogue&lt;br/&gt;~13 000 entries")] --&gt;|"pre-computed&lt;br/&gt;768-d vectors"| E["Reference embedding matrix"]
-
-    C --&gt; F{"Cosine similarity ranking"}
-    E --&gt; F
-
-    F --&gt;|"top-k candidates"| G["Candidate ESCO skills&lt;br/&gt;with similarity scores"]
-    G --&gt;|"score ≥ calibrated threshold"| I["Final matched ESCO skills"]
-</pre>
+  </div>
 </div>
-<p></p><figcaption> Skill-to-ESCO matching pipeline</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
-</div>
-<div id="pipeline-step-05" class="step-detail">
-<section id="step-05-job-title-standardisation" class="level4">
-<h4 class="anchored" data-anchor-id="step-05-job-title-standardisation"><span class="step-badge step-badge-indigo">Step 05</span> Job title standardisation</h4>
-<p>Raw job titles are highly variable: the same role may appear as “Inżynier oprogramowania”, “Backend Developer”, “Programista”, “Full-Stack Developer”, or “Senior Software Engineer”. Likewise, an analytical role may appear as “Analityk danych”, “BI Analyst”, “Specjalista ds. raportowania”, or “Data Analyst”. Because postings have been harmonised into Polish in the translation step, the standardisation step works on a common-language title field. Mapping each title to a standardised ESCO occupation enables comparable occupational analysis and serves as the bridge to sector classification in the next step.</p>
-<p>Titles are first cleaned by removing common noise (embedded locations, salary ranges, seniority prefixes). The cleaned titles are then embedded using <a class="paper-link" href="https://huggingface.co/TechWolf/JobBERT-v3" target="_blank" rel="noopener noreferrer">JobBERT-v3<span class="source-link-ext">↗</span></a>, a domain-specific open model pre-trained on large-scale job market data. We pre-compute embeddings for all ~3,000 ESCO occupation labels and store them in a <a class="paper-link" href="https://github.com/facebookresearch/faiss" target="_blank" rel="noopener noreferrer">FAISS<span class="source-link-ext">↗</span></a> vector index for fast retrieval. Each job title is matched to the nearest ESCO occupation by cosine similarity, with the similarity score retained for downstream quality filtering.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
-flowchart TD
-    A["Translated job title"] --&gt; B["Title cleaning&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;(remove locations, salaries, prefixes)&lt;/i&gt;"]
-    B --&gt;|"cleaned text"| C["JobBERT-v3 encoder"]
-    C --&gt;|"768-d vector"| D["Title embedding"]
-
-    D --&gt;|"query"| F{"FAISS nearest-neighbour search"}
-
-    E[("ESCO occupation index&lt;br/&gt;~3 000 occupations&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;pre-computed 768-d vectors&lt;/i&gt;")] --&gt;|"index"| F
-
-    F --&gt;|"best match + cosine score"| G["Standardised ESCO occupation"]
-</pre>
-</div>
-<p></p><figcaption> Job title standardisation</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
-</div>
-<div id="pipeline-step-06" class="step-detail">
-<section id="step-06-sector-classification-isicnace" class="level4">
-<h4 class="anchored" data-anchor-id="step-06-sector-classification-isicnace"><span class="step-badge step-badge-green">Step 06</span> Sector classification (ISIC/NACE)</h4>
-<p>Assigning an economic sector to each job posting enables analysis of skill demand by industry—a dimension that is critical for targeted workforce development and industrial policy. We classify postings into the <strong>ISIC/NACE</strong> industry taxonomy. The underlying crosswalk uses the full NACE Rev.&nbsp;2.1 classification maintained by Eurostat, which provides finer sub-division detail (3- and 4-digit codes) than ISIC. However, because this report analyses sectoral demand at the <strong>2-digit division level</strong>, the results are identical under both systems: at 2 digits, NACE Rev.&nbsp;2.1 and ISIC Rev.&nbsp;5 share the same division codes and boundaries (<a class="paper-link" href="https://ec.europa.eu/eurostat/documents/3859598/21633320/KS-GQ-24-007-EN-N.pdf" target="_blank" rel="noopener noreferrer">Eurostat, 2024<span class="source-link-ext">↗</span></a>). All results in this report are therefore directly comparable with any analysis using either framework.</p>
-<p>The assignment relies on the official <a class="paper-link" href="https://esco.ec.europa.eu/en/about-esco/escopedia/escopedia/nace" target="_blank" rel="noopener noreferrer">ESCO-to-NACE crosswalk<span class="source-link-ext">↗</span></a>, which links each ESCO occupation to one or more ISIC/NACE activity codes. Three resolution tiers handle different levels of ambiguity:</p>
-<ol type="1">
-<li><strong>One-to-one mapping</strong> — the ESCO occupation maps to a single ISIC/NACE code. The assignment is deterministic.</li>
-<li><strong>Same 2-digit code</strong> — all candidate codes share the same 2-digit division (e.g.&nbsp;all fall under <em>C26</em>). The shared division is assigned directly, since finer sub-division differences are below the reporting threshold.</li>
-<li><strong>Ambiguous multi-division cases</strong> — candidates span different ISIC/NACE divisions. We resolve these by embedding the job title and description together with each candidate activity label using a multilingual sentence-transformer (<a class="paper-link" href="https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2" target="_blank" rel="noopener noreferrer">paraphrase-multilingual-MiniLM-L12-v2<span class="source-link-ext">↗</span></a>) and selecting the candidate with the highest cosine similarity. A confidence margin between the top two candidates is recorded to support post-hoc quality auditing.</li>
-</ol>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 30, 'rankSpacing': 45, 'curve': 'basis'}, 'themeVariables': {'fontSize': '13px'}} }%%
-flowchart LR
-    A["ESCO occupation&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;from Step 05&lt;/i&gt;"]
-      --&gt;|"look up"| B[("ESCO → ISIC/NACE crosswalk&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;official mapping table&lt;/i&gt;")]
-    B --&gt; C{"Number of candidate&lt;br/&gt;ISIC/NACE codes?"}
-
-    C --&gt;|"exactly 1"| D["Deterministic&lt;br/&gt;assignment"]
-    C --&gt;|"≥ 2, same 2-digit code"| E["Assign shared&lt;br/&gt;ISIC/NACE division"]
-    C --&gt;|"≥ 2, different divisions"| F["Embedding-based disambiguation&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;encode job text + each candidate ISIC/NACE label&lt;/i&gt;"]
-
-    F --&gt;|"384-d vectors"| H{"Cosine similarity&lt;br/&gt;comparison"}
-    H --&gt;|"highest score"| I["Assigned ISIC/NACE code&lt;br/&gt;+ confidence margin"]
-
-    D --&gt; J["Final sector label"]
-    E --&gt; J
-    I --&gt; J
-
-    classDef step fill:#eef4fb,stroke:#1d4e89,stroke-width:1px,color:#15314B;
-    classDef data fill:#fef3c7,stroke:#b45309,stroke-width:1px,color:#7c2d12;
-    classDef out  fill:#dcfce7,stroke:#166534,stroke-width:1px,color:#14532d;
-    class A,D,E,F,I step;
-    class B data;
-    class C,H step;
-    class J out;
-</pre>
-</div>
-<p></p><figcaption> ISIC/NACE sector classification</figcaption> </figure><p></p>
-</div>
-</div>
-</div>
-</section>
-</div>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Our pipeline outperforms the current state of the art by approximately 3 percentage points in RP@5 on the HOUSE and TECH benchmark datasets reported by <span class="paper-ref" data-tooltip="Decorte, J. J., Van Hautte, J., Develder, C., and Demeester, T. 2025. Efficient Text Encoders for Labor Market Analysis. IEEE Access."><a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/11079977/" target="_blank" rel="noopener noreferrer">Decorte et al.&nbsp;(2025)</a></span>. These benchmarks consist of job postings annotated with ESCO gold-standard skill labels by human experts, against which model predictions are evaluated. The reported RP@5 scores are 0.822 and 0.838, respectively.</p>
-</div>
-</div>
-</div>
+<div class="esco-sample-grid esco-sample-grid--below-example" id="esco-sample-grid"></div>
+<p class="notes source-note"><strong>Identified ESCO skills (EN labels).</strong> Mapped ESCO skill labels for BUR ID 2147461 — <em>AI for Managers — ChatGPT Workshops and Designing Custom AI Assistants</em>. Full taxonomy: ~13,000 skills (European Commission ESCO v1.2).</p>
 </section>
 </section>
 <section id="results" class="level2">
@@ -795,7 +741,7 @@ flowchart LR
 <h3 class="anchored" data-anchor-id="skills-mismatch">Skills Mismatch</h3>
 <p><strong>What we compare</strong></p>
 <ul>
-<li><strong>Demand side</strong> — every ESCO skill mention extracted from Pracuj.pl 2025 postings → <strong>5.36 M mentions</strong> across <strong>748,922 offers</strong></li>
+<li><strong>Demand side</strong> — every ESCO skill mention extracted from Pracuj.pl 2025 postings → <strong>5.36 M mentions</strong> across <strong>~731k offers</strong></li>
 <li><strong>Supply side</strong> — every BUR training service mapped to ESCO via semantic matching → <strong>719,265 trainings</strong>, <strong>410,868 (training, ESCO-skill) tags</strong></li>
 </ul>
 <p><strong>How we measure mismatch</strong></p>
@@ -813,7 +759,7 @@ flowchart LR
 <p><strong>Why shares, not counts</strong></p>
 <p>Both sides are <strong>multi-tag</strong> (one offer can mention many skills; one training can teach many skills). Comparing tag shares is scale-free and robust to the absolute volume gap between online vacancies and subsidised training listings.</p>
 <p><strong>Caveats</strong></p>
-<p>Online vacancies under-represent <strong>public-sector and manual occupations</strong>, where BUR is most active — the measured over-supply for personal-care and protective-service skills is partly a demand-side blind spot. BUR captures only the <strong>subsidised and registered</strong> slice of training supply; commercial and in-house training is absent from the supply side.</p>
+<p>Online vacancies under-represent <strong>public-sector and manual occupations</strong>, where BUR is most active — the measured over-supply for personal-care and protective-service skills is partly a demand-side blind spot. BUR captures only the <strong>subsidised and registered</strong> slice of training supply; commercial and in-house training is absent from the supply side. We test how much these and other measurement choices affect the results in the <a href="#mismatch-sensitivity">diagnostic cards at the end of this section</a>.</p>
 </section>
 <section id="distribution-of-competences-all-esco-families" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="distribution-of-competences-all-esco-families">Distribution of competences (all ESCO families)</h3>
@@ -821,6 +767,7 @@ flowchart LR
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 15.</strong> Share of ESCO tag mass by competence family — demand vs supply</div>
   <div id="chart-mismatch-family" class="plotly-chart plotly-chart--wide" role="img" aria-label="Demand and supply shares by ESCO competence family"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> The aggregate comparison shows the first clear sign of mismatch: demand is concentrated in skills, knowledge, and transversal competences, while supply places relatively more weight on care-related and knowledge areas.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl 2025 ESCO mentions vs BUR 2025 training tags.</p>
 </section>
@@ -829,21 +776,24 @@ flowchart LR
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 16.</strong> ESCO skill mix on the demand and supply sides (S1–S8, share of tag mass)</div>
   <div id="chart-mismatch-s1s8-overview" class="plotly-chart plotly-chart--wide" role="img" aria-label="Demand and supply shares for ESCO skill pillars S1 through S8"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Management, communication, digital, and ICT-related skills are more prominent in vacancies than in BUR training tags. Conversely, care, services, and machinery-related skills are more prominent in training supply.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl ESCO skill mentions vs BUR training tags, 2025.</p>
 <p><strong>Management skills (S4)</strong> account for <strong>21.9%</strong> of demand-side mentions but only <strong>8.1%</strong> of training tags — the largest positive gap in the catalogue. <strong>Communication / collaboration / creativity (S1)</strong> is the second-largest demand block (<strong>17.0%</strong>) and comparatively well covered (<strong>13.8%</strong>). <strong>Working with computers (S5)</strong> and <strong>ICT knowledge (06)</strong> show meaningful positive gaps — a digital-skills signal that the BUR mix has not fully caught up with. Conversely, <strong>Assisting &amp; caring (S3)</strong>, <strong>Working with machinery (S8)</strong> and <strong>Services (10)</strong> are the largest <em>over-supplied</em> groups — partly reflecting EU-funded reskilling priorities and partly online vacancies under-representing those occupations.</p>
 </section>
-<section id="demand-side-esco-mix-across-countries" class="level3 section-card intl-card">
-<h3 class="anchored" data-anchor-id="demand-side-esco-mix-across-countries">Demand-side ESCO mix across countries</h3>
+<section id="poland-in-context-demand-side-esco-mix-across-countries" class="level3 section-card intl-card">
+<h3 class="anchored" data-anchor-id="poland-in-context-demand-side-esco-mix-across-countries">Poland in context: demand-side ESCO mix across countries</h3>
+<p>To anchor the Poland 2025 findings against international comparators, we re-use the country panel from the World Bank East Asia skill-demand report (mimeo).</p>
 <p>The Poland demand mix (top row) sits next to the East Asia and benchmark panel. <strong>Communication, collaboration and creativity (S1)</strong> and <strong>management skills (S4)</strong> dominate everywhere, but their relative weight differs: Poland leans more on <strong>management (S4)</strong> than India or Indonesia, and is closer to Singapore and South Korea in the share of <strong>working with computers (S5)</strong>. <strong>Assisting &amp; caring (S3)</strong> is markedly lower on the demand side in Poland than in Southeast Asian benchmarks — consistent with the under-representation of care and public-sector hiring in Pracuj.pl noted in the caveats above. Bars sum to 100% of the S1–S8 family within each country.</p>
 <div id="intl-esco-s1s8"></div>
-<p class="notes source-note">Source: ESCO S1–S8 demand-side shares. Poland (highlighted) uses the figures from Figure 16 of this report; other countries come from the East Asia skill-demand report. Periods are not strictly aligned across countries.</p>
+<p class="notes source-note">Source: ESCO S1–S8 demand-side shares. Poland (highlighted) uses the figures from Figure 16 of this report; other countries come from the East Asia skill-demand report.</p>
 </section>
 <section id="where-supply-lags-demand-gap-in-pp" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="where-supply-lags-demand-gap-in-pp">Where supply lags demand (gap in pp)</h3>
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 17.</strong> Demand–supply gap by ESCO skill pillar (S1–S8, percentage points)</div>
   <div id="chart-mismatch-s1s8-gap" class="plotly-chart plotly-chart--wide" role="img" aria-label="Diverging bar chart of demand minus supply gap for ESCO skill pillars"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> The gap profile separates demand-heavy white-collar and digital skills from supply-heavy care, services, and machinery skills. The policy implication is a need to rebalance part of subsidised training toward business, management, digital, and transversal capabilities.</p>
 </div>
 <p>The chart is dominated by two forces: a <strong>white-collar / cognitive deficit</strong> on the demand-heavy side — management, digital, team-working and ICT knowledge — and a <strong>personal-services / blue-collar surplus</strong> on the supply-heavy side — assisting &amp; caring, machinery, services, handling &amp; moving. The deficit on the red side is concentrated in occupations where online vacancies provide near-complete coverage; the green side partly reflects measurement limits rather than genuine over-provision.</p>
 </section>
@@ -853,10 +803,12 @@ flowchart LR
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 18.</strong> Most under-supplied L2 skill groups</div>
     <div id="chart-mismatch-l2-under" class="plotly-chart" role="img" aria-label="Top under-supplied L2 ESCO groups"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> The largest under-supplied sub-groups include management, business administration, teamwork, digital data access, and ICT knowledge. These are broad productivity-relevant skills that cut across many sectors.</p>
   </div>
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 19.</strong> Most over-supplied L2 skill groups</div>
     <div id="chart-mismatch-l2-over" class="plotly-chart" role="img" aria-label="Top over-supplied L2 ESCO groups"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> Over-supplied groups cluster around personal care, protective services, driving, and health-care delivery. This may partly reflect genuine policy priorities, but also the fact that Pracuj.pl under-represents some public and manual occupations.</p>
   </div>
 </div>
 <p class="notes source-note">Source: ESCO L2 groups; ranked by absolute gap in percentage points.</p>
@@ -869,14 +821,17 @@ flowchart LR
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 20.</strong> Transversal competences (T1–T6): demand vs supply shares within the transversal pillar (each side renormalised to 100%)</div>
   <div id="chart-mismatch-transversal" class="plotly-chart plotly-chart--wide" role="img" aria-label="Transversal skills demand vs supply"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Employers place relatively more weight on social, communication, and self-management competences than the BUR training mix does. These transversal gaps matter because such skills are valuable across occupations and sectors.</p>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
   <div class="figure-caption-title"><strong>Figure 21.</strong> Knowledge fields (ISCED-F): demand vs supply shares within the knowledge pillar (each side renormalised to 100%)</div>
   <div id="chart-mismatch-knowledge" class="plotly-chart plotly-chart--wide" role="img" aria-label="Knowledge concepts demand vs supply"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Business, administration, and ICT knowledge appear under-represented in training relative to demand, while services and health-related knowledge are more prominent in supply. This reinforces the broader mismatch between market hiring and subsidised provision.</p>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
   <div class="figure-caption-title"><strong>Figure 22.</strong> Languages: demand vs supply shares within the language pillar (Polish excluded; long tail grouped as Other; each side renormalised to 100%)</div>
   <div id="chart-mismatch-languages" class="plotly-chart plotly-chart--wide" role="img" aria-label="Language skills demand vs supply"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> English and German dominate language demand, while training supply appears more diversified across languages. For employability policy, language training should remain demand-sensitive rather than evenly distributed across language categories.</p>
 </div>
 </section>
 <section id="measuring-overall-mismatch-jensenshannon-divergence" class="level3 section-card">
@@ -886,6 +841,118 @@ flowchart LR
   <img src="presentation/jsd_formula.png" alt="Jensen-Shannon divergence formula" class="jsd-formula-img" width="720">
 </div>
 <p class="notes source-note">JSD compares renormalised S-pillar distributions on the demand and supply sides. L1 JSD ≈ 0.16; L2 JSD ≈ 0.30 (2025, Pracuj.pl vs BUR).</p>
+<p class="figure-interpretation"><strong>Interpretation.</strong> The JSD indicator summarises the overall distance between demand and supply skill distributions. The reported values suggest moderate mismatch at the broad skill-pillar level and more substantial mismatch at the detailed sub-group level.</p>
+</section>
+<section id="mismatch-sensitivity" class="level3">
+<h3 class="anchored" data-anchor-id="mismatch-sensitivity">Are the mismatch results stable?</h3>
+<p>The figures above rest on two non-trivial modelling choices: <strong>how each posting and training is weighted into the aggregate shares</strong>, and <strong>which slice of the labour market the Pracuj.pl sample actually represents</strong>. Before drawing policy conclusions we need to know whether the headline gap survives plausible alternative choices. The two cards below answer that question. They are not new results — they are stress tests of the results above. Each one states <em>why we are worried</em>, <em>what we compute</em>, and <em>what we conclude</em>.</p>
+<section id="sensitivity-does-posting-verbosity-drive-the-picture" class="level4 section-card diag-card diag-sensitivity">
+<h4 class="anchored" data-anchor-id="sensitivity-does-posting-verbosity-drive-the-picture">Sensitivity — does posting verbosity drive the picture?</h4>
+<p><span class="diag-kicker">Why we worry</span></p>
+<p>A senior CTO posting can list 20 ESCO skill mentions; a 1-line warehouse-worker posting can list 1. Under the headline weighting scheme (“<strong>mention-mass</strong>”) that CTO posting carries 20× more weight in the demand shares than the warehouse posting. If ICT and management-heavy postings are systematically more verbose than care-work postings, the white-collar deficit could be partly an artefact of <em>how many tags get written into a job description</em>, not of how many jobs are open.</p>
+<p><span class="diag-kicker">What we compute</span></p>
+<p>We rebuild the demand- and supply-side share vectors under a second weighting scheme — <strong>per-posting</strong> — where each posting (or each training) contributes exactly one unit of weight, distributed evenly across the skills it mentions:</p>
+<ul>
+<li>mention-mass (headline): <span class="math inline">\(s_g^{MM} = \dfrac{\sum_i \mathrm{count}_i(g)}{\sum_i |S_i|}\)</span></li>
+<li>per-posting (alternative): <span class="math inline">\(s_g^{PP} = \dfrac{1}{N} \sum_i \dfrac{\mathrm{count}_i(g)}{|S_i|}\)</span></li>
+</ul>
+<p>Then we compare the two vectors on each side and — more importantly — on the <strong>gap</strong> (demand − supply) that actually drives every chart above.</p>
+<p><span class="diag-kicker">What we find</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th>L1 distance</th>
+<th>Cosine similarity</th>
+<th>Max single-group shift</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Demand: MM vs PP</td>
+<td>0.061</td>
+<td>0.998</td>
+<td>0.81 pp (ICT, code 06)</td>
+</tr>
+<tr class="even">
+<td>Supply: MM vs PP</td>
+<td>0.034</td>
+<td>0.9996</td>
+<td>0.52 pp (generic language placeholder)</td>
+</tr>
+</tbody>
+</table>
+<p>And on the gap vector itself (54 ESCO L1 groups):</p>
+<ul>
+<li>Pearson r between MM- and PP-derived gaps: <strong>0.998</strong></li>
+<li>max |Δ gap_pp| across all groups: <strong>0.81 pp</strong></li>
+<li>top-10 <strong>under-supplied</strong> groups: <strong>10 / 10 overlap</strong> between the two schemes</li>
+<li>top-10 <strong>over-supplied</strong> groups: <strong>9 / 10 overlap</strong></li>
+</ul>
+<div class="diag-verdict">
+<p><strong>Verdict.</strong> ICT-heavy postings <em>do</em> list more ESCO tags than the average posting, so the per-posting scheme shaves ~0.8 pp off ICT’s demand share. But no top-ranked under-supplied group moves and no single group’s share shifts by more than ~1 pp.&nbsp;The headline narrative — large positive gap on management (S4), positive gap on digital (S5) and ICT knowledge (06), negative gap on assisting &amp; caring (S3) and working with machinery (S8) — holds verbatim. Verbosity is not driving the picture. We keep mention-mass as the headline because it is the standard ESCO accounting unit and is comparable to other published ESCO mention-rate studies.</p>
+</div>
+</section>
+<section id="robustness-does-the-pracuj.pl-sectoral-skew-drive-the-picture" class="level4 section-card diag-card diag-robustness">
+<h4 class="anchored" data-anchor-id="robustness-does-the-pracuj.pl-sectoral-skew-drive-the-picture">Robustness — does the Pracuj.pl sectoral skew drive the picture?</h4>
+<p><span class="diag-kicker">Why we worry</span></p>
+<p>Pracuj.pl is a private-sector online job board. Some sectors are heavily over-represented relative to actual Polish employment — most strikingly <strong>Administrative and support services (NACE section N, which includes temp-work and recruiting agencies): 24.4 % of postings vs 2.75 % of employment</strong>, because agencies re-post vacancies that ultimately belong to other sectors. Conversely, <strong>agriculture (A), mining (B), education (P), human health (Q) and information &amp; communication (J)</strong> are markedly under-represented in the OJP universe relative to LFS employment shares. A substantial part of the apparent skill mismatch could be a story about “who advertises on Pracuj” rather than “what Poland’s labour market demands”.</p>
+<p><span class="diag-kicker">What we compute</span></p>
+<p>Standard post-stratification. For each NACE section <em>k</em> we calculate a sectoral weight</p>
+<p><span class="math display">\[
+w_k \;=\; \frac{p_k^{\text{target}}}{p_k^{\text{pracuj}}}
+\]</span></p>
+<p>where <span class="math inline">\(p_k^{\text{target}}\)</span> is section <em>k</em>’s share of total Polish employment (Eurostat LFS 2024, ages 15+, both sexes — the international counterpart of the GUS BAEL/LFS series “Pracujący w gospodarce narodowej wg sekcji PKD”) and <span class="math inline">\(p_k^{\text{pracuj}}\)</span> is its share in our Pracuj.pl analysis sample. Each posting in section <em>k</em> enters the aggregation with weight <span class="math inline">\(w_k\)</span>, and the demand-side ESCO L1 shares are recomputed on the weighted sample. Weights range from <span class="math inline">\(w_N \approx 0.11\)</span> (administrative &amp; support, heavily downweighted) to <span class="math inline">\(w_B \approx 15.4\)</span> (mining, heavily upweighted); the median section keeps roughly its OJP weight.</p>
+<p><span class="diag-kicker">What we find</span></p>
+<p>This is the largest perturbation we apply to the demand vector:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>L1 distance (headline vs reweighted)</td>
+<td><strong>0.173</strong></td>
+</tr>
+<tr class="even">
+<td>Cosine similarity</td>
+<td><strong>0.988</strong></td>
+</tr>
+<tr class="odd">
+<td>Largest single-group fall</td>
+<td><strong>−2.10 pp</strong> for ICT knowledge (06)</td>
+</tr>
+<tr class="even">
+<td>Second-largest fall</td>
+<td>−1.88 pp for management (S4)</td>
+</tr>
+<tr class="odd">
+<td>Largest single-group rise</td>
+<td>+1.51 pp for working with machinery (S8)</td>
+</tr>
+</tbody>
+</table>
+<p>The biggest <em>losers</em> under reweighting are the white-collar / digital groups disproportionately mentioned by recruiting-agency, finance and real-estate postings. ICT knowledge (06) falls from <strong>4.1 %</strong> to <strong>2.0 %</strong>, management (S4) from <strong>17.5 %</strong> to <strong>15.6 %</strong>, business &amp; administration (04) from <strong>7.6 %</strong> to <strong>6.2 %</strong>. The biggest <em>winners</em> are primary- and education-heavy groups: machinery (S8) rises from <strong>3.6 %</strong> to <strong>5.1 %</strong>, education knowledge (01) from <strong>2.6 %</strong> to <strong>3.7 %</strong>, agriculture/forestry/fisheries knowledge (A1) from <strong>5.9 %</strong> to <strong>6.5 %</strong>.</p>
+<p>What about the mismatch — the demand-minus-supply gap that every figure above visualises?</p>
+<ul>
+<li>Pearson r between headline and reweighted gap vectors: <strong>0.985</strong></li>
+<li>max |Δ gap_pp| across all groups: <strong>2.10 pp</strong></li>
+<li>top-10 <strong>under-supplied</strong> groups: <strong>9 / 10 overlap</strong></li>
+<li>top-10 <strong>over-supplied</strong> groups: <strong>9 / 10 overlap</strong></li>
+</ul>
+<div class="diag-verdict">
+<p><strong>Verdict.</strong> The directional conclusions hold across the board: large positive gap on management and business/administration; meaningful positive gap on transversal social skills; large negative gap on assisting &amp; caring, machinery and services. The single substantive change is <strong>the digital-skills deficit (working with computers S5 + ICT knowledge 06): its magnitude is roughly halved once Pracuj is reweighted to Poland’s actual sectoral employment mix</strong>. That tells us roughly half of the headline digital gap is a <em>true</em> economy-wide demand-supply imbalance and roughly half is a <em>composition effect</em> of Pracuj over-sampling digital-intensive sectors. Both halves are still policy-relevant, but for different reasons — the first calls for adjusting subsidised training, the second for reading OJP-based digital-skill indicators with appropriate humility.</p>
+</div>
+</section>
 </section>
 <section id="digital-skill-levels-in-poland" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="digital-skill-levels-in-poland">Digital Skill Levels in Poland</h3>
@@ -926,12 +993,16 @@ flowchart LR
   </div>
 </div>
 <p class="notes source-note">Source: Chinen &amp; Montorsi (2025); Pracuj.pl job postings; authors' mapping of classified ESCO-linked digital skill mentions.</p>
+<p class="figure-interpretation"><strong>Interpretation.</strong> Advanced digital skills form the largest share of classified digital demand. This indicates that employer demand is not limited to basic computer literacy but increasingly involves more complex digital capabilities.</p>
 </section>
 <section id="digital-skill-levels-across-countries" class="level3 section-card intl-card">
 <h3 class="anchored" data-anchor-id="digital-skill-levels-across-countries">Digital skill levels across countries</h3>
+<div class="intl-callout">
+<strong>Poland sample (2025).</strong> The comparisons below use the same analytical universe as the rest of this report: <strong>~733k</strong> online job postings from <a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a> and <strong>~131k</strong> training services from <a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych (BUR)</a>.
+</div>
 <p>The same <code>basic</code> / <code>intermediate</code> / <code>advanced</code> classification, applied to the East Asia and benchmark panel, shows where Poland sits relative to other economies. Poland’s bar uses the figures from Figure 23 in this report; the other countries come from the East Asia skill-demand report. The stack always sums to 100% of classified digital skill mentions, so cross-country differences reflect the <em>mix</em> of digital skill demand rather than its volume.</p>
 <div id="intl-digital-levels"></div>
-<p class="notes source-note">Source: Chinen &amp; Montorsi (2025) classification; Pracuj.pl (Poland) and online job postings reported in the East Asia skill-demand panel for the other economies; authors' mapping. Poland's values are taken from Figure 23 of this report. Periods are not strictly aligned across countries (see footnote in the macro card above).</p>
+<p class="notes source-note">Source: Chinen &amp; Montorsi (2025) classification; Pracuj.pl (Poland) and online job postings reported in the East Asia skill-demand panel for the other economies; authors' mapping. Poland's values are taken from Figure 23 of this report. Periods are not strictly aligned across countries.</p>
 </section>
 <section id="examples-of-digital-skills-by-proficiency-level" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="examples-of-digital-skills-by-proficiency-level">Examples of digital skills by proficiency level</h3>
@@ -945,6 +1016,7 @@ flowchart LR
 <div class="figure-caption-title"><strong>Figure 24.</strong> Share of job postings with at least one ESCO digital skill, by voivodeship (2025)</div>
 <div class="ai-regional-layout">
   <div id="digital-regional-map"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> Regional variation in digital demand shows where digitalisation pressures are strongest in local labour markets. The map can help target regional digital upskilling and identify areas where training supply may need to catch up.</p>
   <div id="digital-regional-detail"></div>
 </div>
 <div class="map-caption source-note" id="digital-map-note"></div>
@@ -952,7 +1024,7 @@ flowchart LR
 <section id="ai-skills-demand" class="level3 section-card">
 <h3 class="anchored" data-anchor-id="ai-skills-demand">AI Skills Demand</h3>
 <p>The demand for AI-related skills is highly dynamic, with new technologies and tools emerging rapidly while others become obsolete. This makes it difficult to track AI skill demand using static taxonomies alone.</p>
-<p>Lightcast captures highly granular and technology-specific signals, such as individual AI tools, models, copilots, libraries, and chatbot platforms. This makes it well suited to detecting early changes in employer demand. We start from the benchmark list of 350 AI skills identified by <span class="paper-ref" data-tooltip="Martins-Neto, A., Liu, Y., Khurana, S., and Porras Lopez, J. M. 2026. Click, Code, Earn: The Returns to Digital Skills. World Bank."><a class="paper-link" href="https://documents1.worldbank.org/curated/en/099451102172652767/pdf/IDU-e779b9af-e9b1-43ae-a2c5-9679dbf2d829.pdf" target="_blank" rel="noopener noreferrer">Martins-Neto et al.&nbsp;(2026)</a></span> and extend it with 114 additional skills that have since appeared in the Lightcast taxonomy, bringing the current total to 464 AI skills.</p>
+<p>Lightcast captures highly granular and technology-specific signals, such as individual AI tools, models, copilots, libraries, and chatbot platforms. This makes it well suited to detecting early changes in employer demand. We start from a benchmark of <strong>350 AI skills from Lightcast</strong> used by <span class="paper-ref" data-tooltip="Martins-Neto, A., Liu, Y., Khurana, S., and Porras Lopez, J. M. 2026. Click, Code, Earn: The Returns to Digital Skills. World Bank."><a class="paper-link" href="https://documents1.worldbank.org/curated/en/099451102172652767/pdf/IDU-e779b9af-e9b1-43ae-a2c5-9679dbf2d829.pdf" target="_blank" rel="noopener noreferrer">Martins-Neto et al.&nbsp;(2026)</a></span> and extend it with 114 additional skills that have since appeared in the Lightcast taxonomy, bringing the current total to 464 AI skills.</p>
 <p>To make the full list policy-readable, we organize these 464 skills into four primary categories and eight cross-cutting tags. The primary categories are mutually exclusive and capture the fundamental domain of each skill. The tags are non-exclusive and highlight secondary dimensions that cut across categories.</p>
 <div class="ai-category-grid" id="ai-category-cards"></div>
 <div id="ai-tag-chart"></div>
@@ -974,6 +1046,7 @@ flowchart LR
 </div>
 <div class="figure-caption-title"><strong>Figure 25.</strong> AI demand by category with top requested skills</div>
 <div id="ai-category-demand"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> AI demand is still a small share of all postings, but the expanded Lightcast list captures a broader and more current set of AI-related skills than the strict benchmark. The figure helps distinguish core AI capabilities from adjacent tools and platforms.</p>
 <p class="notes source-note">Source: Pracuj.pl job postings; Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' semantic matching and categorization. Category demand is based on postings matched to the expanded Lightcast AI list under the conservative threshold used in this report.</p>
 </section>
 <section id="lightcast-ai-skills-explorer" class="level3 section-card">
@@ -1007,6 +1080,7 @@ flowchart LR
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 28.</strong> AI-related job offers by NACE section (2025)</div>
   <div id="chart-ai-nace-sections" class="plotly-chart plotly-chart--wide" role="img" aria-label="AI job offers by NACE section"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> AI-related hiring is highly concentrated in knowledge-intensive services, especially professional, scientific, technical, telecommunications, IT, and information services. Manufacturing appears as a secondary but important area of AI demand.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl AI skill matches; occupation → NACE crosswalk. Share among AI-tagged offers with a mapped NACE section.</p>
 </section>
@@ -1016,10 +1090,12 @@ flowchart LR
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 29.</strong> Top NACE divisions in AI-related job offers</div>
   <div id="chart-ai-nace-divisions" class="plotly-chart plotly-chart--wide" role="img" aria-label="Top NACE divisions for AI job offers"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Within AI demand, computer programming and engineering/technical consultancy are central divisions. This suggests that AI adoption is currently led by sectors with strong technical and professional-service capabilities.</p>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
   <div class="figure-caption-title"><strong>Figure 30.</strong> Transversal skill groups among AI-tagged offers</div>
   <div id="chart-ai-transversal" class="plotly-chart plotly-chart--wide" role="img" aria-label="Transversal skills in AI offers"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> AI-related jobs often combine technical requirements with transversal skills, especially self-management and basic skills. This reinforces the point that AI upskilling should not be designed as purely technical training.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl 2025; Lightcast AI skill list; ESCO transversal taxonomy.</p>
 </section>
@@ -1044,6 +1120,7 @@ flowchart LR
 <p>The map shows the share of job postings with at least one genuine green skill in each voivodeship. Regional variation is moderate: shares range from roughly 2.5% to 4.0%, with higher concentrations in voivodeships where construction, energy, and agricultural sectors are more prominent.</p>
 <div class="figure-caption-title"><strong>Figure 31a.</strong> Share of job postings with at least one green skill, by voivodeship</div>
 <div id="green-regional-map"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> Green-skill demand varies moderately across regions, with higher shares in areas linked to construction, energy, and agriculture. Regional green policies should therefore account for local industrial structure.</p>
 <div class="map-caption source-note">Source: Pracuj.pl job postings; ESCO Green Skills Collection; authors' matching and manual review.</div>
 </section>
 <section id="most-demanded-green-skills" class="level4 section-card">
@@ -1051,6 +1128,7 @@ flowchart LR
 <p>The chart below shows the 25 most frequently demanded genuine green skills across all job postings. Environmental engineering, environmental management standards, and the design of heating and cooling systems lead the ranking, reflecting Poland’s strong construction and energy infrastructure sectors.</p>
 <div class="figure-caption-title"><strong>Figure 31b.</strong> Top 25 genuine green skills by number of job offers</div>
 <div id="green-top-skills-chart"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> The leading green skills are linked to environmental engineering, environmental management, and heating/cooling systems. This points to practical green-transition demand in construction, energy infrastructure, and environmental compliance.</p>
 <p class="notes source-note">Source: Pracuj.pl job postings; ESCO Green Skills Collection; authors' matching and manual review.</p>
 </section>
 <section id="green-skills-intensity-by-sector" class="level4 section-card">
@@ -1059,6 +1137,7 @@ flowchart LR
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 31.</strong> Green skill share within NACE section (top sections by intensity)</div>
   <div id="chart-green-nace-sections" class="plotly-chart plotly-chart--wide" role="img" aria-label="Green skill share by NACE section"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Green intensity is highest in utilities, energy, agriculture, and public administration, where regulation and sustainability obligations are salient. However, large sectors with lower intensity may still generate substantial absolute demand.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl green skill mentions matched to Chinen et al. (2025) taxonomy; NACE section from occupation crosswalk.</p>
 </section>
@@ -1067,6 +1146,7 @@ flowchart LR
 <p>The chart ranks the 15 KZIS (Polish Classification of Occupations) occupations with the highest number of job postings containing at least one genuine green skill. Sales representatives appear at the top partly because of the large volume of postings in that occupation, but the green-skill content of these offers points clearly to specific segments: above all renewable energy and energy-efficiency sales, green building solutions, and agri-related product markets. The most common green skills for this occupation include promoting sustainability, advising on the energy efficiency of heating systems, installing photovoltaic systems, energy efficiency, agronomy, and the energy performance of buildings. Specialised roles such as environmental engineers and environmental protection specialists show higher average green skill intensity per posting.</p>
 <div class="figure-caption-title"><strong>Figure 31c.</strong> Top 15 KZIS occupations by number of offers with green skills</div>
 <div id="green-top-occupations-chart"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> Green demand is not limited to specialist environmental roles; high-volume occupations such as sales representatives also carry green-skill signals. This suggests that green transition skills are diffusing into commercial and client-facing occupations.</p>
 <p class="notes source-note">Source: Pracuj.pl job postings; ESCO Green Skills Collection; KZIS occupation matches; authors' matching and manual review.</p>
 </section>
 </section>
@@ -1083,6 +1163,7 @@ flowchart LR
 <p>The map shows the share of all 2025 Pracuj.pl postings in each voivodeship that carry the Jobs-for-Ukrainians tag. Małopolskie leads clearly (around 14% of postings), followed by Lubuskie, Łódzkie, Lubelskie and Dolnośląskie — a mix of regions with large refugee populations (Małopolskie, Dolnośląskie), border-area logistics hubs and food-processing clusters (Lubuskie, Lubelskie, Łódzkie). Mazowieckie has the largest absolute number of tagged offers but a lower share, since its labour market is dominated by professional and IT roles where the tag is less commonly used.</p>
 <div class="figure-caption-title"><strong>Figure 34a.</strong> Share of postings tagged 'Jobs for Ukrainians', by voivodeship (2025)</div>
 <div id="ukr-regional-map"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> Ukrainian-friendly postings are regionally uneven, with Małopolskie standing out. The pattern likely reflects refugee settlement geography and sectoral composition rather than general labour-market tightness alone.</p>
 <div class="map-caption source-note">Source: Pracuj.pl postings with <code>data-test="sections-benefit-ukrainian-friendly"</code>; authors' parsing.</div>
 </section>
 <section id="demand-intensity-vs-ukrainian-friendly-share" class="level4 section-card">
@@ -1091,71 +1172,84 @@ flowchart LR
 <p>The clearest outlier is <strong>Małopolskie</strong>, sitting well above the cloud at ≈14% of postings tagged despite only mid-range overall intensity — a likely echo of Kraków’s large post-2022 Ukrainian diaspora. <strong>Kujawsko-Pomorskie</strong> (~6.6%) and <strong>Podkarpackie</strong> (~7.0%) sit clearly below the cloud, while <strong>Mazowieckie</strong> — by far the densest labour market — is exactly average on the share dimension (~9.7%). This suggests the Ukrainian-friendly tag tracks <strong>demographic factors</strong> (refugee settlement patterns) and <strong>sectoral mix</strong> much more than overall hiring intensity.</p>
 <div class="figure-caption-title"><strong>Figure 34b.</strong> Total offers per 100k labour force vs share of offers tagged 'Jobs for Ukrainians', by voivodeship</div>
 <div id="ukr-density-scatter"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> The weak relationship between overall demand intensity and Ukrainian-friendly shares suggests that employers’ openness to Ukrainian workers is driven more by sectoral and demographic factors than by aggregate vacancy pressure.</p>
 <p class="notes source-note">Source: Pracuj.pl postings; Statistics Poland (BAEL) labour-force averages 2025; authors' computation. Each marker is one of the 16 voivodeships; the dashed line is the OLS fit.</p>
 </section>
-<section id="powiat-level-demand-intensity" class="level4 section-card map-shell">
-<h4 class="anchored" data-anchor-id="powiat-level-demand-intensity">Powiat-level demand intensity</h4>
-<p>Switching the denominator from labour force (only published by GUS at the voivodeship level) to <strong>employed-by-residence</strong> (the closest powiat-level proxy, available monthly via the GUS BDL P4280 series) brings the offer-intensity picture down to all <strong>380 powiats</strong>. The density gradient is dominated by a handful of metropolitan magnets — Warszawa, Kraków, Wrocław, Poznań, Trójmiasto, Łódź — together with the suburban “donut” powiats around them (e.g.&nbsp;<em>poznański</em>, <em>pruszkowski</em>, <em>piaseczyński</em>, <em>wrocławski</em>) where offer-to-employed ratios run an order of magnitude above the rural average. Most of central-eastern Poland and the Bieszczady–Roztocze belt sit below 1,000 offers / 100k employed.</p>
-<div class="figure-caption-title"><strong>Figure 34c.</strong> Total job offers per 100k employed (residence-based), by powiat (2025)</div>
-<div id="ukr-powiat-intensity-map" style="height:640px;"></div>
-<div class="map-caption source-note">Source: Pracuj.pl postings (2025); GUS BDL P4280 — employed persons in the national economy by place of residence (January 2025). Colour scale capped at the 95th percentile to preserve resolution outside the metropolitan magnets.</div>
 </section>
-<section id="powiat-level-ukrainian-friendly-share" class="level4 section-card map-shell">
-<h4 class="anchored" data-anchor-id="powiat-level-ukrainian-friendly-share">Powiat-level Ukrainian-friendly share</h4>
-<p>Zooming in from the 16 voivodeships to all 380 powiats preserves the overall national share (~9.7%) but reveals strong sub-regional variation that the voivodeship view averages out. The badge is heavily concentrated in <strong>western and central rural-industrial powiats</strong> — Lower Silesian copper-belt counties (e.g.&nbsp;<em>polkowicki</em> at ≈30%), the Lubelskie countryside east of the Vistula, the Mazovian food-processing belt around <em>kozienicki</em> and <em>lipski</em>, and frontier counties along the German border (e.g.&nbsp;<em>słubicki</em>, <em>świebodziński</em>). At the other extreme, several large <strong>city-on-county-rights</strong> labour markets (Toruń, Krosno, Kalisz) and small mono-industrial powiats (<em>obornicki</em>, <em>ostrowiecki</em>) sit below 6%.</p>
-<div class="figure-caption-title"><strong>Figure 34d.</strong> Share of postings tagged 'Jobs for Ukrainians', by powiat (2025)</div>
-<div id="ukr-powiat-map" style="height:640px;"></div>
-<div class="map-caption source-note">Source: Pracuj.pl postings with <code>data-test="sections-benefit-ukrainian-friendly"</code>; powiat resolved via TERYT SIMC + GUGiK UUG geocoding (see methods). Colour scale capped at 25%.</div>
-</section>
-<section id="demand-intensity-vs-ua-friendly-share-powiat-level" class="level4 section-card">
-<h4 class="anchored" data-anchor-id="demand-intensity-vs-ua-friendly-share-powiat-level">Demand intensity vs UA-friendly share — powiat level</h4>
-<p>Crossing the two powiat layers — <strong>offers per 100k employed</strong> on the X-axis and within-powiat Ukrainian-friendly share on the Y-axis — confirms what the voivodeship plot already hinted at: there is <strong>essentially no relationship</strong> between how dense a local labour market is and how often employers there flag jobs for Ukrainian workers. Restricted to the 294 powiats with at least 200 postings, <strong>Pearson r ≈ −0.16</strong>, <strong>Spearman ρ ≈ −0.11</strong>, <strong>R² ≈ 0.024</strong> — i.e. demand intensity explains roughly 2% of the cross-powiat variation in the badge’s use.</p>
-<p>The major metropolitan magnets (Warszawa, Kraków, Wrocław, Poznań, Gdańsk) cluster around the national average (~9–11%) despite very different intensity levels, while the high-share powiats sit at <strong>low-to-medium</strong> intensity. The takeaway mirrors the regional analysis: the Ukrainian-friendly badge tracks <strong>sectoral mix and refugee settlement geography</strong> much more than overall hiring intensity.</p>
-<div class="figure-caption-title"><strong>Figure 34e.</strong> Job offers per 100k employed vs share of offers tagged 'Jobs for Ukrainians', by powiat</div>
-<div id="ukr-powiat-scatter"></div>
-<p class="notes source-note">Source: Pracuj.pl postings (2025); GUS BDL P4280 employed-by-residence (January 2025). Bubble size ∝ √(total offers); only powiats with ≥200 postings included in the OLS fit.</p>
+<section id="beyond-the-voivodeship-map-decomposing-where-the-tag-really-comes-from" class="level3">
+<h3 class="anchored" data-anchor-id="beyond-the-voivodeship-map-decomposing-where-the-tag-really-comes-from">Beyond the voivodeship map — decomposing where the tag really comes from</h3>
+<p>The voivodeship picture above is suggestive but limited. An aggregate map cannot tell whether a local gap in Ukrainian-friendly hiring is driven by <strong>what</strong> employers hire for (sectoral mix) or <strong>how</strong> they hire within those sectors (behaviour). To answer this we apply a shift-share (Oaxaca) decomposition on <strong>683,104 postings</strong> with a resolved powiat and a NACE mapping.</p>
+<section class="cards" id="ukr-decomp-kpis" aria-label="Decomposition KPIs"></section>
+<section id="shift-share-oaxaca-decomposition" class="level4 section-card">
+<h4 class="anchored" data-anchor-id="shift-share-oaxaca-decomposition">Shift-share (Oaxaca) decomposition</h4>
+<p>For every powiat <span class="math inline">\(p\)</span>, the deviation of its Ukrainian-friendly share from the national share can be written exactly as</p>
+<p><span class="math display">\[
+s_p - s_{PL} \;=\; \underbrace{\sum_k w_{pk}\bigl(s_{pk} - s_{PL,k}\bigr)}_{\text{within-sector (behavioural)}} \;+\; \underbrace{\sum_k \bigl(w_{pk}-w_{PL,k}\bigr) s_{PL,k}}_{\text{between-sector (composition)}}
+\]</span></p>
+<p>where <span class="math inline">\(k\)</span> indexes <strong>NACE divisions</strong> (2-digit codes), <span class="math inline">\(w_{pk}\)</span> is the share of postings in division <span class="math inline">\(k\)</span> within powiat <span class="math inline">\(p\)</span>, and <span class="math inline">\(s_{pk}\)</span> is the local within-division Ukrainian-friendly share. The first term answers: <em>“Given the sectors that operate here, how much more (or less) often does an employer flag the tag than the national norm?”</em> The second answers: <em>“How much of the gap is just due to over- or under- representation of UA-friendly-prone sectors?”</em></p>
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 34c.</strong> Shift-share decomposition of the Ukrainian-friendly gap from the national share — 16 voivodeships</div>
+  <div id="ukr-shift-voivodeship" class="plotly-chart" role="img" aria-label="Stacked horizontal bar of within-sector and composition components of UA-tag share gap for 16 voivodeships"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Małopolskie's +4.8 pp gap is almost entirely behavioural — its sectoral mix accounts for just +0.2 pp; the rest is local employers being more willing to flag the tag. The reverse is true for Mazowieckie, where a slightly positive within-sector signal is dragged below zero by an over-representation of professional / IT roles where the tag is rarely used.</p>
+  <p class="notes source-note">Source: Pracuj.pl postings (2025); NACE division mapping; authors' computation. Diamonds mark the observed gap = within + between.</p>
+</div>
+<div class="chart-block">
+  <div class="figure-caption-title"><strong>Figure 34d.</strong> Shift-share decomposition — top-20 powiats by |gap|</div>
+  <div id="ukr-shift-powiat" class="plotly-chart" role="img" aria-label="Stacked horizontal bar of within-sector and composition components for top-20 powiats"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Polkowicki's +20.8 pp gap is dominated by the within-sector term (+19.6 pp): even at the same sectoral mix as Poland, local employers there flag the tag far more often. Tatrzański is the clearest "composition" case — about a third of its gap is a hospitality-and-services tilt typical of mountain resorts.</p>
+  <p class="notes source-note">Source: Pracuj.pl postings (2025). Only powiats with ≥ 100 postings are eligible; ranking by absolute gap.</p>
+</div>
 </section>
 <section id="industries-nace-sections" class="level4 section-card">
 <h4 class="anchored" data-anchor-id="industries-nace-sections">Industries (NACE sections)</h4>
 <p>Aggregated to the top-level NACE section, the Ukrainian-friendly tag is strongly concentrated in service sectors that absorb low-barrier labour: <strong>accommodation and food service (I)</strong> stands out at roughly a third of all postings, followed by <strong>transportation and storage (H)</strong> and <strong>manufacturing (C)</strong>. Sections dominated by professional services and public administration use the tag much less frequently.</p>
-<div class="figure-caption-title"><strong>Figure 34f.</strong> NACE sections with the highest share of Ukrainian-friendly postings</div>
+<div class="figure-caption-title"><strong>Figure 34e.</strong> NACE sections with the highest share of Ukrainian-friendly postings</div>
 <div id="ukr-industries-section-chart"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> Ukrainian-friendly hiring is concentrated in hospitality, transport, and manufacturing. These sectors often involve operational roles with lower formal credential barriers and higher labour turnover.</p>
 <p class="notes source-note">Source: Pracuj.pl + ESCO→NACE crosswalk. Sections shown have at least 5,000 postings.</p>
 </section>
 <section id="industries-nace-divisions" class="level4 section-card">
 <h4 class="anchored" data-anchor-id="industries-nace-divisions">Industries (NACE divisions)</h4>
 <p>Drilling down to NACE divisions exposes the specific niches driving demand for Ukrainian workers. By share, the leaders are food retail and restaurants (G47.5, G47.22, I56.11, G47.11), passenger road transport (H49.32, H49.33) and goods road transport (H49.41) — sectors with high turnover, language-tolerant tasks and a strong refugee employment footprint. By absolute volume, <strong>restaurants (I56.11)</strong>, <strong>warehousing (H52.1)</strong> and <strong>programming activities (K62.1)</strong> dominate, the last reflecting the large pool of Ukrainian IT specialists who relocated after 2022.</p>
-<div class="figure-caption-title"><strong>Figure 34g.</strong> NACE divisions with the highest share of Ukrainian-friendly postings</div>
+<div class="figure-caption-title"><strong>Figure 34f.</strong> NACE divisions with the highest share of Ukrainian-friendly postings</div>
 <div id="ukr-industries-share-chart"></div>
-<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34h.</strong> NACE divisions with the largest absolute number of Ukrainian-friendly postings</div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> At a more detailed sector level, food retail, restaurants, and road transport stand out. These niches are particularly important for refugee and migrant labour-market integration.</p>
+<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34g.</strong> NACE divisions with the largest absolute number of Ukrainian-friendly postings</div>
 <div id="ukr-industries-count-chart"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> In absolute terms, restaurants, warehousing, and programming activities dominate Ukrainian-friendly postings. This shows that both lower-barrier service work and higher-skill IT employment matter for Ukrainian workers in Poland.</p>
 <p class="notes source-note">Source: Pracuj.pl + ESCO→NACE crosswalk. Only divisions with at least 500 postings are ranked.</p>
 </section>
 <section id="occupational-categories" class="level4 section-card">
 <h4 class="anchored" data-anchor-id="occupational-categories">Occupational categories</h4>
 <p>Using Pracuj.pl’s own narrow job categories (<code>job_category_narrow</code>), the tag is most prevalent in food-related and manual-labour roles — <em>Food products</em>, <em>Hospitality staff</em>, <em>Manual labour</em>, <em>Couriers / delivery</em> — and in hospitality and personal-services categories such as <em>Hotel operations</em> and <em>Hairdresser / beautician</em>. The absolute-volume ranking confirms that gastronomy, courier and warehouse categories together account for the bulk of Ukrainian-friendly hiring.</p>
-<div class="figure-caption-title"><strong>Figure 34i.</strong> Narrow job categories with the highest share of Ukrainian-friendly postings</div>
+<div class="figure-caption-title"><strong>Figure 34h.</strong> Narrow job categories with the highest share of Ukrainian-friendly postings</div>
 <div id="ukr-categories-narrow-share-chart"></div>
-<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34j.</strong> Narrow job categories with the largest absolute number of Ukrainian-friendly postings</div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> The tag is most prevalent in food-related, hospitality, manual-labour, courier, and personal-service categories. These are practical entry points for migrant employment policy.</p>
+<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34i.</strong> Narrow job categories with the largest absolute number of Ukrainian-friendly postings</div>
 <div id="ukr-categories-narrow-count-chart"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> High-volume Ukrainian-friendly hiring is concentrated in gastronomy, courier, warehouse, and related operational categories. This identifies where language support, credential recognition, and workplace integration could have the largest reach.</p>
 <p class="notes source-note">Source: Pracuj.pl <code>job_category_narrow</code>. Only categories with at least 500 postings are ranked.</p>
 </section>
 <section id="nace-sectors-ukrainian-friendly-vs-other-postings" class="level4 section-card">
 <h4 class="anchored" data-anchor-id="nace-sectors-ukrainian-friendly-vs-other-postings">NACE sectors — Ukrainian-friendly vs other postings</h4>
 <p>The Ukrainian-friendly tag is unevenly distributed across the economy. <strong>Transport (H)</strong>, <strong>hospitality (I)</strong> and <strong>manufacturing (C)</strong> show the largest positive gaps versus other postings — consistent with operational hiring in logistics, food service and plant work. <strong>Professional services (N)</strong> and <strong>finance (L)</strong> under-index sharply, reflecting credential and language barriers in those segments.</p>
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 34m.</strong> Share of postings with the Ukrainian-friendly tag, by NACE section</div>
-  <div id="chart-ukr-nace-sections" class="plotly-chart plotly-chart--wide" role="img" aria-label="Ukrainian-friendly share by NACE section"></div>
+  <div class="figure-caption-title"><strong>Figure 34j.</strong> Over- and under-representation of NACE sections among Ukrainian-friendly postings</div>
+  <p class="notes source-note" style="margin-top:0.35rem;">Bar = percentage-point gap between the share of postings within each segment. Sections below 0.2% in both segments are omitted.</p>
+  <div id="chart-ukr-nace-sections" class="plotly-chart plotly-chart--wide plotly-chart--tall" role="img" aria-label="Diverging bar chart of Ukrainian-friendly over- and under-representation by NACE section"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Transport, hospitality, and manufacturing over-index among Ukrainian-friendly postings, while professional services and finance under-index. This reflects both language and credential barriers and the occupational composition of migrant-accessible jobs.</p>
 </div>
-<p class="notes source-note">Source: Pracuj.pl 2025; occupation → NACE crosswalk. Bars show within-section shares for UA-tagged vs other postings.</p>
+<p class="notes source-note">Source: Pracuj.pl 2025; occupation → NACE crosswalk. Right-hand labels show within-segment shares for UA-tagged vs other postings.</p>
 </section>
 <section id="seniority-and-contract-types" class="level4 section-card">
 <h4 class="anchored" data-anchor-id="seniority-and-contract-types">Seniority and contract types</h4>
 <p>The tag overwhelmingly attaches to <strong>manual-worker</strong> roles — over a fifth of such postings are Ukrainian-friendly — and to a hybrid <code>manager / supervisor</code> shift-leader category common in retail and gastronomy. Specialist, expert and director roles see the tag much less. On the contract side, <strong>temporary employment contracts</strong> and <strong>contracts of mandate</strong> carry the tag most often, reflecting the prevalence of short-tenure agency-style hiring in the segments where Ukrainian workers are most actively recruited; standard permanent contracts and B2B contracts use the tag considerably less.</p>
 <div class="figure-caption-title"><strong>Figure 34k.</strong> Share of postings tagged 'Jobs for Ukrainians', by seniority level</div>
 <div id="ukr-seniority-chart"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> Ukrainian-friendly postings are concentrated in manual-worker and supervisor-type roles, while specialist and director roles use the tag less often. This suggests that the badge mainly supports operational rather than high-skill professional recruitment.</p>
 <div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34l.</strong> Share of postings tagged 'Jobs for Ukrainians', by contract type</div>
 <div id="ukr-contracts-chart"></div>
+<p class="figure-interpretation"><strong>Interpretation.</strong> Temporary and mandate contracts carry the tag more often than permanent or B2B contracts. This points to a relatively flexible and sometimes more precarious employment structure in migrant-accessible segments.</p>
 <p class="notes source-note">Source: Pracuj.pl <code>seniority_level</code> and <code>contract_types</code>. Multi-valued fields are split per posting; only categories with at least 500 postings are shown.</p>
 </section>
 </section>
@@ -1168,6 +1262,7 @@ flowchart LR
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 35.</strong> Top care-related occupations by posting volume (KZiS-mapped titles, 2025)</div>
   <div id="chart-care-top-occupations" class="plotly-chart plotly-chart--wide" role="img" aria-label="Top care-related occupations on Pracuj.pl"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Direct care demand captured by Pracuj.pl is small and concentrated in a limited set of occupations. This likely understates broader care-sector demand, especially in public and municipal services.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl 2025; KZiS-mapped occupation titles.</p>
 </section>
@@ -1178,15 +1273,18 @@ flowchart LR
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 36.</strong> Top ESCO skills in care-related offers</div>
     <div id="chart-care-top-skills" class="plotly-chart" role="img" aria-label="Top skills in care offers"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> Care-related postings combine hands-on care skills with general digital and management skills. This suggests that even direct care roles increasingly require coordination and basic administrative capabilities.</p>
   </div>
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 37.</strong> Top knowledge concepts in care-related offers</div>
     <div id="chart-care-top-knowledge" class="plotly-chart" role="img" aria-label="Top knowledge in care offers"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> Knowledge demand in care postings centres on paramedical practice and nursing-related knowledge. This confirms that care work often requires occupation-specific knowledge, not only generic empathy or assistance skills.</p>
   </div>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
   <div class="figure-caption-title"><strong>Figure 38.</strong> Care services vs NACE R86 healthcare — share of offers with each S-pillar skill</div>
   <div id="chart-care-s1s8-compare" class="plotly-chart plotly-chart--wide" role="img" aria-label="S1-S8 comparison care vs healthcare"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Care-service postings differ from the broader healthcare sector by placing more emphasis on assisting, caring, and management skills and less on ICT. This helps distinguish direct care roles from the wider healthcare labour market.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl ESCO skill mentions, 2025.</p>
 </section>
@@ -1198,33 +1296,230 @@ flowchart LR
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 39.</strong> Public-health BUR trainings as share of all BUR services (2016–2025)</div>
     <div id="chart-care-bur-ph-share" class="plotly-chart" role="img" aria-label="Public health training share in BUR over time"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health training remains a small share of BUR but has grown since 2022. This suggests rising policy and provider attention, though the scale remains limited relative to the full training catalogue.</p>
   </div>
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 40.</strong> ESCO skill-pillar mix in public-health BUR trainings (2025)</div>
     <div id="chart-care-ph-s1s8" class="plotly-chart" role="img" aria-label="Skill pillar distribution in public health BUR trainings"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health BUR training is strongly oriented toward assisting and caring skills, with additional communication and information skills. This profile is consistent with practical service-delivery training.</p>
   </div>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
   <div class="figure-caption-title"><strong>Figure 41.</strong> Top voivodeships for public-health BUR training services</div>
   <div id="chart-ph-regions" class="plotly-chart plotly-chart--wide" role="img" aria-label="Public health trainings by region"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health training supply is regionally concentrated, led by Śląskie, Pomorskie, and Małopolskie. Regional concentration may reflect provider location, funding availability, or local health-sector demand.</p>
 </div>
 <div class="chart-grid chart-grid--2" style="margin-top:1.25rem;">
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 42.</strong> Delivery modality — public-health BUR (2025)</div>
     <div id="chart-ph-modality" class="plotly-chart" role="img" aria-label="Modality of public health trainings"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health training is overwhelmingly in-person, reflecting the practical and hands-on nature of many care and health competences. This may limit access for workers in regions with fewer providers.</p>
   </div>
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 43.</strong> Duration distribution — public-health BUR (2025)</div>
     <div id="chart-ph-duration" class="plotly-chart" role="img" aria-label="Duration of public health trainings"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health training is mostly short to medium length. This suggests a focus on modular competence development rather than long formal qualification pathways.</p>
   </div>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
   <div class="figure-caption-title"><strong>Figure 44.</strong> Top skills taught in public-health BUR trainings</div>
   <div id="chart-ph-top-skills" class="plotly-chart plotly-chart--wide" role="img" aria-label="Top skills in public health BUR"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> The leading skills taught include elderly care, first aid, rehabilitation, and related practical care competences. These align with ageing-related service needs and the operational requirements of care delivery.</p>
 </div>
 <p class="notes source-note">Source: BUR 2016–2025; public-health subset via service category and keyword rules.</p>
 <p>The demand–supply comparison for care skills should be read alongside the skills-mismatch caveats: Pracuj.pl under-represents public hospitals and municipal social care, while BUR over-indexes subsidised care reskilling — so apparent <em>over-supply</em> of assisting &amp; caring skills partly reflects complementary coverage of the two data sources.</p>
 </section>
+</section>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
+<div class="section-card">
+<p>This report demonstrates that online labour-market intelligence can provide a timely and granular view of Poland’s evolving skills landscape. By combining vacancy data from <a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a> with training-service data from <a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych (BUR)</a>, the analysis offers a structured comparison between the skills employers request and the skills supplied through registered training provision. While neither source should be interpreted as a complete representation of the labour market or the training system, together they provide valuable evidence on the direction of skills demand, the orientation of training supply, and potential areas of misalignment.</p>
+<p>The findings suggest that Poland’s skills system faces a dual challenge. On the one hand, employers continue to demand a broad set of foundational and transversal skills, including communication, collaboration, management, self-organisation, and business-related competences. These skills are not confined to a single sector or occupation; rather, they underpin productivity across much of the economy. On the other hand, demand for more specialised skills linked to digitalisation, ICT, data use, artificial intelligence, and the green transition is becoming increasingly visible. This combination points to a labour market in which both general employability skills and more advanced technical capabilities are central to future competitiveness.</p>
+<p>The comparison with BUR training provision shows that the current training offer only partly reflects this structure of demand. Training supply is relatively more concentrated in care, health, welfare, services, and machinery-related areas, while employer demand is more strongly oriented toward management, business administration, digital, ICT, communication, and teamwork-related skills. This does not mean that the areas emphasised in training supply are unimportant. Many of them respond to genuine social needs, including demographic ageing, health-care pressures, and demand for care-related services. However, the observed differences indicate that training policy may need to more explicitly balance social priorities with the skills required for productivity growth, organisational upgrading, and digital transformation.</p>
+<p>Digital skills deserve particular attention. The analysis shows that employer demand is not limited to basic digital literacy. Advanced digital skills constitute a substantial share of classified digital-skill mentions, suggesting that many firms are already seeking capabilities related to data, software, ICT systems, and more complex digital tasks. At the same time, AI-related demand remains relatively concentrated in knowledge-intensive sectors, especially professional, scientific, technical, information, and communication activities. This pattern is consistent with an early stage of diffusion, where AI capabilities are not yet universal but are strategically important for high-productivity segments of the economy. Skills policy should therefore avoid treating AI as a niche technology while also recognising that broad-based AI adoption will require complementary managerial, organisational, and transversal skills.</p>
+<p>Green skills show a different pattern. Their regional variation is moderate, but their sectoral concentration is clearer, with stronger intensity in utilities, energy-related activities, agriculture, public administration, and selected technical fields. At the same time, many green-skill mentions appear in larger sectors where the green share is lower but the absolute number of affected workers may be substantial. This distinction matters for policy design. Targeted sectoral interventions are needed in high-intensity green-transition sectors, while broader upskilling efforts should ensure that green competences also reach mainstream occupations in trade, manufacturing, construction, and professional services.</p>
+<p>The report also points to the importance of inclusion-oriented skills policy. Job postings explicitly open to Ukrainian workers are concentrated in specific sectors and occupations, including hospitality, transport, manufacturing, warehousing, food services, and selected IT-related roles. This suggests that migrant integration policies should combine general labour-market access measures with sector-specific support, including language training, recognition of prior experience, workplace integration, and pathways from entry-level jobs toward more stable and higher-productivity employment. Similarly, the analysis of care-related work and public-health training highlights the need to interpret online vacancy data in relation to coverage patterns, as some socially important areas of labour demand may be less visible in private job boards than in other administrative or sector-specific sources.</p>
+<p>A key methodological conclusion is that no single data source provides a complete view of skills demand and supply. The value of online labour-market data lies in its timeliness, granularity, and rich textual content, but also in the fact that it captures a particular segment of the labour market. In the Polish context, Pracuj.pl provides especially strong coverage of market-based recruitment for white-collar, specialist, managerial, and ICT-related occupations. Official vacancy registers and public employment service data, by contrast, tend to capture a different part of the labour market, including more blue-collar, lower-wage, public-sector, and locally recruited vacancies. These sources should therefore not be treated as competing measures of the same phenomenon, but as complementary windows into different segments of labour demand.</p>
+<p>The same logic applies to the supply side. BUR data provide detailed and verified information on registered training services, but they represent only one part of the broader skills supply ecosystem. A fuller assessment of skills provision would require linking BUR data with additional sources, such as curricula from vocational and higher education institutions, adult-learning programmes, sectoral training initiatives, certification schemes, and employer-provided training. Integrating these sources would make it possible to compare not only the skills demanded by employers and advertised by training providers, but also the skills embedded in formal education pathways and other learning opportunities.</p>
+<p>A promising next step is therefore to build a more integrated skills intelligence system that combines multiple verified sources with different coverage profiles. Such a system would use online job postings, official vacancy registers, public employment service data, training registries, curricula, and possibly stated preference studies as complementary evidence. Online and administrative data can reveal observed demand and available supply, while stated preference studies can help explain worker and employer choices, constraints, and willingness to participate in training. Together, these sources would provide a more balanced picture of Poland’s skills ecosystem and support better-targeted policy decisions.</p>
+<p>For Poland, the results support a shift from static training planning toward a more adaptive skills system. Such a system would regularly compare employer demand with training supply, identify emerging skill gaps earlier, and provide evidence for reallocating public funding toward areas with strong economic and social returns. This does not imply that training provision should mechanically follow current vacancies. Public policy must also account for long-term development goals, demographic pressures, regional cohesion, and inclusion. However, systematic skills intelligence can help ensure that these priorities are pursued with a clearer understanding of labour-market needs.</p>
+<p>Overall, the analysis suggests that Poland has a substantial opportunity to strengthen the alignment between its training ecosystem and the changing structure of work. Better alignment would require expanding provision in digital, ICT, business, management, and transversal skills, while preserving targeted support for care, health, green transition, and migrant integration.</p>
+</div>
+</section>
+<section id="technical-annex" class="level2">
+<h2 class="anchored" data-anchor-id="technical-annex">Technical annex</h2>
+<section id="nlp-processing-methods" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="nlp-processing-methods">NLP Processing Methods</h3>
+<p>This annex documents the natural-language-processing steps behind the skills measures used in the report. The main Methodology section shows the six-step pipeline; this annex explains what happens inside those steps and why the choices matter for interpretation.</p>
+</section>
+<section id="pipeline-step-01" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="pipeline-step-01">Step 01 — Language Detection</h3>
+<p>Most Pracuj.pl postings are in Polish, but a non-trivial share contains English titles, English descriptions, or mixed-language text. We detect the language of both the title and the full description so that Polish text can pass through unchanged while non-Polish fields are routed to translation.</p>
+<p>Language detection is applied per field rather than per posting because a common online-vacancy pattern is an English title with a Polish body, or the reverse. This avoids translating already-usable Polish text and keeps the downstream corpus consistent.</p>
+</section>
+<section id="pipeline-step-02" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="pipeline-step-02">Step 02 — Translation</h3>
+<p>All downstream extraction is run on a harmonised Polish text field. Postings already detected as Polish are kept unchanged; English and other-language fields are translated into Polish using Gemma 3 Translate 4B. Both original and translated fields are retained so that analysts can inspect source text when reviewing specific matches.</p>
+<p>This step is needed because the same skill can otherwise appear in several languages within one analytical sample. Translation makes skill extraction, job-title standardisation, and taxonomy matching operate on a common-language input rather than mixing Polish, English, and hybrid phrasing.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 40, 'rankSpacing': 50}} }%%
+flowchart LR
+    A["Raw posting"] --&gt; B{"Language&lt;br/&gt;detected?"}
+    B --&gt;|"Already Polish"| C["Keep original text"]
+    B --&gt;|"English / other"| D["Gemma 3 Translate 4B"]
+    D --&gt;|"title + description"| E["Translated Polish text"]
+    C --&gt; F["Unified Polish corpus"]
+    E --&gt; F
+</pre>
+</div>
+<p></p><figcaption> Translation routing</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="pipeline-step-03" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="pipeline-step-03">Step 03 — Skill-Sentence Filtering</h3>
+<p>Job descriptions contain many sentences that are not skill requirements: benefits, company history, application instructions, equal-opportunity statements, and legal clauses. Before mapping to skills, we isolate the sentences that actually describe required competences, tasks, tools, or knowledge.</p>
+<p>We use a fine-tuned BERT-style sentence classifier based on the SkillLess approach. Each sentence is labelled as skill-relevant or non-skill. In this sample, roughly 40–60% of description text is filtered out before semantic matching. This improves precision because the ESCO matcher only sees sentences that plausibly contain skills.</p>
+</section>
+<section id="pipeline-step-04" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="pipeline-step-04">Step 04 — ESCO Skill Mapping</h3>
+<p>Skill-relevant sentences are mapped to the European Skills, Competences, Qualifications and Occupations taxonomy (ESCO), which contains roughly 13,000 standardised skill and competence entries. ESCO provides the common language that makes job postings and BUR training descriptions comparable.</p>
+<p>The matching model is a custom contrastive bi-encoder. It places job-ad sentences and ESCO skill labels in a shared embedding space: semantically matching pairs are pulled closer together, while non-matching pairs are pushed apart. For example, a sentence such as <em>experience with SQL and data visualisation</em> should be close to ESCO entries such as <em>use query languages</em> and <em>manage databases</em>, but far from unrelated labels such as <em>negotiate contracts</em>.</p>
+<p>Hard negatives are central to training. The model must distinguish nearby but incorrect skills, such as <em>use programming languages</em> versus <em>use query languages</em>, not only obviously unrelated concepts. This makes the model better suited to real vacancy text, where employers describe skills in informal, overlapping, and sometimes ambiguous ways.</p>
+<svg viewbox="0 0 620 370" width="620" style="font-family: system-ui, -apple-system, sans-serif; max-width: 100%; display: block; margin: 1.2rem auto;">
+  <circle cx="310" cy="185" r="155" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,3"></circle>
+  <text x="310" y="37" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#dc2626">Easy negatives</text>
+  <circle cx="310" cy="185" r="105" fill="#fefce8" stroke="#fde68a" stroke-width="1.5" stroke-dasharray="5,3"></circle>
+  <text x="310" y="87" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#b45309">Hard negatives</text>
+  <circle cx="310" cy="185" r="52" fill="#dcfce7" stroke="#86efac" stroke-width="1.5" stroke-dasharray="5,3"></circle>
+  <text x="310" y="141" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#16a34a">Positive matches</text>
+  <circle cx="310" cy="185" r="6" fill="#1e40af"></circle>
+  <text x="310" y="203" text-anchor="middle" font-size="10.5px" font-weight="700" fill="#1e293b">"experience with SQL</text>
+  <text x="310" y="215" text-anchor="middle" font-size="10.5px" font-weight="700" fill="#1e293b">and data visualisation"</text>
+  <circle cx="282" cy="159" r="5" fill="#16a34a" opacity="0.85"></circle>
+  <text x="282" y="150" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">use query languages</text>
+  <circle cx="332" cy="167" r="5" fill="#16a34a" opacity="0.85"></circle>
+  <text x="332" y="158" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">manage databases</text>
+  <circle cx="230" cy="135" r="4.5" fill="#b45309" opacity="0.85"></circle>
+  <text x="230" y="126" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">use programming languages</text>
+  <circle cx="375" cy="240" r="4.5" fill="#b45309" opacity="0.85"></circle>
+  <text x="375" y="231" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">develop software</text>
+  <circle cx="390" cy="123" r="4.5" fill="#b45309" opacity="0.85"></circle>
+  <text x="390" y="114" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">analyse data</text>
+  <circle cx="190" cy="280" r="4" fill="#dc2626" opacity="0.85"></circle>
+  <text x="190" y="271" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">negotiate contracts</text>
+  <circle cx="425" cy="295" r="4" fill="#dc2626" opacity="0.85"></circle>
+  <text x="425" y="286" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">manage human resources</text>
+  <circle cx="210" cy="65" r="4" fill="#dc2626" opacity="0.85"></circle>
+  <text x="210" y="56" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">drive vehicles</text>
+  <defs><marker id="arrowGreenAnnex" viewbox="0 0 10 10" refx="8" refy="5" markerwidth="6" markerheight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"></path></marker></defs>
+  <line x1="288" y1="163" x2="296" y2="174" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowGreenAnnex)" opacity="0.7"></line>
+  <line x1="328" y1="170" x2="321" y2="176" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowGreenAnnex)" opacity="0.7"></line>
+  <text x="310" y="362" text-anchor="middle" font-size="10.5px" fill="#64748b">Simplified 2-D projection of the embedding space (actual representations are high-dimensional). Own elaboration.</text>
+</svg>
+<p>Candidate skills are ranked by cosine similarity. A calibrated similarity threshold is then applied to remove low-confidence matches and control the number of skills assigned to each posting or training description. The threshold is tuned on held-out benchmark data to balance precision and recall.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart TD
+    A["Skill-relevant sentences"] --&gt;|"encode"| B["Contrastive bi-encoder"]
+    B --&gt;|"768-d vector"| C["Sentence embedding"]
+
+    D[("ESCO skill catalogue&lt;br/&gt;~13 000 entries")] --&gt;|"pre-computed&lt;br/&gt;768-d vectors"| E["Reference embedding matrix"]
+
+    C --&gt; F{"Cosine similarity ranking"}
+    E --&gt; F
+
+    F --&gt;|"top-k candidates"| G["Candidate ESCO skills&lt;br/&gt;with similarity scores"]
+    G --&gt;|"score ≥ calibrated threshold"| I["Final matched ESCO skills"]
+</pre>
+</div>
+<p></p><figcaption> Skill-to-ESCO matching pipeline</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="pipeline-step-05" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="pipeline-step-05">Step 05 — Job-Title Standardisation</h3>
+<p>Raw job titles are highly variable. The same role can appear as <em>Inżynier oprogramowania</em>, <em>Backend Developer</em>, <em>Programista</em>, <em>Full-Stack Developer</em>, or <em>Senior Software Engineer</em>. To support occupational analysis, titles are standardised to ESCO occupations.</p>
+<p>Titles are first cleaned by removing common noise such as embedded locations, salaries, and seniority prefixes. Cleaned titles are embedded with a labour-market language model and matched to a pre-computed index of ESCO occupation labels using nearest-neighbour search. The best matching occupation and its similarity score are retained for downstream analysis and quality filtering.</p>
+<p>Where a title is ambiguous, extracted skill context helps interpretation: two postings with the same generic title can map differently if their skill profiles imply different occupations.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart TD
+    A["Translated job title"] --&gt; B["Title cleaning&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;(remove locations, salaries, prefixes)&lt;/i&gt;"]
+    B --&gt;|"cleaned text"| C["JobBERT-v3 encoder"]
+    C --&gt;|"768-d vector"| D["Title embedding"]
+
+    D --&gt;|"query"| F{"FAISS nearest-neighbour search"}
+
+    E[("ESCO occupation index&lt;br/&gt;~3 000 occupations&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;pre-computed 768-d vectors&lt;/i&gt;")] --&gt;|"index"| F
+
+    F --&gt;|"best match + cosine score"| G["Standardised ESCO occupation"]
+</pre>
+</div>
+<p></p><figcaption> Job title standardisation</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="pipeline-step-06" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="pipeline-step-06">Step 06 — Sector Classification (ISIC/NACE)</h3>
+<p>Sector analysis requires assigning postings to an economic activity. The pipeline maps standardised ESCO occupations to ISIC/NACE activity codes using the official ESCO-to-NACE crosswalk. At the two-digit division level used in this report, NACE Rev.&nbsp;2.1 and ISIC Rev.&nbsp;5 share the same division codes and boundaries, so results are directly comparable across the two systems.</p>
+<p>The assignment uses three tiers. If an occupation maps to a single code, the assignment is deterministic. If all candidate codes share the same two-digit division, that division is assigned directly. If candidates span several divisions, the job title and description are compared with candidate sector labels using multilingual sentence embeddings, and the highest-scoring candidate is selected. A confidence margin is retained for auditing.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 30, 'rankSpacing': 45, 'curve': 'basis'}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart LR
+    A["ESCO occupation&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;from Step 05&lt;/i&gt;"]
+      --&gt;|"look up"| B[("ESCO → ISIC/NACE crosswalk&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;official mapping table&lt;/i&gt;")]
+    B --&gt; C{"Number of candidate&lt;br/&gt;ISIC/NACE codes?"}
+
+    C --&gt;|"exactly 1"| D["Deterministic&lt;br/&gt;assignment"]
+    C --&gt;|"≥ 2, same 2-digit code"| E["Assign shared&lt;br/&gt;ISIC/NACE division"]
+    C --&gt;|"≥ 2, different divisions"| F["Embedding-based disambiguation&lt;br/&gt;&lt;i style='font-size:0.8em;color:#64748b'&gt;encode job text + each candidate ISIC/NACE label&lt;/i&gt;"]
+
+    F --&gt;|"384-d vectors"| H{"Cosine similarity&lt;br/&gt;comparison"}
+    H --&gt;|"highest score"| I["Assigned ISIC/NACE code&lt;br/&gt;+ confidence margin"]
+
+    D --&gt; J["Final sector label"]
+    E --&gt; J
+    I --&gt; J
+
+    classDef step fill:#eef4fb,stroke:#1d4e89,stroke-width:1px,color:#15314B;
+    classDef data fill:#fef3c7,stroke:#b45309,stroke-width:1px,color:#7c2d12;
+    classDef out  fill:#dcfce7,stroke:#166534,stroke-width:1px,color:#14532d;
+    class A,D,E,F,I step;
+    class B data;
+    class C,H step;
+    class J out;
+</pre>
+</div>
+<p></p><figcaption> ISIC/NACE sector classification</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="validation-and-benchmarking" class="level3 section-card">
+<h3 class="anchored" data-anchor-id="validation-and-benchmarking">Validation and Benchmarking</h3>
+<p>The ESCO skill-matching component is benchmarked against the HOUSE and TECH datasets used in recent ESCO skill-extraction research (<span class="paper-ref" data-tooltip="Decorte, J. J., Van Hautte, J., Develder, C., and Demeester, T. 2025. Efficient Text Encoders for Labor Market Analysis. IEEE Access."><a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/11079977/" target="_blank" rel="noopener noreferrer">Decorte et al.&nbsp;(2025)</a></span>). These datasets contain job postings annotated with gold-standard ESCO skill labels by human experts. Against these benchmarks, the pipeline improves reported RP@5 performance by roughly three percentage points relative to the current state of the art.</p>
+<p>The benchmark is not a guarantee that every individual match is correct. Rather, it supports the use of the extracted skills for aggregate composition analysis: sectoral shares, regional shares, demand-supply mismatch, and robustness checks.</p>
 </section>
 </section>
 <section id="references" class="level2">
@@ -1255,6 +1550,8 @@ flowchart LR
 <script src="assets/ukrainian_friendly_data.js"></script>
 <script src="assets/ukrainian_friendly_powiat_data.js"></script>
 <script src="assets/ukrainian_friendly.js"></script>
+<script src="assets/ukrainian_friendly_decomposition_data.js"></script>
+<script src="assets/ukrainian_friendly_decomposition.js"></script>
 <script src="assets/methodology_charts_data.js"></script>
 <script src="assets/methodology_charts.js"></script>
 <script src="assets/data_overview_data.js"></script>

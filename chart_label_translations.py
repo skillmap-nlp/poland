@@ -1,4 +1,4 @@
-"""Shared English display labels for Plotly charts in the Quarto report."""
+"""Shared display labels for Plotly charts in the Quarto report."""
 from __future__ import annotations
 
 import json
@@ -10,46 +10,46 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 
 VOIVODESHIP_EN: dict[str, str] = {
-    "dolnośląskie": "Lower Silesia",
-    "kujawsko-pomorskie": "Kuyavia-Pomerania",
-    "lubelskie": "Lublin",
-    "lubuskie": "Lubusz",
-    "łódzkie": "Lodz",
-    "małopolskie": "Lesser Poland",
-    "mazowieckie": "Masovia",
-    "mazowieckie regionalny": "Masovia (regional BUR)",
-    "opolskie": "Opole",
-    "podkarpackie": "Subcarpathia",
+    "dolnośląskie": "Dolnośląskie",
+    "kujawsko-pomorskie": "Kujawsko-pomorskie",
+    "lubelskie": "Lubelskie",
+    "lubuskie": "Lubuskie",
+    "łódzkie": "Łódzkie",
+    "małopolskie": "Małopolskie",
+    "mazowieckie": "Mazowieckie",
+    "mazowieckie regionalny": "Mazowieckie (regional BUR)",
+    "opolskie": "Opolskie",
+    "podkarpackie": "Podkarpackie",
     "podlaskie": "Podlaskie",
-    "pomorskie": "Pomerania",
-    "śląskie": "Silesia",
-    "świętokrzyskie": "Holy Cross",
-    "warmińsko-mazurskie": "Warmia-Masuria",
-    "wielkopolskie": "Greater Poland",
-    "zachodniopomorskie": "West Pomerania",
-    "brak": "Unspecified",
+    "pomorskie": "Pomorskie",
+    "śląskie": "Śląskie",
+    "świętokrzyskie": "Świętokrzyskie",
+    "warmińsko-mazurskie": "Warmińsko-mazurskie",
+    "wielkopolskie": "Wielkopolskie",
+    "zachodniopomorskie": "Zachodniopomorskie",
+    "brak": "Brak danych",
 }
 
 # BUR region field uses title-case Polish names.
 REGION_DISPLAY_EN: dict[str, str] = {
-    "Brak": "Unspecified",
-    "Dolnośląskie": "Lower Silesia",
-    "Kujawsko-pomorskie": "Kuyavia-Pomerania",
-    "Lubelskie": "Lublin",
-    "Lubuskie": "Lubusz",
-    "Łódzkie": "Lodz",
-    "Małopolskie": "Lesser Poland",
-    "Mazowieckie": "Masovia",
-    "Mazowieckie regionalny": "Masovia (regional BUR)",
-    "Opolskie": "Opole",
-    "Podkarpackie": "Subcarpathia",
+    "Brak": "Brak danych",
+    "Dolnośląskie": "Dolnośląskie",
+    "Kujawsko-pomorskie": "Kujawsko-pomorskie",
+    "Lubelskie": "Lubelskie",
+    "Lubuskie": "Lubuskie",
+    "Łódzkie": "Łódzkie",
+    "Małopolskie": "Małopolskie",
+    "Mazowieckie": "Mazowieckie",
+    "Mazowieckie regionalny": "Mazowieckie (regional BUR)",
+    "Opolskie": "Opolskie",
+    "Podkarpackie": "Podkarpackie",
     "Podlaskie": "Podlaskie",
-    "Pomorskie": "Pomerania",
-    "Śląskie": "Silesia",
-    "Świętokrzyskie": "Holy Cross",
-    "Warmińsko-mazurskie": "Warmia-Masuria",
-    "Wielkopolskie": "Greater Poland",
-    "Zachodniopomorskie": "West Pomerania",
+    "Pomorskie": "Pomorskie",
+    "Śląskie": "Śląskie",
+    "Świętokrzyskie": "Świętokrzyskie",
+    "Warmińsko-mazurskie": "Warmińsko-mazurskie",
+    "Wielkopolskie": "Wielkopolskie",
+    "Zachodniopomorskie": "Zachodniopomorskie",
 }
 
 BUR_CATEGORY_EN: dict[str, str] = {
@@ -219,7 +219,7 @@ def voivodeship_en(slug: str) -> str:
 def region_display_en(name: str) -> str:
     key = (name or "").strip()
     if not key:
-        return "Unspecified"
+        return "Brak danych"
     if key in REGION_DISPLAY_EN:
         return REGION_DISPLAY_EN[key]
     low = key.lower()

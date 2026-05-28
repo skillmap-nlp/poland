@@ -17,7 +17,7 @@
     new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(value);
 
   const titleVoiv = (row) =>
-    row.voivodeship_en || T.voivodeshipLabel(row.voivodeship);
+    T.voivodeshipLabel(row.voivodeship);
 
   const rowsOffer = [...rows].sort(
     (a, b) => b.offers_per_100k_lf - a.offers_per_100k_lf
@@ -51,14 +51,14 @@
     const cardsEl = document.getElementById("summary-cards");
     cardsEl.innerHTML = [
       {
-        label: "Mapped job offers",
-        value: fmtInt(meta.job_offers_total_mapped),
-        subtext: "Source: Pracuj.pl",
+        label: "Online job postings",
+        value: "~733k",
+        subtext: "Pracuj.pl, 2025 (full portal coverage)",
       },
       {
-        label: "Mapped trainings (2025)",
-        value: fmtInt(meta.trainings_total_with_voivodeship),
-        subtext: "Source: Baza Usług Rozwojowych",
+        label: "Training services",
+        value: "~131k",
+        subtext: "Baza Usług Rozwojowych, 2025",
       },
       {
         label: "Highest demand intensity",
@@ -88,6 +88,7 @@
   function renderMap() {
     const locations = rows.map((row) => row.voivodeship);
     const customdata = rows.map((row) => [
+      titleVoiv(row),
       fmtInt(row.offers),
       fmtInt(row.trainings),
       fmtInt(row.labour_force_2025_avg),
@@ -114,12 +115,12 @@
           outlinewidth: 0,
         },
         hovertemplate:
-          "<b>%{location}</b><br>" +
+          "<b>%{customdata[0]}</b><br>" +
           "Job offers per 100k LF: %{z:.0f}<br>" +
-          "Job offers: %{customdata[0]}<br>" +
-          "Trainings 2025: %{customdata[1]}<br>" +
-          "Labour force (avg. 2025): %{customdata[2]}<br>" +
-          "National share of offers: %{customdata[3]}<extra></extra>",
+          "Job offers: %{customdata[1]}<br>" +
+          "Trainings 2025: %{customdata[2]}<br>" +
+          "Labour force (avg. 2025): %{customdata[3]}<br>" +
+          "National share of offers: %{customdata[4]}<extra></extra>",
         visible: true,
       },
       {
@@ -140,12 +141,12 @@
           outlinewidth: 0,
         },
         hovertemplate:
-          "<b>%{location}</b><br>" +
+          "<b>%{customdata[0]}</b><br>" +
           "Trainings 2025 per 100k LF: %{z:.0f}<br>" +
-          "Trainings 2025: %{customdata[1]}<br>" +
-          "Job offers: %{customdata[0]}<br>" +
-          "Labour force (avg. 2025): %{customdata[2]}<br>" +
-          "National share of trainings: %{customdata[4]}<extra></extra>",
+          "Trainings 2025: %{customdata[2]}<br>" +
+          "Job offers: %{customdata[1]}<br>" +
+          "Labour force (avg. 2025): %{customdata[3]}<br>" +
+          "National share of trainings: %{customdata[5]}<extra></extra>",
         visible: false,
       },
     ];
@@ -255,7 +256,7 @@
       const { key, direction } = sortState;
       const dir = direction === "asc" ? 1 : -1;
       if (key === "voivodeship") {
-        return titleVoiv(a).localeCompare(titleVoiv(b), "en") * dir;
+        return titleVoiv(a).localeCompare(titleVoiv(b), "pl") * dir;
       }
       return ((a[key] || 0) - (b[key] || 0)) * dir;
     });

@@ -282,21 +282,28 @@
   }
 
   function renderCarePhS1s8() {
-    const rows = payload.care.public_health_s1s8;
+    const rows = payload.care.public_health_s1s8
+      .slice()
+      .sort((a, b) => b.share_pct - a.share_pct);
+    const labels = rows.map(
+      (r) => r.label || `${r.code} · ${r.title}`
+    );
     plot("chart-care-ph-s1s8", [
       {
         type: "bar",
-        x: rows.map((r) => r.label || r.title),
-        y: rows.map((r) => r.share_pct),
+        orientation: "h",
+        y: labels,
+        x: rows.map((r) => r.share_pct),
         marker: { color: T.supply },
         customdata: rows.map((r) => r.code),
-        hovertemplate: "<b>%{x}</b> (%{customdata})<br>%{y:.1f}%<extra></extra>",
+        hovertemplate:
+          "<b>%{y}</b> (%{customdata})<br>Share: %{x:.1f}%<extra></extra>",
       },
     ], {
-      margin: { l: 48, r: 16, t: 8, b: 40 },
-      height: 300,
-      xaxis: { title: "ESCO skill pillar", tickangle: -25 },
-      yaxis: { ticksuffix: "%", gridcolor: T.grid },
+      margin: { l: 300, r: 16, t: 8, b: 36 },
+      height: Math.max(280, rows.length * 44 + 48),
+      xaxis: { ticksuffix: "%", range: [0, 100], gridcolor: T.grid },
+      yaxis: { autorange: "reversed", tickfont: { size: 11 } },
     });
   }
 
@@ -439,31 +446,149 @@
   }
 
   function renderUkrNace() {
-    const rows = payload.ukr_nace_sections.slice().sort((a, b) => b.diff_pp - a.diff_pp);
+    const UKR_POS = "#1d6fa8";
+    const UKR_NEG = "#cf5c4f";
+    const SHARE_UA_X = 0.8;
+    const SHARE_OTHER_X = 0.96;
+    const rows = payload.ukr_nace_sections
+      .slice()
+      .sort((a, b) => b.diff_pp - a.diff_pp);
+    const labels = rows.map((r) => r.chart_label || `${r.code}  ·  ${r.label}`);
+    const diffs = rows.map((r) => r.diff_pp);
+    const colors = diffs.map((d) =>
+      d > 0 ? UKR_POS : d < 0 ? UKR_NEG : T.muted
+    );
+    const absMax = Math.max(...diffs.map((d) => Math.abs(d)), 1);
+    const labelPad = absMax * 0.06;
+
+    const ppAnnotations = rows.map((r, i) => {
+      const d = r.diff_pp;
+      const color = d > 0 ? UKR_POS : d < 0 ? UKR_NEG : T.muted;
+      return {
+        x: d >= 0 ? d + labelPad : d - labelPad,
+        y: labels[i],
+        xref: "x",
+        yref: "y",
+        text: `${d > 0 ? "+" : ""}${d.toFixed(1)} pp`,
+        showarrow: false,
+        xanchor: d >= 0 ? "left" : "right",
+        font: { size: 10, color, family: T.font },
+      };
+    });
+
+    const shareHeader = [
+      {
+        x: (SHARE_UA_X + SHARE_OTHER_X) / 2,
+        y: 1.045,
+        xref: "paper",
+        yref: "paper",
+        text: "<b>Share of segment</b>",
+        showarrow: false,
+        xanchor: "center",
+        font: { size: 10, color: "#6B7785" },
+      },
+      {
+        x: SHARE_UA_X,
+        y: 1.012,
+        xref: "paper",
+        yref: "paper",
+        text: "UA-friendly",
+        showarrow: false,
+        xanchor: "right",
+        font: { size: 9, color: "#94A0AD" },
+      },
+      {
+        x: SHARE_OTHER_X,
+        y: 1.012,
+        xref: "paper",
+        yref: "paper",
+        text: "Other",
+        showarrow: false,
+        xanchor: "right",
+        font: { size: 9, color: "#94A0AD" },
+      },
+    ];
+
+    const shareRows = rows.flatMap((r, i) => [
+      {
+        x: SHARE_UA_X,
+        y: labels[i],
+        xref: "paper",
+        yref: "y",
+        text: `${r.ukr_pct.toFixed(1)}%`,
+        showarrow: false,
+        xanchor: "right",
+        font: { size: 10, color: "#6B7785", family: "ui-monospace, monospace" },
+      },
+      {
+        x: SHARE_OTHER_X,
+        y: labels[i],
+        xref: "paper",
+        yref: "y",
+        text: `${r.other_pct.toFixed(1)}%`,
+        showarrow: false,
+        xanchor: "right",
+        font: { size: 10, color: "#6B7785", family: "ui-monospace, monospace" },
+      },
+    ]);
+
     plot("chart-ukr-nace-sections", [
       {
         type: "bar",
-        name: "Ukrainian-friendly",
-        x: rows.map((r) => r.label),
-        y: rows.map((r) => r.ukr_pct),
-        marker: { color: T.demand },
-        hovertemplate: "<b>%{x}</b><br>UA-friendly: %{y:.1f}%<extra></extra>",
-      },
-      {
-        type: "bar",
-        name: "Other postings",
-        x: rows.map((r) => r.label),
-        y: rows.map((r) => r.other_pct),
-        marker: { color: T.muted },
-        hovertemplate: "<b>%{x}</b><br>Other: %{y:.1f}%<extra></extra>",
+        orientation: "h",
+        y: labels,
+        x: diffs,
+        marker: { color: colors },
+        customdata: rows.map((r) => [r.code, r.ukr_pct, r.other_pct]),
+        hovertemplate:
+          "<b>%{y}</b><br>" +
+          "Gap (UA-friendly − other): %{x:+.1f} pp<br>" +
+          "UA-friendly share: %{customdata[1]:.1f}%<br>" +
+          "Other postings share: %{customdata[2]:.1f}%<extra></extra>",
       },
     ], {
-      barmode: "group",
-      margin: { l: 48, r: 16, t: 8, b: 110 },
-      height: 380,
-      xaxis: { tickangle: -35 },
-      yaxis: { ticksuffix: "%", gridcolor: T.grid },
-      legend: { orientation: "h", y: 1.08, x: 0 },
+      margin: { l: 360, r: 28, t: 52, b: 56 },
+      height: Math.max(560, rows.length * 34 + 96),
+      xaxis: {
+        domain: [0, 0.74],
+        title: "Percentage-point gap (UA-friendly minus other postings)",
+        range: [-absMax * 1.28, absMax * 1.12],
+        zeroline: true,
+        zerolinecolor: "#cbd5e1",
+        tickformat: "+.0f",
+        ticksuffix: " pp",
+        gridcolor: T.grid,
+      },
+      yaxis: {
+        domain: [0.06, 0.98],
+        autorange: "reversed",
+        tickfont: { size: 11 },
+      },
+      showlegend: false,
+      annotations: [
+        ...shareHeader,
+        ...ppAnnotations,
+        ...shareRows,
+        {
+          x: 0.01,
+          y: -0.12,
+          xref: "paper",
+          yref: "paper",
+          text: "<b>← under-represented vs other postings</b>",
+          showarrow: false,
+          font: { size: 10, color: UKR_NEG },
+        },
+        {
+          x: 0.72,
+          y: -0.12,
+          xref: "paper",
+          yref: "paper",
+          text: "<b>over-represented vs other postings →</b>",
+          showarrow: false,
+          xanchor: "right",
+          font: { size: 10, color: UKR_POS },
+        },
+      ],
     });
   }
 
@@ -544,20 +669,25 @@
   }
 
   function renderPhModality() {
-    const rows = payload.care.public_health_modality;
+    const rows = payload.care.public_health_modality
+      .slice()
+      .sort((a, b) => b.pct - a.pct);
     plot("chart-ph-modality", [
       {
         type: "bar",
-        x: rows.map((r) => r.label.slice(0, 28)),
-        y: rows.map((r) => r.pct),
+        orientation: "h",
+        y: rows.map((r) => r.label),
+        x: rows.map((r) => r.pct),
         marker: { color: T.demand },
-        hovertemplate: "<b>%{x}</b><br>%{y:.1f}%<extra></extra>",
+        customdata: rows.map((r) => r.value),
+        hovertemplate:
+          "<b>%{y}</b><br>Share: %{x:.1f}%<br>Services: %{customdata:,}<extra></extra>",
       },
     ], {
-      margin: { l: 48, r: 16, t: 8, b: 72 },
-      height: 280,
-      xaxis: { tickangle: -25 },
-      yaxis: { ticksuffix: "%", gridcolor: T.grid },
+      margin: { l: 280, r: 16, t: 8, b: 36 },
+      height: Math.max(260, rows.length * 44 + 48),
+      xaxis: { ticksuffix: "%", range: [0, 100], gridcolor: T.grid },
+      yaxis: { autorange: "reversed", tickfont: { size: 11 } },
     });
   }
 

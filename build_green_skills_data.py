@@ -41,8 +41,7 @@ def main():
         r["total_offers"] = int(r["total_offers"])
         r["green_offers"] = int(r["green_offers"])
         r["green_pct"] = float(r["green_pct"])
-        if "voivodeship_en" not in r:
-            r["voivodeship_en"] = voivodeship_en(r["voivodeship"])
+        r["voivodeship_en"] = voivodeship_en(r["voivodeship"])
 
     for r in top_skills:
         r["offer_count"] = int(r["offer_count"])

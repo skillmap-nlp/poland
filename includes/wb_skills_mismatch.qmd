@@ -3,7 +3,7 @@
 
 **What we compare**
 
-- **Demand side** — every ESCO skill mention extracted from Pracuj.pl 2025 postings → **5.36 M mentions** across **748,922 offers**
+- **Demand side** — every ESCO skill mention extracted from Pracuj.pl 2025 postings → **5.36 M mentions** across **~731k offers**
 - **Supply side** — every BUR training service mapped to ESCO via semantic matching → **719,265 trainings**, **410,868 (training, ESCO-skill) tags**
 
 **How we measure mismatch**
@@ -25,7 +25,7 @@ Both sides are **multi-tag** (one offer can mention many skills; one training ca
 
 **Caveats**
 
-Online vacancies under-represent **public-sector and manual occupations**, where BUR is most active — the measured over-supply for personal-care and protective-service skills is partly a demand-side blind spot. BUR captures only the **subsidised and registered** slice of training supply; commercial and in-house training is absent from the supply side.
+Online vacancies under-represent **public-sector and manual occupations**, where BUR is most active — the measured over-supply for personal-care and protective-service skills is partly a demand-side blind spot. BUR captures only the **subsidised and registered** slice of training supply; commercial and in-house training is absent from the supply side. We test how much these and other measurement choices affect the results in the [diagnostic cards at the end of this section](#mismatch-sensitivity).
 :::
 
 ::: {.section-card}
@@ -37,6 +37,7 @@ Before drilling into skill pillars, the aggregate picture shows where tag mass c
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 15.</strong> Share of ESCO tag mass by competence family — demand vs supply</div>
   <div id="chart-mismatch-family" class="plotly-chart plotly-chart--wide" role="img" aria-label="Demand and supply shares by ESCO competence family"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> The aggregate comparison shows the first clear sign of mismatch: demand is concentrated in skills, knowledge, and transversal competences, while supply places relatively more weight on care-related and knowledge areas.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl 2025 ESCO mentions vs BUR 2025 training tags.</p>
 ```
@@ -49,6 +50,7 @@ Before drilling into skill pillars, the aggregate picture shows where tag mass c
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 16.</strong> ESCO skill mix on the demand and supply sides (S1–S8, share of tag mass)</div>
   <div id="chart-mismatch-s1s8-overview" class="plotly-chart plotly-chart--wide" role="img" aria-label="Demand and supply shares for ESCO skill pillars S1 through S8"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Management, communication, digital, and ICT-related skills are more prominent in vacancies than in BUR training tags. Conversely, care, services, and machinery-related skills are more prominent in training supply.</p>
 </div>
 <p class="notes source-note">Source: Pracuj.pl ESCO skill mentions vs BUR training tags, 2025.</p>
 ```
@@ -57,7 +59,11 @@ Before drilling into skill pillars, the aggregate picture shows where tag mass c
 :::
 
 ::: {.section-card .intl-card}
-### Demand-side ESCO mix across countries
+### Poland in context: demand-side ESCO mix across countries
+
+To anchor the Poland 2025 findings against international comparators, we
+re-use the country panel from the World Bank East Asia skill-demand
+report (mimeo).
 
 The Poland demand mix (top row) sits next to the East Asia and benchmark
 panel. **Communication, collaboration and creativity (S1)** and
@@ -72,7 +78,7 @@ S1–S8 family within each country.
 
 ```{=html}
 <div id="intl-esco-s1s8"></div>
-<p class="notes source-note">Source: ESCO S1–S8 demand-side shares. Poland (highlighted) uses the figures from Figure 16 of this report; other countries come from the East Asia skill-demand report. Periods are not strictly aligned across countries.</p>
+<p class="notes source-note">Source: ESCO S1–S8 demand-side shares. Poland (highlighted) uses the figures from Figure 16 of this report; other countries come from the East Asia skill-demand report.</p>
 ```
 :::
 
@@ -83,6 +89,7 @@ S1–S8 family within each country.
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 17.</strong> Demand–supply gap by ESCO skill pillar (S1–S8, percentage points)</div>
   <div id="chart-mismatch-s1s8-gap" class="plotly-chart plotly-chart--wide" role="img" aria-label="Diverging bar chart of demand minus supply gap for ESCO skill pillars"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> The gap profile separates demand-heavy white-collar and digital skills from supply-heavy care, services, and machinery skills. The policy implication is a need to rebalance part of subsidised training toward business, management, digital, and transversal capabilities.</p>
 </div>
 ```
 
@@ -97,10 +104,12 @@ The chart is dominated by two forces: a **white-collar / cognitive deficit** on 
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 18.</strong> Most under-supplied L2 skill groups</div>
     <div id="chart-mismatch-l2-under" class="plotly-chart" role="img" aria-label="Top under-supplied L2 ESCO groups"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> The largest under-supplied sub-groups include management, business administration, teamwork, digital data access, and ICT knowledge. These are broad productivity-relevant skills that cut across many sectors.</p>
   </div>
   <div class="chart-block">
     <div class="figure-caption-title"><strong>Figure 19.</strong> Most over-supplied L2 skill groups</div>
     <div id="chart-mismatch-l2-over" class="plotly-chart" role="img" aria-label="Top over-supplied L2 ESCO groups"></div>
+    <p class="figure-interpretation"><strong>Interpretation.</strong> Over-supplied groups cluster around personal care, protective services, driving, and health-care delivery. This may partly reflect genuine policy priorities, but also the fact that Pracuj.pl under-represents some public and manual occupations.</p>
   </div>
 </div>
 <p class="notes source-note">Source: ESCO L2 groups; ranked by absolute gap in percentage points.</p>
@@ -120,14 +129,17 @@ The S-pillar summary masks important gaps in **transversal** and **knowledge** d
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 20.</strong> Transversal competences (T1–T6): demand vs supply shares within the transversal pillar (each side renormalised to 100%)</div>
   <div id="chart-mismatch-transversal" class="plotly-chart plotly-chart--wide" role="img" aria-label="Transversal skills demand vs supply"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Employers place relatively more weight on social, communication, and self-management competences than the BUR training mix does. These transversal gaps matter because such skills are valuable across occupations and sectors.</p>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
   <div class="figure-caption-title"><strong>Figure 21.</strong> Knowledge fields (ISCED-F): demand vs supply shares within the knowledge pillar (each side renormalised to 100%)</div>
   <div id="chart-mismatch-knowledge" class="plotly-chart plotly-chart--wide" role="img" aria-label="Knowledge concepts demand vs supply"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Business, administration, and ICT knowledge appear under-represented in training relative to demand, while services and health-related knowledge are more prominent in supply. This reinforces the broader mismatch between market hiring and subsidised provision.</p>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
   <div class="figure-caption-title"><strong>Figure 22.</strong> Languages: demand vs supply shares within the language pillar (Polish excluded; long tail grouped as Other; each side renormalised to 100%)</div>
   <div id="chart-mismatch-languages" class="plotly-chart plotly-chart--wide" role="img" aria-label="Language skills demand vs supply"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> English and German dominate language demand, while training supply appears more diversified across languages. For employability policy, language training should remain demand-sensitive rather than evenly distributed across language categories.</p>
 </div>
 ```
 :::
@@ -142,5 +154,155 @@ Treating skill shares as probability distributions, we summarise overall composi
   <img src="presentation/jsd_formula.png" alt="Jensen-Shannon divergence formula" class="jsd-formula-img" width="720"/>
 </div>
 <p class="notes source-note">JSD compares renormalised S-pillar distributions on the demand and supply sides. L1 JSD ≈ 0.16; L2 JSD ≈ 0.30 (2025, Pracuj.pl vs BUR).</p>
+<p class="figure-interpretation"><strong>Interpretation.</strong> The JSD indicator summarises the overall distance between demand and supply skill distributions. The reported values suggest moderate mismatch at the broad skill-pillar level and more substantial mismatch at the detailed sub-group level.</p>
 ```
+:::
+
+### Are the mismatch results stable? {#mismatch-sensitivity}
+
+The figures above rest on two non-trivial modelling choices: **how each
+posting and training is weighted into the aggregate shares**, and
+**which slice of the labour market the Pracuj.pl sample actually
+represents**. Before drawing policy conclusions we need to know whether
+the headline gap survives plausible alternative choices. The two cards
+below answer that question. They are not new results — they are stress
+tests of the results above. Each one states *why we are worried*, *what
+we compute*, and *what we conclude*.
+
+::: {.section-card .diag-card .diag-sensitivity}
+#### Sensitivity — does posting verbosity drive the picture?
+
+<span class="diag-kicker">Why we worry</span>
+
+A senior CTO posting can list 20 ESCO skill mentions; a 1-line
+warehouse-worker posting can list 1. Under the headline weighting scheme
+("**mention-mass**") that CTO posting carries 20× more weight in the
+demand shares than the warehouse posting. If ICT and management-heavy
+postings are systematically more verbose than care-work postings, the
+white-collar deficit could be partly an artefact of *how many tags get
+written into a job description*, not of how many jobs are open.
+
+<span class="diag-kicker">What we compute</span>
+
+We rebuild the demand- and supply-side share vectors under a second
+weighting scheme — **per-posting** — where each posting (or each
+training) contributes exactly one unit of weight, distributed evenly
+across the skills it mentions:
+
+- mention-mass (headline): $s_g^{MM} = \dfrac{\sum_i \mathrm{count}_i(g)}{\sum_i |S_i|}$
+- per-posting (alternative): $s_g^{PP} = \dfrac{1}{N} \sum_i \dfrac{\mathrm{count}_i(g)}{|S_i|}$
+
+Then we compare the two vectors on each side and — more importantly —
+on the **gap** (demand − supply) that actually drives every chart above.
+
+<span class="diag-kicker">What we find</span>
+
+| Comparison | L1 distance | Cosine similarity | Max single-group shift |
+|---|---|---|---|
+| Demand: MM vs PP | 0.061 | 0.998 | 0.81 pp (ICT, code 06) |
+| Supply: MM vs PP | 0.034 | 0.9996 | 0.52 pp (generic language placeholder) |
+
+And on the gap vector itself (54 ESCO L1 groups):
+
+- Pearson r between MM- and PP-derived gaps: **0.998**
+- max |Δ gap_pp| across all groups: **0.81 pp**
+- top-10 **under-supplied** groups: **10 / 10 overlap** between the two schemes
+- top-10 **over-supplied** groups: **9 / 10 overlap**
+
+::: {.diag-verdict}
+**Verdict.** ICT-heavy postings *do* list more ESCO tags than the
+average posting, so the per-posting scheme shaves ~0.8 pp off ICT's
+demand share. But no top-ranked under-supplied group moves and no
+single group's share shifts by more than ~1 pp. The headline narrative
+— large positive gap on management (S4), positive gap on digital (S5)
+and ICT knowledge (06), negative gap on assisting & caring (S3) and
+working with machinery (S8) — holds verbatim. Verbosity is not
+driving the picture. We keep mention-mass as the headline because it is
+the standard ESCO accounting unit and is comparable to other published
+ESCO mention-rate studies.
+:::
+:::
+
+::: {.section-card .diag-card .diag-robustness}
+#### Robustness — does the Pracuj.pl sectoral skew drive the picture?
+
+<span class="diag-kicker">Why we worry</span>
+
+Pracuj.pl is a private-sector online job board. Some sectors are heavily
+over-represented relative to actual Polish employment — most strikingly
+**Administrative and support services (NACE section N, which includes
+temp-work and recruiting agencies): 24.4 % of postings vs 2.75 % of
+employment**, because agencies re-post vacancies that ultimately belong
+to other sectors. Conversely, **agriculture (A), mining (B), education
+(P), human health (Q) and information & communication (J)** are markedly
+under-represented in the OJP universe relative to LFS employment shares.
+A substantial part of the apparent skill mismatch could be a story about
+"who advertises on Pracuj" rather than "what Poland's labour market
+demands".
+
+<span class="diag-kicker">What we compute</span>
+
+Standard post-stratification. For each NACE section *k* we calculate a
+sectoral weight
+
+$$
+w_k \;=\; \frac{p_k^{\text{target}}}{p_k^{\text{pracuj}}}
+$$
+
+where $p_k^{\text{target}}$ is section *k*'s share of total Polish
+employment (Eurostat LFS 2024, ages 15+, both sexes — the international
+counterpart of the GUS BAEL/LFS series "Pracujący w gospodarce
+narodowej wg sekcji PKD") and $p_k^{\text{pracuj}}$ is its share in our
+Pracuj.pl analysis sample. Each posting in section *k* enters the
+aggregation with weight $w_k$, and the demand-side ESCO L1 shares are
+recomputed on the weighted sample. Weights range from
+$w_N \approx 0.11$ (administrative & support, heavily downweighted) to
+$w_B \approx 15.4$ (mining, heavily upweighted); the median section
+keeps roughly its OJP weight.
+
+<span class="diag-kicker">What we find</span>
+
+This is the largest perturbation we apply to the demand vector:
+
+| Comparison | Result |
+|---|---|
+| L1 distance (headline vs reweighted) | **0.173** |
+| Cosine similarity | **0.988** |
+| Largest single-group fall | **−2.10 pp** for ICT knowledge (06) |
+| Second-largest fall | −1.88 pp for management (S4) |
+| Largest single-group rise | +1.51 pp for working with machinery (S8) |
+
+The biggest *losers* under reweighting are the white-collar / digital
+groups disproportionately mentioned by recruiting-agency,
+finance and real-estate postings. ICT knowledge (06) falls from
+**4.1 %** to **2.0 %**, management (S4) from **17.5 %** to **15.6 %**,
+business & administration (04) from **7.6 %** to **6.2 %**. The biggest
+*winners* are primary- and education-heavy groups: machinery (S8) rises
+from **3.6 %** to **5.1 %**, education knowledge (01) from **2.6 %** to
+**3.7 %**, agriculture/forestry/fisheries knowledge (A1) from **5.9 %**
+to **6.5 %**.
+
+What about the mismatch — the demand-minus-supply gap that every figure
+above visualises?
+
+- Pearson r between headline and reweighted gap vectors: **0.985**
+- max |Δ gap_pp| across all groups: **2.10 pp**
+- top-10 **under-supplied** groups: **9 / 10 overlap**
+- top-10 **over-supplied** groups: **9 / 10 overlap**
+
+::: {.diag-verdict}
+**Verdict.** The directional conclusions hold across the board: large
+positive gap on management and business/administration; meaningful
+positive gap on transversal social skills; large negative gap on
+assisting & caring, machinery and services. The single substantive
+change is **the digital-skills deficit (working with computers S5 +
+ICT knowledge 06): its magnitude is roughly halved once Pracuj is
+reweighted to Poland's actual sectoral employment mix**. That tells us
+roughly half of the headline digital gap is a *true* economy-wide
+demand-supply imbalance and roughly half is a *composition effect* of
+Pracuj over-sampling digital-intensive sectors. Both halves are still
+policy-relevant, but for different reasons — the first calls for
+adjusting subsidised training, the second for reading OJP-based
+digital-skill indicators with appropriate humility.
+:::
 :::

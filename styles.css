@@ -57,8 +57,12 @@ h1, h2, h3, h4, h5, h6,
 #quarto-margin-sidebar {
   position: sticky;
   top: 1.25rem;
-  max-height: none;
-  overflow: visible;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  padding-bottom: 1rem;
+  scrollbar-width: thin;
 }
 
 #TOC #toc-title {
@@ -73,7 +77,7 @@ h1, h2, h3, h4, h5, h6,
 .toc-sections {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.05rem;
 }
 
 .toc-section {
@@ -81,14 +85,14 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .toc-section--flat {
-  padding: 0.15rem 0.35rem;
+  padding: 0.08rem 0.25rem;
 }
 
 .toc-section-head {
   display: flex;
   align-items: flex-start;
   gap: 0.2rem;
-  padding: 0.15rem 0.25rem;
+  padding: 0.08rem 0.2rem;
   border-radius: 8px;
 }
 
@@ -102,7 +106,7 @@ h1, h2, h3, h4, h5, h6,
   align-items: center;
   justify-content: center;
   width: 1.35rem;
-  height: 1.35rem;
+  height: 1.2rem;
   margin-top: 0.05rem;
   padding: 0;
   border: none;
@@ -129,12 +133,12 @@ h1, h2, h3, h4, h5, h6,
   flex: 1;
   font-weight: 600;
   color: #334155;
-  line-height: 1.35;
+  line-height: 1.25;
 }
 
 .toc-section-children {
   display: none;
-  margin: 0.1rem 0 0.35rem 1.15rem;
+  margin: 0.05rem 0 0.25rem 1.05rem;
   padding: 0 0 0 0.65rem;
   border-left: 1px solid #e2e8f0;
   list-style: none;
@@ -145,13 +149,13 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .toc-section-children li {
-  margin: 0.18rem 0;
+  margin: 0.12rem 0;
 }
 
 .toc-section-children a {
   display: block;
-  font-size: 0.9rem;
-  line-height: 1.35;
+  font-size: 0.84rem;
+  line-height: 1.25;
   color: #64748b;
 }
 
@@ -159,7 +163,7 @@ h1, h2, h3, h4, h5, h6,
   display: block;
   font-weight: 600;
   color: #334155;
-  padding: 0.15rem 0.35rem;
+  padding: 0.08rem 0.25rem;
   border-radius: 8px;
 }
 
@@ -238,7 +242,7 @@ h1, h2, h3, h4, h5, h6,
 #TOC {
   border-left: 1px solid #dbeafe;
   padding-left: 1rem;
-  font-size: 0.98rem;
+  font-size: 0.9rem;
 }
 
 #TOC > ul {
@@ -354,6 +358,22 @@ h1, h2, h3, h4, h5, h6,
   margin-top: 0;
 }
 
+.figure-interpretation {
+  margin: 0.55rem 0 0.85rem;
+  padding: 0.65rem 0.8rem;
+  border-left: 3px solid var(--wb-blue);
+  border-radius: 10px;
+  background: #f8fafc;
+  color: var(--ink-mid);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.figure-interpretation strong {
+  color: var(--ink-strong);
+}
+
 h2, h3 {
   color: var(--ink-strong);
   letter-spacing: -0.02em;
@@ -404,6 +424,83 @@ h3 {
 
 .map-shell {
   overflow: hidden;
+}
+
+/* Side-by-side maps used by the Ukrainian-friendly EB shrinkage figure. */
+.dual-map-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  margin: 0.4rem 0 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .dual-map-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dual-map {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 0.6rem 0.6rem 0.4rem;
+}
+
+/* Regression-style results table. */
+.reg-table-wrap {
+  margin: 0.4rem 0 1rem;
+  overflow-x: auto;
+}
+
+.reg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+
+.reg-table th,
+.reg-table td {
+  padding: 0.45rem 0.7rem;
+  text-align: right;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.reg-table thead th {
+  font-weight: 700;
+  color: var(--ink-strong);
+  text-align: right;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+.reg-table th.reg-term,
+.reg-table tbody th {
+  text-align: left;
+  font-weight: 500;
+  color: #334155;
+}
+
+.reg-coef {
+  font-weight: 700;
+  color: var(--ink-strong);
+}
+
+.reg-se {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.reg-stats td {
+  font-weight: 600;
+  color: var(--ink-strong);
+  border-top: 2px solid #cbd5e1;
+  border-bottom: none;
+}
+
+.reg-foot {
+  color: #64748b;
+  font-size: 0.82rem;
+  margin: 0.3rem 0 0;
+  line-height: 1.5;
 }
 
 .map-caption,
@@ -602,6 +699,10 @@ h3 {
   margin-top: 0;
 }
 
+.plotly-chart--tall {
+  min-height: 560px;
+}
+
 @media (max-width: 900px) {
   .chart-duo {
     grid-template-columns: 1fr;
@@ -624,6 +725,95 @@ h3 {
   color: #1e3a5f;
   font-size: 0.82rem;
   line-height: 1.35;
+}
+
+.methodology-screenshot {
+  display: block;
+  width: 100%;
+  max-width: 980px;
+  margin: 0.6rem auto 0.3rem;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.bur-training-example-shell {
+  margin: 0.55rem 0 0.75rem;
+}
+
+.bur-training-example {
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 1rem 1.2rem 1.1rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #15314b;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.bur-training-example-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #15314b;
+  letter-spacing: -0.01em;
+}
+
+.bur-training-example-kicker {
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.bur-training-example-meta {
+  margin: 0 0 0.9rem;
+  padding: 0.55rem 0.75rem;
+  background: #eef4fb;
+  border-left: 3px solid #1d4e89;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: #15314b;
+}
+
+.bur-training-example-heading {
+  margin: 0.85rem 0 0.35rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1d4e89;
+  border-bottom: 1px solid #c7dbf0;
+  padding-bottom: 0.2rem;
+}
+
+.bur-training-example-day {
+  margin: 0.75rem 0 0.25rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #1e3a5f;
+}
+
+.bur-training-example-module {
+  margin: 0.45rem 0 0.15rem;
+  font-size: 0.84rem;
+}
+
+.bur-training-example ul {
+  margin: 0.15rem 0 0.45rem 1.15rem;
+  padding: 0;
+}
+
+.bur-training-example li {
+  margin: 0.12rem 0;
+}
+
+.bur-training-example p {
+  margin: 0.35rem 0;
+}
+
+.esco-sample-grid--below-example {
+  margin-top: 0.15rem;
 }
 
 .stat-grid {
@@ -2732,4 +2922,82 @@ body.modal-open {
 
 .intl-callout strong {
   color: #4c1d95;
+}
+
+/* ── Diagnostic cards (sensitivity / robustness) ───────────────
+   Visually distinct from result cards so readers immediately see
+   that these sections answer "is the headline finding stable?"
+   rather than presenting a new substantive result. */
+
+.section-card.diag-card {
+  background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1px solid #fde68a;
+  border-left: 4px solid #d97706;
+  position: relative;
+}
+
+.section-card.diag-card::before {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.9rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #92400e;
+  background: #fef3c7;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid #fcd34d;
+}
+
+.section-card.diag-card.diag-sensitivity::before {
+  content: "Sensitivity check";
+}
+
+.section-card.diag-card.diag-robustness::before {
+  content: "Robustness check";
+}
+
+.section-card.diag-card h3,
+.section-card.diag-card h4 {
+  color: #92400e;
+}
+
+.section-card.diag-card .diag-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #b45309;
+  margin-top: 0.55rem;
+  margin-bottom: 0.15rem;
+}
+
+.section-card.diag-card .diag-verdict {
+  background: #ffffff;
+  border: 1px solid #fcd34d;
+  border-left: 4px solid #d97706;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  margin-top: 0.9rem;
+  font-size: 0.92rem;
+  color: #78350f;
+}
+
+.section-card.diag-card .diag-verdict strong {
+  color: #7c2d12;
+}
+
+.section-card.diag-card table {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #fde68a;
+}
+
+.section-card.diag-card table th {
+  background: #fef3c7;
+  color: #78350f;
 }

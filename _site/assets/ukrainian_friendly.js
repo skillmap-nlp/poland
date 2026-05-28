@@ -17,7 +17,6 @@
   };
 
   const titleVoiv = (row) =>
-    (typeof row === "object" && row.voivodeship_en) ||
     T.voivodeshipLabel(typeof row === "string" ? row : row.voivodeship);
 
   const COLOR_MAIN = T.demand;

@@ -40,6 +40,8 @@ resources:
   - assets/data_overview_charts.js
   - assets/results_extended_data.js
   - assets/results_extended_charts.js
+  - presentation/training_2147461_embed.html
+  - presentation/training_2147461_en.html
   - presentation/jsd_formula.png
   - data/regional_metrics.csv
   - data/regional_metrics_meta.json
@@ -57,6 +59,8 @@ resources:
   - assets/ukrainian_friendly_data.js
   - assets/ukrainian_friendly_powiat_data.js
   - assets/ukrainian_friendly.js
+  - assets/ukrainian_friendly_decomposition_data.js
+  - assets/ukrainian_friendly_decomposition.js
   - assets/report.js
   - assets/international_comparison_data.js
   - assets/international_comparison.js

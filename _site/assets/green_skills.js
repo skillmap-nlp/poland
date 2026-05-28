@@ -12,7 +12,7 @@
     new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(v);
 
   const titleVoiv = (row) =>
-    row.voivodeship_en || T.voivodeshipLabel(row.voivodeship);
+    T.voivodeshipLabel(row.voivodeship);
 
   /* ── KPI cards ── */
   function renderGreenCards() {

@@ -1,0 +1,245 @@
+::: {.section-card}
+### NLP Processing Methods
+
+This annex documents the natural-language-processing steps behind the
+skills measures used in the report. The main Methodology section shows the
+six-step pipeline; this annex explains what happens inside those steps and
+why the choices matter for interpretation.
+:::
+
+::: {.section-card}
+### Step 01 — Language Detection {#pipeline-step-01}
+
+Most Pracuj.pl postings are in Polish, but a non-trivial share contains
+English titles, English descriptions, or mixed-language text. We detect the
+language of both the title and the full description so that Polish text can
+pass through unchanged while non-Polish fields are routed to translation.
+
+Language detection is applied per field rather than per posting because a
+common online-vacancy pattern is an English title with a Polish body, or the
+reverse. This avoids translating already-usable Polish text and keeps the
+downstream corpus consistent.
+:::
+
+::: {.section-card}
+### Step 02 — Translation {#pipeline-step-02}
+
+All downstream extraction is run on a harmonised Polish text field. Postings
+already detected as Polish are kept unchanged; English and other-language
+fields are translated into Polish using Gemma 3 Translate 4B. Both original
+and translated fields are retained so that analysts can inspect source text
+when reviewing specific matches.
+
+This step is needed because the same skill can otherwise appear in several
+languages within one analytical sample. Translation makes skill extraction,
+job-title standardisation, and taxonomy matching operate on a common-language
+input rather than mixing Polish, English, and hybrid phrasing.
+
+```{mermaid}
+%%| fig-cap: "Translation routing"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 40, 'rankSpacing': 50}} }%%
+flowchart LR
+    A["Raw posting"] --> B{"Language<br/>detected?"}
+    B -->|"Already Polish"| C["Keep original text"]
+    B -->|"English / other"| D["Gemma 3 Translate 4B"]
+    D -->|"title + description"| E["Translated Polish text"]
+    C --> F["Unified Polish corpus"]
+    E --> F
+```
+:::
+
+::: {.section-card}
+### Step 03 — Skill-Sentence Filtering {#pipeline-step-03}
+
+Job descriptions contain many sentences that are not skill requirements:
+benefits, company history, application instructions, equal-opportunity
+statements, and legal clauses. Before mapping to skills, we isolate the
+sentences that actually describe required competences, tasks, tools, or
+knowledge.
+
+We use a fine-tuned BERT-style sentence classifier based on the SkillLess
+approach. Each sentence is labelled as skill-relevant or non-skill. In this
+sample, roughly 40–60% of description text is filtered out before semantic
+matching. This improves precision because the ESCO matcher only sees
+sentences that plausibly contain skills.
+:::
+
+::: {.section-card}
+### Step 04 — ESCO Skill Mapping {#pipeline-step-04}
+
+Skill-relevant sentences are mapped to the European Skills, Competences,
+Qualifications and Occupations taxonomy (ESCO), which contains roughly
+13,000 standardised skill and competence entries. ESCO provides the common
+language that makes job postings and BUR training descriptions comparable.
+
+The matching model is a custom contrastive bi-encoder. It places job-ad
+sentences and ESCO skill labels in a shared embedding space: semantically
+matching pairs are pulled closer together, while non-matching pairs are
+pushed apart. For example, a sentence such as *experience with SQL and data
+visualisation* should be close to ESCO entries such as *use query languages*
+and *manage databases*, but far from unrelated labels such as *negotiate
+contracts*.
+
+Hard negatives are central to training. The model must distinguish nearby
+but incorrect skills, such as *use programming languages* versus *use query
+languages*, not only obviously unrelated concepts. This makes the model
+better suited to real vacancy text, where employers describe skills in
+informal, overlapping, and sometimes ambiguous ways.
+
+```{=html}
+<svg viewBox="0 0 620 370" width="620" style="font-family: system-ui, -apple-system, sans-serif; max-width: 100%; display: block; margin: 1.2rem auto;">
+  <circle cx="310" cy="185" r="155" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="310" y="37" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#dc2626">Easy negatives</text>
+  <circle cx="310" cy="185" r="105" fill="#fefce8" stroke="#fde68a" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="310" y="87" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#b45309">Hard negatives</text>
+  <circle cx="310" cy="185" r="52" fill="#dcfce7" stroke="#86efac" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="310" y="141" text-anchor="middle" font-size="9.5px" font-weight="600" fill="#16a34a">Positive matches</text>
+  <circle cx="310" cy="185" r="6" fill="#1e40af"/>
+  <text x="310" y="203" text-anchor="middle" font-size="10.5px" font-weight="700" fill="#1e293b">"experience with SQL</text>
+  <text x="310" y="215" text-anchor="middle" font-size="10.5px" font-weight="700" fill="#1e293b">and data visualisation"</text>
+  <circle cx="282" cy="159" r="5" fill="#16a34a" opacity="0.85"/>
+  <text x="282" y="150" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">use query languages</text>
+  <circle cx="332" cy="167" r="5" fill="#16a34a" opacity="0.85"/>
+  <text x="332" y="158" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">manage databases</text>
+  <circle cx="230" cy="135" r="4.5" fill="#b45309" opacity="0.85"/>
+  <text x="230" y="126" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">use programming languages</text>
+  <circle cx="375" cy="240" r="4.5" fill="#b45309" opacity="0.85"/>
+  <text x="375" y="231" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">develop software</text>
+  <circle cx="390" cy="123" r="4.5" fill="#b45309" opacity="0.85"/>
+  <text x="390" y="114" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">analyse data</text>
+  <circle cx="190" cy="280" r="4" fill="#dc2626" opacity="0.85"/>
+  <text x="190" y="271" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">negotiate contracts</text>
+  <circle cx="425" cy="295" r="4" fill="#dc2626" opacity="0.85"/>
+  <text x="425" y="286" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">manage human resources</text>
+  <circle cx="210" cy="65" r="4" fill="#dc2626" opacity="0.85"/>
+  <text x="210" y="56" text-anchor="middle" font-size="9.5px" font-style="italic" fill="#334155">drive vehicles</text>
+  <defs><marker id="arrowGreenAnnex" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker></defs>
+  <line x1="288" y1="163" x2="296" y2="174" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowGreenAnnex)" opacity="0.7"/>
+  <line x1="328" y1="170" x2="321" y2="176" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrowGreenAnnex)" opacity="0.7"/>
+  <text x="310" y="362" text-anchor="middle" font-size="10.5px" fill="#64748b">Simplified 2-D projection of the embedding space (actual representations are high-dimensional). Own elaboration.</text>
+</svg>
+```
+
+
+Candidate skills are ranked by cosine similarity. A calibrated similarity
+threshold is then applied to remove low-confidence matches and control the
+number of skills assigned to each posting or training description. The
+threshold is tuned on held-out benchmark data to balance precision and
+recall.
+
+```{mermaid}
+%%| fig-cap: "Skill-to-ESCO matching pipeline"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart TD
+    A["Skill-relevant sentences"] -->|"encode"| B["Contrastive bi-encoder"]
+    B -->|"768-d vector"| C["Sentence embedding"]
+
+    D[("ESCO skill catalogue<br/>~13 000 entries")] -->|"pre-computed<br/>768-d vectors"| E["Reference embedding matrix"]
+
+    C --> F{"Cosine similarity ranking"}
+    E --> F
+
+    F -->|"top-k candidates"| G["Candidate ESCO skills<br/>with similarity scores"]
+    G -->|"score ≥ calibrated threshold"| I["Final matched ESCO skills"]
+```
+
+:::
+
+::: {.section-card}
+### Step 05 — Job-Title Standardisation {#pipeline-step-05}
+
+Raw job titles are highly variable. The same role can appear as
+*Inżynier oprogramowania*, *Backend Developer*, *Programista*,
+*Full-Stack Developer*, or *Senior Software Engineer*. To support
+occupational analysis, titles are standardised to ESCO occupations.
+
+Titles are first cleaned by removing common noise such as embedded
+locations, salaries, and seniority prefixes. Cleaned titles are embedded
+with a labour-market language model and matched to a pre-computed index of
+ESCO occupation labels using nearest-neighbour search. The best matching
+occupation and its similarity score are retained for downstream analysis and
+quality filtering.
+
+Where a title is ambiguous, extracted skill context helps interpretation:
+two postings with the same generic title can map differently if their skill
+profiles imply different occupations.
+
+```{mermaid}
+%%| fig-cap: "Job title standardisation"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 50, 'rankSpacing': 55}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart TD
+    A["Translated job title"] --> B["Title cleaning<br/><i style='font-size:0.8em;color:#64748b'>(remove locations, salaries, prefixes)</i>"]
+    B -->|"cleaned text"| C["JobBERT-v3 encoder"]
+    C -->|"768-d vector"| D["Title embedding"]
+
+    D -->|"query"| F{"FAISS nearest-neighbour search"}
+
+    E[("ESCO occupation index<br/>~3 000 occupations<br/><i style='font-size:0.8em;color:#64748b'>pre-computed 768-d vectors</i>")] -->|"index"| F
+
+    F -->|"best match + cosine score"| G["Standardised ESCO occupation"]
+```
+
+:::
+
+::: {.section-card}
+### Step 06 — Sector Classification (ISIC/NACE) {#pipeline-step-06}
+
+Sector analysis requires assigning postings to an economic activity. The
+pipeline maps standardised ESCO occupations to ISIC/NACE activity codes using
+the official ESCO-to-NACE crosswalk. At the two-digit division level used in
+this report, NACE Rev. 2.1 and ISIC Rev. 5 share the same division codes and
+boundaries, so results are directly comparable across the two systems.
+
+The assignment uses three tiers. If an occupation maps to a single code, the
+assignment is deterministic. If all candidate codes share the same two-digit
+division, that division is assigned directly. If candidates span several
+divisions, the job title and description are compared with candidate sector
+labels using multilingual sentence embeddings, and the highest-scoring
+candidate is selected. A confidence margin is retained for auditing.
+
+```{mermaid}
+%%| fig-cap: "ISIC/NACE sector classification"
+%%{init: {'flowchart': {'htmlLabels': true, 'nodeSpacing': 30, 'rankSpacing': 45, 'curve': 'basis'}, 'themeVariables': {'fontSize': '13px'}} }%%
+flowchart LR
+    A["ESCO occupation<br/><i style='font-size:0.8em;color:#64748b'>from Step 05</i>"]
+      -->|"look up"| B[("ESCO → ISIC/NACE crosswalk<br/><i style='font-size:0.8em;color:#64748b'>official mapping table</i>")]
+    B --> C{"Number of candidate<br/>ISIC/NACE codes?"}
+
+    C -->|"exactly 1"| D["Deterministic<br/>assignment"]
+    C -->|"≥ 2, same 2-digit code"| E["Assign shared<br/>ISIC/NACE division"]
+    C -->|"≥ 2, different divisions"| F["Embedding-based disambiguation<br/><i style='font-size:0.8em;color:#64748b'>encode job text + each candidate ISIC/NACE label</i>"]
+
+    F -->|"384-d vectors"| H{"Cosine similarity<br/>comparison"}
+    H -->|"highest score"| I["Assigned ISIC/NACE code<br/>+ confidence margin"]
+
+    D --> J["Final sector label"]
+    E --> J
+    I --> J
+
+    classDef step fill:#eef4fb,stroke:#1d4e89,stroke-width:1px,color:#15314B;
+    classDef data fill:#fef3c7,stroke:#b45309,stroke-width:1px,color:#7c2d12;
+    classDef out  fill:#dcfce7,stroke:#166534,stroke-width:1px,color:#14532d;
+    class A,D,E,F,I step;
+    class B data;
+    class C,H step;
+    class J out;
+```
+
+:::
+
+::: {.section-card}
+### Validation and Benchmarking
+
+The ESCO skill-matching component is benchmarked against the HOUSE and TECH
+datasets used in recent ESCO skill-extraction research
+(<span class="paper-ref" data-tooltip="Decorte, J. J., Van Hautte, J., Develder, C., and Demeester, T. 2025. Efficient Text Encoders for Labor Market Analysis. IEEE Access."><a class="paper-link" href="https://ieeexplore.ieee.org/abstract/document/11079977/" target="_blank" rel="noopener noreferrer">Decorte et al. (2025)</a></span>).
+These datasets contain job postings annotated with gold-standard ESCO skill
+labels by human experts. Against these benchmarks, the pipeline improves
+reported RP@5 performance by roughly three percentage points relative to the
+current state of the art.
+
+The benchmark is not a guarantee that every individual match is correct.
+Rather, it supports the use of the extracted skills for aggregate
+composition analysis: sectoral shares, regional shares, demand-supply
+mismatch, and robustness checks.
+:::

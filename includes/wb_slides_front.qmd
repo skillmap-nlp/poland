@@ -1,36 +1,74 @@
 ::: {.section-card}
-### Project overview
 
-**Objective.** This report analyses demand and supply of skills in Poland using online job postings and training data.
+This report provides a data-driven assessment of skills demand and training
+supply in Poland, with a particular focus on the extent to which publicly
+visible training provision is aligned with employers' needs. The analysis
+combines two large-scale sources of labour-market intelligence: online job
+postings from
+<a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>,
+used as a proxy for employer demand, and training-service listings from
+<a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych (BUR)</a>,
+used as a proxy for the supply of structured upskilling and reskilling
+opportunities. By applying natural language processing methods to both
+datasets, the report translates unstructured vacancy and training descriptions
+into comparable skill categories.
 
-::: {.framing-callout}
-**Framing.** Job postings proxy skill **demand** and BUR trainings proxy subsidised skill **supply**. Both sides are mapped to a common skill taxonomy (ESCO, with Lightcast for granular AI signals). The analysis compares the **mix of skills on each side** — not absolute volumes.
-:::
+The central objective of the report is not to estimate the total number of
+jobs or training participants in Poland, but to compare the composition of
+skills demanded by employers with the composition of skills offered through
+the training system. This distinction is important. Online vacancies capture
+a specific segment of labour demand, especially market-based and
+private-sector recruitment, while BUR reflects the supply of registered
+training services rather than actual enrolment or completion. Despite these
+limitations, both sources provide timely and granular evidence that can
+complement official labour-market statistics and support more responsive
+skills policies.
 
-::: {.overview-grid}
-::: {.overview-panel}
-<p class="overview-panel-kicker">Data</p>
-<ul class="overview-list">
-<li><strong>~733k</strong> online job postings (OJP) (≈ <strong>1.2M</strong> estimated vacancies — OJV) from <a class="paper-link" href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a></li>
-<li><strong>~131k</strong> training services from <a class="paper-link" href="https://uslugirozwojowe.parp.gov.pl/" target="_blank" rel="noopener noreferrer">Baza Usług Rozwojowych (BUR)</a> (2025)</li>
-<li>Coverage includes <strong>all listings in 2025</strong> on Pracuj.pl; BUR scope is training services with usable regional metadata in 2025</li>
-</ul>
-<p class="overview-foot">Pracuj.pl is Poland’s largest job portal; BUR is the largest publicly accessible training database, operated by the Polish Agency for Enterprise Development (PARP).</p>
-:::
+The report is organised around three analytical questions. First, what types
+of skills are currently demanded in the Polish labour market, and how does
+this demand vary across sectors and regions? Second, what skills are being
+supplied through BUR training services, and how has this provision evolved
+over time? Third, where are the main mismatches between employer demand and
+training supply, especially in areas that are strategically relevant for
+productivity, inclusion, and structural transformation?
 
-::: {.overview-panel}
-<p class="overview-panel-kicker">Methodology</p>
-<ul class="overview-list">
-<li><strong>Full data extraction:</strong> web scraping (Pracuj.pl) and official API access (BUR)</li>
-<li><strong>NLP-based enrichment</strong> to standardise unstructured text (ESCO skills, NACE sectors, occupations)</li>
-</ul>
-<p class="overview-panel-kicker" style="margin-top:1rem;">Analytical focus</p>
-<ul class="overview-list">
-<li>Skills demand and supply profiles across ESCO skill groups</li>
-<li>Special focus: <strong>digital</strong>, <strong>AI</strong>, <strong>care services</strong>, <strong>green skills</strong>, and openness to foreign workers</li>
-<li><strong>Skills mismatch:</strong> gaps between labour demand (job postings) and training supply (BUR)</li>
-</ul>
-:::
-:::
+A key contribution of the analysis is the use of standardised skill
+taxonomies, primarily ESCO, to make job-posting and training data comparable.
+This enables the report to move beyond broad occupational categories and
+examine the specific competences, knowledge fields, and transversal skills
+that appear in both demand and supply. Additional analysis focuses on
+selected policy-relevant domains, including digital skills, artificial
+intelligence, green skills, care-related work, public health training, and
+job opportunities explicitly open to Ukrainian workers.
+
+The findings show that Poland's skill ecosystem is characterised by both
+strengths and gaps. Employer demand is strongly oriented toward management,
+communication, collaboration, digital, ICT, and business-related skills.
+Training supply, by contrast, places relatively greater emphasis on care,
+services, health, welfare, and machinery-related skills. This does not imply
+that these areas are overfunded or unimportant; many are linked to major
+demographic and social challenges. However, it does suggest that the current
+training portfolio may not fully reflect the structure of market-based
+employer demand, particularly in areas linked to digitalisation,
+organisational capabilities, and productivity growth.
+
+The report also highlights the importance of interpreting data sources
+carefully. Pracuj.pl vacancies provide rich and timely information on
+employer demand, but they underrepresent some public-sector, informal,
+low-wage, and locally recruited jobs. BUR data offer valuable insights into
+training provision, but they do not measure training quality, take-up,
+completion, or labour-market outcomes. Therefore, the results should be read
+as evidence on the structure and direction of demand and supply, rather than
+as a definitive measure of aggregate labour-market shortages.
+
+For policymakers, the report points to the value of building an integrated
+labour-market intelligence system that combines online vacancy data, training
+registries, administrative sources, and standardised skills taxonomies. Such
+a system could help identify emerging skill needs earlier, monitor whether
+training provision is adapting to structural change, and guide public
+investment in skills toward areas with the highest economic and social
+returns. In the Polish context, this is particularly relevant for digital
+transformation, the green transition, demographic ageing, migrant
+integration, and regional development.
 
 :::

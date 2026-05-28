@@ -9,6 +9,7 @@ Red bars indicate voivodeships where the number of registered training-service e
 <div class="chart-block">
   <div class="figure-caption-title"><strong>Figure 2a.</strong> Percentage change in BUR training services by voivodeship (2019 → 2025)</div>
   <div id="chart-training-change-2019-2025" class="plotly-chart plotly-chart--wide" role="img" aria-label="Percentage change in BUR training services by voivodeship between 2019 and 2025"></div>
+  <p class="figure-interpretation"><strong>Interpretation.</strong> Regional changes in BUR supply are uneven and should be interpreted cautiously. They likely reflect funding-cycle effects and provider re-listing practices as much as changes in local skill needs.</p>
 </div>
 <p class="notes source-note">Source: BUR yearly exports (<code>Usługa szkoleniowa</code>), counted by provider-reported voivodeship.</p>
 ```

@@ -38,32 +38,32 @@
     return colors.map((color, i) => [i / last, color]);
   }
 
-  const VOIVODESHIP_EN = {
-    "dolnośląskie": "Lower Silesia",
-    "kujawsko-pomorskie": "Kuyavia-Pomerania",
-    "lubelskie": "Lublin",
-    "lubuskie": "Lubusz",
-    "łódzkie": "Lodz",
-    "małopolskie": "Lesser Poland",
-    "mazowieckie": "Masovia",
-    "mazowieckie regionalny": "Masovia (regional BUR)",
-    "opolskie": "Opole",
-    "podkarpackie": "Subcarpathia",
+  const VOIVODESHIP_LABELS = {
+    "dolnośląskie": "Dolnośląskie",
+    "kujawsko-pomorskie": "Kujawsko-pomorskie",
+    "lubelskie": "Lubelskie",
+    "lubuskie": "Lubuskie",
+    "łódzkie": "Łódzkie",
+    "małopolskie": "Małopolskie",
+    "mazowieckie": "Mazowieckie",
+    "mazowieckie regionalny": "Mazowieckie (regional BUR)",
+    "opolskie": "Opolskie",
+    "podkarpackie": "Podkarpackie",
     "podlaskie": "Podlaskie",
-    "pomorskie": "Pomerania",
-    "śląskie": "Silesia",
-    "świętokrzyskie": "Holy Cross",
-    "warmińsko-mazurskie": "Warmia-Masuria",
-    "wielkopolskie": "Greater Poland",
-    "zachodniopomorskie": "West Pomerania",
-    "brak": "Unspecified",
+    "pomorskie": "Pomorskie",
+    "śląskie": "Śląskie",
+    "świętokrzyskie": "Świętokrzyskie",
+    "warmińsko-mazurskie": "Warmińsko-mazurskie",
+    "wielkopolskie": "Wielkopolskie",
+    "zachodniopomorskie": "Zachodniopomorskie",
+    "brak": "Brak danych",
   };
 
   function voivodeshipLabel(slug) {
     const key = String(slug || "")
       .trim()
       .toLowerCase();
-    return VOIVODESHIP_EN[key] || slug;
+    return VOIVODESHIP_LABELS[key] || slug;
   }
 
   window.__CHART_THEME__ = {
