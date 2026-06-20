@@ -12,7 +12,7 @@ Pracuj.pl is therefore treated as a strong proxy for **market-driven labour dema
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 6.</strong> Vacancy structure by KZiS major group: Pracuj.pl vs MRPiPS / PUP (2025, share of total)</div>
+  <div class="figure-caption-title"><strong>Figure 2.</strong> Vacancy structure by KZiS major group: Pracuj.pl vs MRPiPS / PUP (2025, share of total)</div>
   <div id="chart-kzis-comparison" class="plotly-chart plotly-chart--wide" role="img" aria-label="Comparison of vacancy shares by KZiS major group between Pracuj.pl and MRPiPS PUP data in 2025"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> The figure highlights selection differences between private online recruitment and public labour-office reporting. Pracuj.pl better captures market-driven, white-collar and specialist hiring, while PUP data better captures public-sector, blue-collar, and some foreign-worker vacancies.</p>
 </div>
@@ -48,7 +48,7 @@ In 2025, roughly **3,100 providers** delivered training through BUR — about ha
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 7.</strong> BUR training providers and services by provider type (2025)</div>
+  <div class="figure-caption-title"><strong>Figure 3.</strong> BUR training providers and services by provider type (2025)</div>
   <div id="chart-bur-providers" class="plotly-chart plotly-chart--wide" role="img" aria-label="Distribution of BUR training providers and services by provider type in 2025"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> BUR provision is dominated by private companies, both in provider counts and service volumes. This suggests that Poland’s subsidised training system relies heavily on private delivery capacity.</p>
 </div>
@@ -76,7 +76,7 @@ About half of BUR postings replicate an earlier offering by the same provider un
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 8.</strong> BUR postings by number of years a course remained on offer (2016–2025)</div>
+  <div class="figure-caption-title"><strong>Figure 4.</strong> BUR postings by number of years a course remained on offer (2016–2025)</div>
   <div id="chart-bur-recurrence" class="plotly-chart plotly-chart--wide" role="img" aria-label="Distribution of BUR postings by number of years a course was offered"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> A substantial share of BUR postings are recurring offerings rather than entirely new courses. This points to stability in the training catalogue, but also raises questions about how quickly provision adapts to emerging skill demand.</p>
 </div>
@@ -98,7 +98,7 @@ From 2024, the form structure changed; Q1–Q4 fields are no longer populated in
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 9.</strong> Share of BUR trainings ending with each recognised-qualification type (2016–2023)</div>
+  <div class="figure-caption-title"><strong>Figure 5.</strong> Share of BUR trainings ending with each recognised-qualification type (2016–2023)</div>
   <div id="chart-bur-qualifications" class="plotly-chart plotly-chart--wide" role="img" aria-label="Historical share of BUR trainings by recognised qualification type"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Historically, recognised qualifications in BUR were distributed across several formal categories. Because the questionnaire changed after 2023, the figure is best used to understand the earlier qualification regime rather than current certification patterns.</p>
 </div>
@@ -118,7 +118,7 @@ A training is classified as ending with a **recognised competence certificate** 
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 10.</strong> Type of document issued by BUR trainings (2025)</div>
+  <div class="figure-caption-title"><strong>Figure 6.</strong> Type of document issued by BUR trainings (2025)</div>
   <div id="chart-bur-documents-2025" class="plotly-chart plotly-chart--wide" role="img" aria-label="Share of BUR trainings by completion document type in 2025"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Most trainings with parsable metadata end with a recognised competence certificate. This indicates that BUR provision is often linked to formalised learning outcomes, although certificate quality and labour-market recognition may still vary.</p>
 </div>
@@ -131,7 +131,7 @@ A training is classified as ending with a **recognised competence certificate** 
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 11.</strong> BUR training delivery modality (2025)</div>
+  <div class="figure-caption-title"><strong>Figure 7.</strong> BUR training delivery modality (2025)</div>
   <div id="chart-bur-modality" class="plotly-chart plotly-chart--wide" role="img" aria-label="Share of BUR trainings by delivery modality in 2025"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> The modality structure shows how far BUR provision has moved beyond purely classroom-based delivery. The balance between in-person, online, and hybrid formats matters for access, especially for workers outside major urban centres.</p>
 </div>

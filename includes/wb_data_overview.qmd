@@ -8,18 +8,18 @@ The figures below summarise monthly listing volumes from Pracuj.pl and BUR in 20
 ```{=html}
 <div class="chart-duo">
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 2.</strong> Pracuj.pl estimated vacancies</div>
+    <div class="figure-caption-title"><strong>Figure 8.</strong> Pracuj.pl estimated vacancies</div>
     <div id="chart-monthly-vacancies" class="plotly-chart" role="img" aria-label="Monthly estimated vacancies on Pracuj.pl in 2025"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> The vacancy series shows the monthly intensity of market-based recruitment captured by Pracuj.pl. It should be read as a high-quality proxy for online labour demand, particularly in white-collar, specialist, and IT occupations, rather than as a full census of all vacancies.</p>
   </div>
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 3.</strong> BUR training services</div>
+    <div class="figure-caption-title"><strong>Figure 9.</strong> BUR training services</div>
     <div id="chart-monthly-bur" class="plotly-chart" role="img" aria-label="Monthly BUR training services in 2025"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> BUR listings provide a view of the supply of registered training opportunities. Their volume reflects both training-market activity and public funding cycles, so the figure is most useful as a measure of available training provision rather than actual participation.</p>
   </div>
 </div>
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 4.</strong> BUR training services by year (2016–2025)</div>
+  <div class="figure-caption-title"><strong>Figure 10.</strong> BUR training services by year (2016–2025)</div>
   <div id="chart-bur-yearly" class="plotly-chart plotly-chart--wide" role="img" aria-label="BUR training services by year 2016 to 2025"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> The long-run BUR series shows strong variation across years, likely linked to EU funding cycles, pandemic disruption, and the platform’s institutional development. This supports the report’s choice to focus on within-year skill shares rather than raw volumes.</p>
 </div>

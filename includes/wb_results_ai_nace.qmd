@@ -5,7 +5,7 @@ AI-related postings are concentrated in **knowledge-intensive services**. More t
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 28.</strong> AI-related job offers by NACE section (2025)</div>
+  <div class="figure-caption-title"><strong>Figure 29.</strong> AI-related job offers by NACE section (2025)</div>
   <div id="chart-ai-nace-sections" class="plotly-chart plotly-chart--wide" role="img" aria-label="AI job offers by NACE section"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> AI-related hiring is highly concentrated in knowledge-intensive services, especially professional, scientific, technical, telecommunications, IT, and information services. Manufacturing appears as a secondary but important area of AI demand.</p>
 </div>

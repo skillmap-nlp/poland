@@ -5,7 +5,7 @@ The Ukrainian-friendly tag is unevenly distributed across the economy. **Transpo
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 34j.</strong> Over- and under-representation of NACE sections among Ukrainian-friendly postings</div>
+  <div class="figure-caption-title"><strong>Figure 45.</strong> Over- and under-representation of NACE sections among Ukrainian-friendly postings</div>
   <p class="notes source-note" style="margin-top:0.35rem;">Bar = percentage-point gap between the share of postings within each segment. Sections below 0.2% in both segments are omitted.</p>
   <div id="chart-ukr-nace-sections" class="plotly-chart plotly-chart--wide plotly-chart--tall" role="img" aria-label="Diverging bar chart of Ukrainian-friendly over- and under-representation by NACE section"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Transport, hospitality, and manufacturing over-index among Ukrainian-friendly postings, while professional services and finance under-index. This reflects both language and credential barriers and the occupational composition of migrant-accessible jobs.</p>

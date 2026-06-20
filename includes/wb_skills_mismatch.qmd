@@ -35,7 +35,7 @@ Before drilling into skill pillars, the aggregate picture shows where tag mass c
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 15.</strong> Share of ESCO tag mass by competence family — demand vs supply</div>
+  <div class="figure-caption-title"><strong>Figure 17.</strong> Share of ESCO tag mass by competence family — demand vs supply</div>
   <div id="chart-mismatch-family" class="plotly-chart plotly-chart--wide" role="img" aria-label="Demand and supply shares by ESCO competence family"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> The aggregate comparison shows the first clear sign of mismatch: demand is concentrated in skills, knowledge, and transversal competences, while supply places relatively more weight on care-related and knowledge areas.</p>
 </div>
@@ -48,7 +48,7 @@ Before drilling into skill pillars, the aggregate picture shows where tag mass c
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 16.</strong> ESCO skill mix on the demand and supply sides (S1–S8, share of tag mass)</div>
+  <div class="figure-caption-title"><strong>Figure 18.</strong> ESCO skill mix on the demand and supply sides (S1–S8, share of tag mass)</div>
   <div id="chart-mismatch-s1s8-overview" class="plotly-chart plotly-chart--wide" role="img" aria-label="Demand and supply shares for ESCO skill pillars S1 through S8"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Management, communication, digital, and ICT-related skills are more prominent in vacancies than in BUR training tags. Conversely, care, services, and machinery-related skills are more prominent in training supply.</p>
 </div>
@@ -78,7 +78,7 @@ S1–S8 family within each country.
 
 ```{=html}
 <div id="intl-esco-s1s8"></div>
-<p class="notes source-note">Source: ESCO S1–S8 demand-side shares. Poland (highlighted) uses the figures from Figure 16 of this report; other countries come from the East Asia skill-demand report.</p>
+<p class="notes source-note">Source: ESCO S1–S8 demand-side shares. Poland (highlighted) uses the figures from Figure 18 of this report; other countries come from the East Asia skill-demand report.</p>
 ```
 :::
 
@@ -87,7 +87,7 @@ S1–S8 family within each country.
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 17.</strong> Demand–supply gap by ESCO skill pillar (S1–S8, percentage points)</div>
+  <div class="figure-caption-title"><strong>Figure 19.</strong> Demand–supply gap by ESCO skill pillar (S1–S8, percentage points)</div>
   <div id="chart-mismatch-s1s8-gap" class="plotly-chart plotly-chart--wide" role="img" aria-label="Diverging bar chart of demand minus supply gap for ESCO skill pillars"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> The gap profile separates demand-heavy white-collar and digital skills from supply-heavy care, services, and machinery skills. The policy implication is a need to rebalance part of subsidised training toward business, management, digital, and transversal capabilities.</p>
 </div>
@@ -102,12 +102,12 @@ The chart is dominated by two forces: a **white-collar / cognitive deficit** on 
 ```{=html}
 <div class="chart-grid chart-grid--2">
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 18.</strong> Most under-supplied L2 skill groups</div>
+    <div class="figure-caption-title"><strong>Figure 20.</strong> Most under-supplied L2 skill groups</div>
     <div id="chart-mismatch-l2-under" class="plotly-chart" role="img" aria-label="Top under-supplied L2 ESCO groups"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> The largest under-supplied sub-groups include management, business administration, teamwork, digital data access, and ICT knowledge. These are broad productivity-relevant skills that cut across many sectors.</p>
   </div>
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 19.</strong> Most over-supplied L2 skill groups</div>
+    <div class="figure-caption-title"><strong>Figure 21.</strong> Most over-supplied L2 skill groups</div>
     <div id="chart-mismatch-l2-over" class="plotly-chart" role="img" aria-label="Top over-supplied L2 ESCO groups"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> Over-supplied groups cluster around personal care, protective services, driving, and health-care delivery. This may partly reflect genuine policy priorities, but also the fact that Pracuj.pl under-represents some public and manual occupations.</p>
   </div>
@@ -127,17 +127,17 @@ The S-pillar summary masks important gaps in **transversal** and **knowledge** d
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 20.</strong> Transversal competences (T1–T6): demand vs supply shares within the transversal pillar (each side renormalised to 100%)</div>
+  <div class="figure-caption-title"><strong>Figure 22.</strong> Transversal competences (T1–T6): demand vs supply shares within the transversal pillar (each side renormalised to 100%)</div>
   <div id="chart-mismatch-transversal" class="plotly-chart plotly-chart--wide" role="img" aria-label="Transversal skills demand vs supply"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Employers place relatively more weight on social, communication, and self-management competences than the BUR training mix does. These transversal gaps matter because such skills are valuable across occupations and sectors.</p>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
-  <div class="figure-caption-title"><strong>Figure 21.</strong> Knowledge fields (ISCED-F): demand vs supply shares within the knowledge pillar (each side renormalised to 100%)</div>
+  <div class="figure-caption-title"><strong>Figure 23.</strong> Knowledge fields (ISCED-F): demand vs supply shares within the knowledge pillar (each side renormalised to 100%)</div>
   <div id="chart-mismatch-knowledge" class="plotly-chart plotly-chart--wide" role="img" aria-label="Knowledge concepts demand vs supply"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Business, administration, and ICT knowledge appear under-represented in training relative to demand, while services and health-related knowledge are more prominent in supply. This reinforces the broader mismatch between market hiring and subsidised provision.</p>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
-  <div class="figure-caption-title"><strong>Figure 22.</strong> Languages: demand vs supply shares within the language pillar (Polish excluded; long tail grouped as Other; each side renormalised to 100%)</div>
+  <div class="figure-caption-title"><strong>Figure 24.</strong> Languages: demand vs supply shares within the language pillar (Polish excluded; long tail grouped as Other; each side renormalised to 100%)</div>
   <div id="chart-mismatch-languages" class="plotly-chart plotly-chart--wide" role="img" aria-label="Language skills demand vs supply"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> English and German dominate language demand, while training supply appears more diversified across languages. For employability policy, language training should remain demand-sensitive rather than evenly distributed across language categories.</p>
 </div>

@@ -198,7 +198,7 @@
     });
 
     document.getElementById("map-figure-title").textContent =
-      "Figure 1. Relative labour demand and training supply across Polish voivodeships";
+      "Figure 14. Relative labour demand and training supply across Polish voivodeships";
     document.getElementById("map-note").innerHTML = `
       <div class="figure-caption-source">
         Source: <a href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>;

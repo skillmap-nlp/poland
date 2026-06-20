@@ -5,7 +5,7 @@ Downstream NLP maps heterogeneous phrasing in job ads and training descriptions 
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 5a.</strong> Example BUR training service and mapped ESCO skills</div>
+  <div class="figure-caption-title"><strong>Figure 16.</strong> Example BUR training service and mapped ESCO skills</div>
   <div class="bur-training-example-shell">
 ```
 {{< include presentation/training_2147461_embed.html >}}

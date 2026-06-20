@@ -5,12 +5,12 @@ Within professional and ICT services, AI demand is concentrated in a handful of 
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 29.</strong> Top NACE divisions in AI-related job offers</div>
+  <div class="figure-caption-title"><strong>Figure 30.</strong> Top NACE divisions in AI-related job offers</div>
   <div id="chart-ai-nace-divisions" class="plotly-chart plotly-chart--wide" role="img" aria-label="Top NACE divisions for AI job offers"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Within AI demand, computer programming and engineering/technical consultancy are central divisions. This suggests that AI adoption is currently led by sectors with strong technical and professional-service capabilities.</p>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
-  <div class="figure-caption-title"><strong>Figure 30.</strong> Transversal skill groups among AI-tagged offers</div>
+  <div class="figure-caption-title"><strong>Figure 31.</strong> Transversal skill groups among AI-tagged offers</div>
   <div id="chart-ai-transversal" class="plotly-chart plotly-chart--wide" role="img" aria-label="Transversal skills in AI offers"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> AI-related jobs often combine technical requirements with transversal skills, especially self-management and basic skills. This reinforces the point that AI upskilling should not be designed as purely technical training.</p>
 </div>

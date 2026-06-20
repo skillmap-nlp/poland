@@ -8,35 +8,35 @@ Within this subset, ESCO tags stress **assisting & caring (S3)** — nursing, pa
 ```{=html}
 <div class="chart-grid chart-grid--2">
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 39.</strong> Public-health BUR trainings as share of all BUR services (2016–2025)</div>
+    <div class="figure-caption-title"><strong>Figure 52.</strong> Public-health BUR trainings as share of all BUR services (2016–2025)</div>
     <div id="chart-care-bur-ph-share" class="plotly-chart" role="img" aria-label="Public health training share in BUR over time"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health training remains a small share of BUR but has grown since 2022. This suggests rising policy and provider attention, though the scale remains limited relative to the full training catalogue.</p>
   </div>
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 40.</strong> ESCO skill-pillar mix in public-health BUR trainings (2025)</div>
+    <div class="figure-caption-title"><strong>Figure 53.</strong> ESCO skill-pillar mix in public-health BUR trainings (2025)</div>
     <div id="chart-care-ph-s1s8" class="plotly-chart" role="img" aria-label="Skill pillar distribution in public health BUR trainings"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health BUR training is strongly oriented toward assisting and caring skills, with additional communication and information skills. This profile is consistent with practical service-delivery training.</p>
   </div>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
-  <div class="figure-caption-title"><strong>Figure 41.</strong> Top voivodeships for public-health BUR training services</div>
+  <div class="figure-caption-title"><strong>Figure 54.</strong> Top voivodeships for public-health BUR training services</div>
   <div id="chart-ph-regions" class="plotly-chart plotly-chart--wide" role="img" aria-label="Public health trainings by region"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health training supply is regionally concentrated, led by Śląskie, Pomorskie, and Małopolskie. Regional concentration may reflect provider location, funding availability, or local health-sector demand.</p>
 </div>
 <div class="chart-grid chart-grid--2" style="margin-top:1.25rem;">
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 42.</strong> Delivery modality — public-health BUR (2025)</div>
+    <div class="figure-caption-title"><strong>Figure 55.</strong> Delivery modality — public-health BUR (2025)</div>
     <div id="chart-ph-modality" class="plotly-chart" role="img" aria-label="Modality of public health trainings"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health training is overwhelmingly in-person, reflecting the practical and hands-on nature of many care and health competences. This may limit access for workers in regions with fewer providers.</p>
   </div>
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 43.</strong> Duration distribution — public-health BUR (2025)</div>
+    <div class="figure-caption-title"><strong>Figure 56.</strong> Duration distribution — public-health BUR (2025)</div>
     <div id="chart-ph-duration" class="plotly-chart" role="img" aria-label="Duration of public health trainings"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> Public-health training is mostly short to medium length. This suggests a focus on modular competence development rather than long formal qualification pathways.</p>
   </div>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
-  <div class="figure-caption-title"><strong>Figure 44.</strong> Top skills taught in public-health BUR trainings</div>
+  <div class="figure-caption-title"><strong>Figure 57.</strong> Top skills taught in public-health BUR trainings</div>
   <div id="chart-ph-top-skills" class="plotly-chart plotly-chart--wide" role="img" aria-label="Top skills in public health BUR"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> The leading skills taught include elderly care, first aid, rehabilitation, and related practical care competences. These align with ageing-related service needs and the operational requirements of care delivery.</p>
 </div>

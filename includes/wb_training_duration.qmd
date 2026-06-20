@@ -7,7 +7,7 @@ Median duration has remained in the **low tens of hours** over the registry’s 
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 12.</strong> BUR training duration — median, mean and 90th percentile by year</div>
+  <div class="figure-caption-title"><strong>Figure 11.</strong> BUR training duration — median, mean and 90th percentile by year</div>
   <div id="chart-duration-yearly" class="plotly-chart plotly-chart--wide" role="img" aria-label="Training duration statistics by year in BUR"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Training duration is typically short to medium, but the gap between the mean and upper percentiles indicates a long tail of more intensive programmes. This suggests that BUR mainly supports modular upskilling, with a smaller segment of longer qualification-oriented courses.</p>
 </div>
@@ -25,12 +25,12 @@ Category medians vary widely: **language and IT** courses tend to be longer and 
 ```{=html}
 <div class="chart-grid chart-grid--2">
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 13.</strong> Share of BUR trainings by duration bucket (2025)</div>
+    <div class="figure-caption-title"><strong>Figure 12.</strong> Share of BUR trainings by duration bucket (2025)</div>
     <div id="chart-duration-buckets" class="plotly-chart" role="img" aria-label="Distribution of training durations in 2025"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> The 2025 distribution confirms that most BUR training is delivered as relatively short courses. For policy, this means BUR is well suited for targeted upskilling but may be less suited, by itself, for deeper occupational transitions.</p>
   </div>
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 14.</strong> Median duration by BUR service category — top 10 by volume (2025)</div>
+    <div class="figure-caption-title"><strong>Figure 13.</strong> Median duration by BUR service category — top 10 by volume (2025)</div>
     <div id="chart-duration-category" class="plotly-chart" role="img" aria-label="Median training hours by category in 2025"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> Differences across categories show that training intensity varies substantially by field. Longer IT and language courses likely reflect higher learning requirements, while shorter safety and soft-skill courses reflect more standardised, modular provision.</p>
   </div>

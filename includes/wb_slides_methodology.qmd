@@ -43,7 +43,7 @@ This report uses a single-source approach based on Pracuj.pl — Poland's larges
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 5.</strong> Pracuj.pl estimated vacancies (flow) vs GUS open vacancies (stock), 2025</div>
+  <div class="figure-caption-title"><strong>Figure 1.</strong> Pracuj.pl estimated vacancies (flow) vs GUS open vacancies (stock), 2025</div>
   <div id="chart-quarterly-gus" class="plotly-chart plotly-chart--wide" role="img" aria-label="Pracuj.pl quarterly vacancy flow compared with GUS vacant jobs stock in 2025"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> The comparison illustrates that Pracuj.pl and GUS measure different labour-market concepts: online posting flows versus end-of-quarter vacancy stocks. The two sources are complementary rather than substitutes.</p>
 </div>

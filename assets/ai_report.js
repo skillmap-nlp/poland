@@ -155,7 +155,7 @@
     });
 
     document.getElementById("ai-map-figure-title").textContent =
-      "Figure 27. Regional AI demand intensity across Polish voivodeships";
+      "Figure 28. Regional AI demand intensity across Polish voivodeships";
     document.getElementById("ai-map-note").innerHTML = `
       <div class="figure-caption-source">
         Source: <a href="https://www.pracuj.pl/" target="_blank" rel="noopener noreferrer">Pracuj.pl</a>;

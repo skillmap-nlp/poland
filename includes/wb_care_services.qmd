@@ -15,7 +15,7 @@ The implication for interpretation is important: this section describes the skil
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 35.</strong> Top care-related occupations by posting volume (KZiS-mapped titles, 2025)</div>
+  <div class="figure-caption-title"><strong>Figure 48.</strong> Top care-related occupations by posting volume (KZiS-mapped titles, 2025)</div>
   <div id="chart-care-top-occupations" class="plotly-chart plotly-chart--wide" role="img" aria-label="Top care-related occupations on Pracuj.pl"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Direct care demand captured by Pracuj.pl is small and concentrated in a limited set of occupations. This likely understates broader care-sector demand, especially in public and municipal services.</p>
 </div>
@@ -31,18 +31,18 @@ Care postings emphasise **assisting & caring (S3)** and **management (S4)** more
 ```{=html}
 <div class="chart-grid chart-grid--2">
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 36.</strong> Top ESCO skills in care-related offers</div>
+    <div class="figure-caption-title"><strong>Figure 49.</strong> Top ESCO skills in care-related offers</div>
     <div id="chart-care-top-skills" class="plotly-chart" role="img" aria-label="Top skills in care offers"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> Care-related postings combine hands-on care skills with general digital and management skills. This suggests that even direct care roles increasingly require coordination and basic administrative capabilities.</p>
   </div>
   <div class="chart-block">
-    <div class="figure-caption-title"><strong>Figure 37.</strong> Top knowledge concepts in care-related offers</div>
+    <div class="figure-caption-title"><strong>Figure 50.</strong> Top knowledge concepts in care-related offers</div>
     <div id="chart-care-top-knowledge" class="plotly-chart" role="img" aria-label="Top knowledge in care offers"></div>
     <p class="figure-interpretation"><strong>Interpretation.</strong> Knowledge demand in care postings centres on paramedical practice and nursing-related knowledge. This confirms that care work often requires occupation-specific knowledge, not only generic empathy or assistance skills.</p>
   </div>
 </div>
 <div class="chart-block" style="margin-top:1.25rem;">
-  <div class="figure-caption-title"><strong>Figure 38.</strong> Care services vs NACE R86 healthcare — share of offers with each S-pillar skill</div>
+  <div class="figure-caption-title"><strong>Figure 51.</strong> Care services vs NACE R86 healthcare — share of offers with each S-pillar skill</div>
   <div id="chart-care-s1s8-compare" class="plotly-chart plotly-chart--wide" role="img" aria-label="S1-S8 comparison care vs healthcare"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Care-service postings differ from the broader healthcare sector by placing more emphasis on assisting, caring, and management skills and less on ICT. This helps distinguish direct care roles from the wider healthcare labour market.</p>
 </div>

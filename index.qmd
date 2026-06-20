@@ -285,7 +285,7 @@ shows that advanced digital skills account for the largest share of
 classified digital demand.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 23.</strong> Distribution of classified digital skill mentions in Poland</div>
+<div class="figure-caption-title"><strong>Figure 25.</strong> Distribution of classified digital skill mentions in Poland</div>
 <div class="digital-stack-card">
   <div class="digital-stack-topline">
     <span class="digital-stack-total">696,092</span>
@@ -336,7 +336,7 @@ classified digital demand.
 
 The same `basic` / `intermediate` / `advanced` classification, applied
 to the East Asia and benchmark panel, shows where Poland sits relative
-to other economies. Poland's bar uses the figures from Figure 23 in
+to other economies. Poland's bar uses the figures from Figure 25 in
 this report; the other countries come from the East Asia skill-demand
 report. The stack always sums to 100% of classified digital skill
 mentions, so cross-country differences reflect the *mix* of digital
@@ -344,7 +344,7 @@ skill demand rather than its volume.
 
 ```{=html}
 <div id="intl-digital-levels"></div>
-<p class="notes source-note">Source: Chinen &amp; Montorsi (2025) classification; Pracuj.pl (Poland) and online job postings reported in the East Asia skill-demand panel for the other economies; authors' mapping. Poland's values are taken from Figure 23 of this report. Periods are not strictly aligned across countries.</p>
+<p class="notes source-note">Source: Chinen &amp; Montorsi (2025) classification; Pracuj.pl (Poland) and online job postings reported in the East Asia skill-demand panel for the other economies; authors' mapping. Poland's values are taken from Figure 25 of this report. Periods are not strictly aligned across countries.</p>
 ```
 :::
 
@@ -361,7 +361,7 @@ alternative labels. Regional assignment is based on geocoded powiat data.
 Click a voivodeship to inspect its top demanded digital skills.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 24.</strong> Share of job postings with at least one ESCO digital skill, by voivodeship (2025)</div>
+<div class="figure-caption-title"><strong>Figure 26.</strong> Share of job postings with at least one ESCO digital skill, by voivodeship (2025)</div>
 <div class="ai-regional-layout">
   <div id="digital-regional-map"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> Regional variation in digital demand shows where digitalisation pressures are strongest in local labour markets. The map can help target regional digital upskilling and identify areas where training supply may need to catch up.</p>
@@ -420,7 +420,7 @@ dimensions that cut across categories.
 ```
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 25.</strong> AI demand by category with top requested skills</div>
+<div class="figure-caption-title"><strong>Figure 27.</strong> AI demand by category with top requested skills</div>
 <div id="ai-category-demand"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> AI demand is still a small share of all postings, but the expanded Lightcast list captures a broader and more current set of AI-related skills than the strict benchmark. The figure helps distinguish core AI capabilities from adjacent tools and platforms.</p>
 <p class="notes source-note">Source: Pracuj.pl job postings; Lightcast AI skills taxonomy; Martins-Neto et al. (2026); authors' semantic matching and categorization. Category demand is based on postings matched to the expanded Lightcast AI list under the conservative threshold used in this report.</p>
@@ -530,7 +530,7 @@ from roughly 2.5% to 4.0%, with higher concentrations in voivodeships
 where construction, energy, and agricultural sectors are more prominent.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 31a.</strong> Share of job postings with at least one green skill, by voivodeship</div>
+<div class="figure-caption-title"><strong>Figure 32.</strong> Share of job postings with at least one green skill, by voivodeship</div>
 <div id="green-regional-map"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> Green-skill demand varies moderately across regions, with higher shares in areas linked to construction, energy, and agriculture. Regional green policies should therefore account for local industrial structure.</p>
 <div class="map-caption source-note">Source: Pracuj.pl job postings; ESCO Green Skills Collection; authors' matching and manual review.</div>
@@ -547,7 +547,7 @@ the ranking, reflecting Poland's strong construction and energy
 infrastructure sectors.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 31b.</strong> Top 25 genuine green skills by number of job offers</div>
+<div class="figure-caption-title"><strong>Figure 33.</strong> Top 25 genuine green skills by number of job offers</div>
 <div id="green-top-skills-chart"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> The leading green skills are linked to environmental engineering, environmental management, and heating/cooling systems. This points to practical green-transition demand in construction, energy infrastructure, and environmental compliance.</p>
 <p class="notes source-note">Source: Pracuj.pl job postings; ESCO Green Skills Collection; authors' matching and manual review.</p>
@@ -574,7 +574,7 @@ environmental protection specialists show higher average green skill
 intensity per posting.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 31c.</strong> Top 15 KZIS occupations by number of offers with green skills</div>
+<div class="figure-caption-title"><strong>Figure 35.</strong> Top 15 KZIS occupations by number of offers with green skills</div>
 <div id="green-top-occupations-chart"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> Green demand is not limited to specialist environmental roles; high-volume occupations such as sales representatives also carry green-skill signals. This suggests that green transition skills are diffusing into commercial and client-facing occupations.</p>
 <p class="notes source-note">Source: Pracuj.pl job postings; ESCO Green Skills Collection; KZIS occupation matches; authors' matching and manual review.</p>
@@ -622,7 +622,7 @@ its labour market is dominated by professional and IT roles where the
 tag is less commonly used.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 34a.</strong> Share of postings tagged 'Jobs for Ukrainians', by voivodeship (2025)</div>
+<div class="figure-caption-title"><strong>Figure 36.</strong> Share of postings tagged 'Jobs for Ukrainians', by voivodeship (2025)</div>
 <div id="ukr-regional-map"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> Ukrainian-friendly postings are regionally uneven, with Małopolskie standing out. The pattern likely reflects refugee settlement geography and sectoral composition rather than general labour-market tightness alone.</p>
 <div class="map-caption source-note">Source: Pracuj.pl postings with <code>data-test="sections-benefit-ukrainian-friendly"</code>; authors' parsing.</div>
@@ -653,7 +653,7 @@ suggests the Ukrainian-friendly tag tracks **demographic factors**
 overall hiring intensity.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 34b.</strong> Total offers per 100k labour force vs share of offers tagged 'Jobs for Ukrainians', by voivodeship</div>
+<div class="figure-caption-title"><strong>Figure 37.</strong> Total offers per 100k labour force vs share of offers tagged 'Jobs for Ukrainians', by voivodeship</div>
 <div id="ukr-density-scatter"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> The weak relationship between overall demand intensity and Ukrainian-friendly shares suggests that employers’ openness to Ukrainian workers is driven more by sectoral and demographic factors than by aggregate vacancy pressure.</p>
 <p class="notes source-note">Source: Pracuj.pl postings; Statistics Poland (BAEL) labour-force averages 2025; authors' computation. Each marker is one of the 16 voivodeships; the dashed line is the OLS fit.</p>
@@ -693,7 +693,7 @@ representation of UA-friendly-prone sectors?"*
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 34c.</strong> Shift-share decomposition of the Ukrainian-friendly gap from the national share — 16 voivodeships</div>
+  <div class="figure-caption-title"><strong>Figure 38.</strong> Shift-share decomposition of the Ukrainian-friendly gap from the national share — 16 voivodeships</div>
   <div id="ukr-shift-voivodeship" class="plotly-chart" role="img" aria-label="Stacked horizontal bar of within-sector and composition components of UA-tag share gap for 16 voivodeships"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Małopolskie's +4.8 pp gap is almost entirely behavioural — its sectoral mix accounts for just +0.2 pp; the rest is local employers being more willing to flag the tag. The reverse is true for Mazowieckie, where a slightly positive within-sector signal is dragged below zero by an over-representation of professional / IT roles where the tag is rarely used.</p>
   <p class="notes source-note">Source: Pracuj.pl postings (2025); NACE division mapping; authors' computation. Diamonds mark the observed gap = within + between.</p>
@@ -702,7 +702,7 @@ representation of UA-friendly-prone sectors?"*
 
 ```{=html}
 <div class="chart-block">
-  <div class="figure-caption-title"><strong>Figure 34d.</strong> Shift-share decomposition — top-20 powiats by |gap|</div>
+  <div class="figure-caption-title"><strong>Figure 39.</strong> Shift-share decomposition — top-20 powiats by |gap|</div>
   <div id="ukr-shift-powiat" class="plotly-chart" role="img" aria-label="Stacked horizontal bar of within-sector and composition components for top-20 powiats"></div>
   <p class="figure-interpretation"><strong>Interpretation.</strong> Polkowicki's +20.8 pp gap is dominated by the within-sector term (+19.6 pp): even at the same sectoral mix as Poland, local employers there flag the tag far more often. Tatrzański is the clearest "composition" case — about a third of its gap is a hospitality-and-services tilt typical of mountain resorts.</p>
   <p class="notes source-note">Source: Pracuj.pl postings (2025). Only powiats with ≥ 100 postings are eligible; ranking by absolute gap.</p>
@@ -721,7 +721,7 @@ all postings, followed by **transportation and storage (H)** and
 public administration use the tag much less frequently.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 34e.</strong> NACE sections with the highest share of Ukrainian-friendly postings</div>
+<div class="figure-caption-title"><strong>Figure 40.</strong> NACE sections with the highest share of Ukrainian-friendly postings</div>
 <div id="ukr-industries-section-chart"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> Ukrainian-friendly hiring is concentrated in hospitality, transport, and manufacturing. These sectors often involve operational roles with lower formal credential barriers and higher labour turnover.</p>
 <p class="notes source-note">Source: Pracuj.pl + ESCO→NACE crosswalk. Sections shown have at least 5,000 postings.</p>
@@ -742,10 +742,10 @@ reflecting the large pool of Ukrainian IT specialists who relocated
 after 2022.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 34f.</strong> NACE divisions with the highest share of Ukrainian-friendly postings</div>
+<div class="figure-caption-title"><strong>Figure 41.</strong> NACE divisions with the highest share of Ukrainian-friendly postings</div>
 <div id="ukr-industries-share-chart"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> At a more detailed sector level, food retail, restaurants, and road transport stand out. These niches are particularly important for refugee and migrant labour-market integration.</p>
-<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34g.</strong> NACE divisions with the largest absolute number of Ukrainian-friendly postings</div>
+<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 42.</strong> NACE divisions with the largest absolute number of Ukrainian-friendly postings</div>
 <div id="ukr-industries-count-chart"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> In absolute terms, restaurants, warehousing, and programming activities dominate Ukrainian-friendly postings. This shows that both lower-barrier service work and higher-skill IT employment matter for Ukrainian workers in Poland.</p>
 <p class="notes source-note">Source: Pracuj.pl + ESCO→NACE crosswalk. Only divisions with at least 500 postings are ranked.</p>
@@ -764,10 +764,10 @@ absolute-volume ranking confirms that gastronomy, courier and warehouse
 categories together account for the bulk of Ukrainian-friendly hiring.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 34h.</strong> Narrow job categories with the highest share of Ukrainian-friendly postings</div>
+<div class="figure-caption-title"><strong>Figure 43.</strong> Narrow job categories with the highest share of Ukrainian-friendly postings</div>
 <div id="ukr-categories-narrow-share-chart"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> The tag is most prevalent in food-related, hospitality, manual-labour, courier, and personal-service categories. These are practical entry points for migrant employment policy.</p>
-<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34i.</strong> Narrow job categories with the largest absolute number of Ukrainian-friendly postings</div>
+<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 44.</strong> Narrow job categories with the largest absolute number of Ukrainian-friendly postings</div>
 <div id="ukr-categories-narrow-count-chart"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> High-volume Ukrainian-friendly hiring is concentrated in gastronomy, courier, warehouse, and related operational categories. This identifies where language support, credential recognition, and workplace integration could have the largest reach.</p>
 <p class="notes source-note">Source: Pracuj.pl <code>job_category_narrow</code>. Only categories with at least 500 postings are ranked.</p>
@@ -790,10 +790,10 @@ recruited; standard permanent contracts and B2B contracts use the tag
 considerably less.
 
 ```{=html}
-<div class="figure-caption-title"><strong>Figure 34k.</strong> Share of postings tagged 'Jobs for Ukrainians', by seniority level</div>
+<div class="figure-caption-title"><strong>Figure 46.</strong> Share of postings tagged 'Jobs for Ukrainians', by seniority level</div>
 <div id="ukr-seniority-chart"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> Ukrainian-friendly postings are concentrated in manual-worker and supervisor-type roles, while specialist and director roles use the tag less often. This suggests that the badge mainly supports operational rather than high-skill professional recruitment.</p>
-<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 34l.</strong> Share of postings tagged 'Jobs for Ukrainians', by contract type</div>
+<div class="figure-caption-title" style="margin-top:1rem;"><strong>Figure 47.</strong> Share of postings tagged 'Jobs for Ukrainians', by contract type</div>
 <div id="ukr-contracts-chart"></div>
 <p class="figure-interpretation"><strong>Interpretation.</strong> Temporary and mandate contracts carry the tag more often than permanent or B2B contracts. This points to a relatively flexible and sometimes more precarious employment structure in migrant-accessible segments.</p>
 <p class="notes source-note">Source: Pracuj.pl <code>seniority_level</code> and <code>contract_types</code>. Multi-valued fields are split per posting; only categories with at least 500 postings are shown.</p>
